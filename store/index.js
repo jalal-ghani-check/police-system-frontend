@@ -3,7 +3,7 @@ export const state = () => ({
   errors: [],
   messages: [],
   notificationClass: 'error',
-
+  activeTab: 'dashboard'
 })
 
 export const mutations = {
@@ -15,8 +15,10 @@ export const mutations = {
   },
   setNotificationClass (state, notificationClass) {
     state.notificationClass = notificationClass
+  },
+  setActiveTab: (state, tab) => {
+    state.activeTab = tab
   }
-
 }
 
 export const getters = {
@@ -29,7 +31,9 @@ export const getters = {
   getNotificationClass: (state) => {
     return state.notificationClass
   },
-  
+  getActiveTab: (state) => {
+    return state.activeTab
+  }
 }
 export const actions = {
   async nuxtServerInit ({ commit, dispatch }, { redirect, $axios }) {
@@ -68,9 +72,6 @@ export const actions = {
     //   }
     // }
   },
-
-
-
   setErrorInNotificationBar ({ commit }, errorArr) {
     commit('setError', errorArr)
     commit('setMessage', [])

@@ -21,6 +21,11 @@ export default {
       return dispatch('investor/kyc/profileData', null, { root: true })
     })
   },
+  logoutUserBackend ({ dispatch }, authData) {
+    return this.$axios.$post('auth/logout', authData).then(({ data }) => {
+      return dispatch('investor/kyc/profileData', null, { root: true })
+    })
+  },
   initAuth ({ state, dispatch }, req) {
     let token = null
     if (req) {
@@ -39,9 +44,12 @@ export default {
       return dispatch('saveToken', { token })
     }
   },
-  logoutUser ({ dispatch, commit, state }, req) {
+  async logoutUser ({ dispatch, commit, state }, req) {
+    if (state.token) {
+      await dispatch('logoutUserBackend', {})
+    }
     return new Promise((resolve, reject) => {
-      commit('investor/kyc/emptyProfileData', null, { root: true })
+      // commit('investor/kyc/emptyProfileData', null, { root: true })
       this.$cookies.removeAll()
       if (process.client) {
         localStorage.removeItem('Pb-Token')

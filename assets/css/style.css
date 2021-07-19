@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: url(../images/bg.png) no-repeat #FCFCFC;
+    background-size: cover;
+}
+
+header .navbar  {
+    background-color: #fff;
+    min-height: 100px;
+    padding: 0;
+}
+header .navbar-light .navbar-nav .nav-link {
+    color: rgba(27, 27, 27, 0.5);
+    font-size: 18px;
+    padding: 35px 22px;
+}
+header .navbar-light .navbar-nav .nav-link.active, 
+header .navbar-light .navbar-nav .show>.nav-link {
+    color: #1F1F1F;
+    font-weight: 500;
+    border-bottom: 2px solid #000;
+}
+.dropdown-menu {
+    background: #FFFFFF;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    border: none;
+    font-size: 18px;
+}
+.dropdown-item {
+    padding: 7px 18px;
+    color: rgba(27, 27, 27, 0.5);
+}
+.dropdown-item:focus, 
+.dropdown-item:hover {
+    background: none;
+}
+.text-red {
+    color: #EE0000 !important;
+} 
+.text-green {
+    color: #1DD100 !important;
+} 
+.btn {
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+} 
+.btn-warning {
+    color:#fff;
+    background: #F59300;
+    border-color: #F59300;
+}
+.btn-warning:hover {
+    color:#fff;
+    background: #F59300;
+    border-color: #F59300;
+}
+.btn-check:active+.btn-warning, 
+.btn-check:checked+.btn-warning, 
+.btn-warning.active, .btn-warning:active, 
+.show>.btn-warning.dropdown-toggle {
+    color:#fff;
+    background: #F59300;
+    border-color: #F59300;
+} 
+
+.btn-danger {
+    color:#fff;
+    background: #EE0000;
+    border-color: #EE0000;
+}
+.btn-danger:hover {
+    color:#fff;
+    background: #EE0000;
+    border-color: #EE0000;
+}
+.btn-check:active+.btn-danger, 
+.btn-check:checked+.btn-danger, 
+.btn-danger.active, .btn-danger:active, 
+.show>.btn-danger.dropdown-toggle {
+    color:#fff;
+    background: #EE0000;
+    border-color: #EE0000;
+}
+
+.btn-primary {
+    color:#fff;
+    background: #5CA7FF;
+    border-color: #5CA7FF;
+}
+.btn-primary:hover {
+    color:#fff;
+    background: #5CA7FF;
+    border-color: #5CA7FF;
+}
+.btn-check:active+.btn-primary, 
+.btn-check:checked+.btn-primary, 
+.btn-primary.active, .btn-primary:active, 
+.show>.btn-primary.dropdown-toggle {
+    color:#fff;
+    background: #5CA7FF;
+    border-color: #5CA7FF;
+} 
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 25px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(120, 120, 128, 0.16);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background: #FFFFFF;
+    border: 0.5px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15), 0px 3px 1px rgba(0, 0, 0, 0.06);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #34C759;
+  }
+  
+ 
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(14px);
+    -ms-transform: translateX(14px);
+    transform: translateX(14px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+.page-title-banner {
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+.section-heading {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    margin-bottom: 20px;
+}
+.section-heading ::before {
+    content: '';
+    height: 3px;
+    width: 280px;
+    background: #000;
+    position: absolute;
+    bottom: -2px;
+}
+.section-heading.small  ::before {
+    width: 190px;
+}
+.section-heading.red  ::before {
+    background: #EE0000;
+}
+.section-heading.green  ::before {
+    background: #1DD100;
+}
+.section-heading h4 {
+    font-size: 18px;
+    font-weight: 500;
+}
+.white-widget {
+    background: #FFFFFF;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.switch-list {
+    display: flex;
+    margin-bottom: 10px;
+}
+.switch-list .switch-label {
+    width: 80%;
+}
+.switch-list .switch-toggle {
+    width: 20%;
+    text-align: right;
+}

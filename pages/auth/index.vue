@@ -148,21 +148,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css" scoped>
-.error {
-  margin-top: -35px;
-  font-size: 12px;
-}
-
-.form-footer {
-  padding: 10px 20px;
-  height: 80px;
-  background-color: #f9f9f9;
-  span {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-  }
-}
-</style>

@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div class="spacer" />
-    <h1>Master</h1>
+    <Header />
     <nuxt id="body" />
-    <div class="spacer" />
+    <Footer />
   </div>
 </template>
 

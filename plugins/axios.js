@@ -6,7 +6,7 @@ export default function ({ $axios, store, redirect, req }) {
       (error.response && error.response.status === 401)
     ) {
       store.dispatch('auth/logoutUser', req).then(() => {
-        redirect('/auth')
+        // redirect('/auth')
       })
     }
     if (error.response && error.response.status !== 500) {
