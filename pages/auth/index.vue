@@ -2,8 +2,7 @@
   <section class="p-0">
     <div class="container my-4">
       <h1 class="mx-auto text-center">
-        مرحبا بك في منصة الدين
-        <span class="tagline">الرجاء تسجيل الدخول لحسابك</span>
+        Login
       </h1>
       <div class="row ">
         <div class="col-lg-7 col-md-7 col-12 mx-auto">
@@ -30,9 +29,9 @@
                       class="form-control"
                       autocomplete="off"
                     >
-                    <label class="required" for="username">{{
-                      $t('usernameNationalId')
-                    }}</label>
+                    <label class="required" for="username">
+                      UserName
+                    </label>
                   </div>
                   <div
                     v-if="$v.username.$error && !$v.username.required"
@@ -60,7 +59,8 @@
                       autocomplete="off"
                     >
                     <label class="required" for="password">
-                      {{ $t('password') }}</label>
+                      Password
+                    </label>
                   </div>
                   <div
                     v-if="$v.password.$error && !$v.password.required"
@@ -91,14 +91,7 @@
                     data-bs-placement="top"
                     title="Tooltip on top"
                     @click="onSubmit"
-                  >تسجيل الدخول</a>
-                </div>
-                <div class="col-lg-6 col-md-6 col-6">
-                  <div class="forgetpassword">
-                    <NuxtLink to="/auth/change-password" class="link">
-                      نسيت كلمة المرور؟
-                    </NuxtLink>
-                  </div>
+                  >Login</a>
                 </div>
               </div>
             </form>

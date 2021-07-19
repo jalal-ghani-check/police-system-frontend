@@ -23,7 +23,7 @@ export default {
   },
   logoutUserBackend ({ dispatch }, authData) {
     return this.$axios.$post('auth/logout', authData).then(({ data }) => {
-      return dispatch('investor/kyc/profileData', null, { root: true })
+      return data
     })
   },
   initAuth ({ state, dispatch }, req) {
@@ -44,18 +44,26 @@ export default {
       return dispatch('saveToken', { token })
     }
   },
-  async logoutUser ({ dispatch, commit, state }, req) {
-    if (state.token) {
-      await dispatch('logoutUserBackend', {})
-    }
-    return new Promise((resolve, reject) => {
-      // commit('investor/kyc/emptyProfileData', null, { root: true })
-      this.$cookies.removeAll()
-      if (process.client) {
-        localStorage.removeItem('Pb-Token')
-      }
-      commit('setToken', null)
-      return resolve(true)
-    })
+  logoutUser ({ dispatch, commit, state }, req) {
+    return dispatch('logoutUserBackend', {})
+      .then((data) => {
+        // commit('investor/kyc/emptyProfileData', null, { root: true })
+        this.$cookies.removeAll()
+        if (process.client) {
+          localStorage.removeItem('Pb-Token')
+        }
+        commit('setToken', null)
+        return data
+      })
+      .catch(() => {})
+    // return new Promise((resolve, reject) => {
+      // // commit('investor/kyc/emptyProfileData', null, { root: true })
+      // this.$cookies.removeAll()
+      // if (process.client) {
+      //   localStorage.removeItem('Pb-Token')
+      // }
+      // commit('setToken', null)
+    //   return resolve(true)
+    // })
   }
 }

@@ -6,7 +6,7 @@ export default function ({ $axios, store, redirect, req }) {
       (error.response && error.response.status === 401)
     ) {
       store.dispatch('auth/logoutUser', req).then(() => {
-        // redirect('/auth')
+        redirect('/auth')
       })
     }
     if (error.response && error.response.status !== 500) {
@@ -59,7 +59,6 @@ export default function ({ $axios, store, redirect, req }) {
 
   $axios.onResponse((response) => {
     store._vm.$nuxt.$loading.finish()
-    console.log(response)
     if (response.headers['Pb-Token']) {
       store.dispatch('auth/saveToken', {
         token: response.headers['Pb-Token'],
