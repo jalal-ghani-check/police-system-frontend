@@ -40,9 +40,6 @@
                   >
                     {{ $t('username_required') }}
                   </div>
-                  <div v-if="$v.username.$error && !$v.username.username" class="error">
-                    {{ $t('username_invalid') }}
-                  </div>
                 </div>
                 <div class="col-12">
                   <div
