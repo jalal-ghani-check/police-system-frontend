@@ -59,6 +59,7 @@ export default function ({ $axios, store, redirect, req }) {
 
   $axios.onResponse((response) => {
     store._vm.$nuxt.$loading.finish()
+    console.log(response)
     if (response.headers['Pb-Token']) {
       store.dispatch('auth/saveToken', {
         token: response.headers['Pb-Token'],
