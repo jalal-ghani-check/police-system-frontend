@@ -27,5 +27,10 @@ export default {
     commit('setRefreshWarrantList', false)
   },
   
+  generateWarrantAcceptPopup ({ commit }, generateData) {
+    commit('setAcceptWarrantId', generateData.warrantId)
+    commit('setIsWarrantAcceptPopupOpen', true)
+    commit('setRefreshWarrantList', false)
+  },
 
 }

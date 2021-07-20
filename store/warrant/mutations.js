@@ -7,5 +7,12 @@ export default {
   },
   setRefreshWarrantList (state, refreshWarrantList) {
     state.refreshWarrantList = refreshWarrantList
-  }
+  },
+  setIsWarrantAcceptPopupOpen (state, isWarrantAcceptPopupOpen) {
+    state.isWarrantAcceptPopupOpen = isWarrantAcceptPopupOpen
+  },
+  setAcceptWarrantId (state, acceptWarrantId) {
+    state.acceptWarrantId = acceptWarrantId
+  },
+
 }

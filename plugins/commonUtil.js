@@ -24,4 +24,10 @@ export default ({ app, store }, inject) => {
     })
   })
 
+  inject('renderWarrantAcceptPopup', (warrantId) => {
+    store.dispatch('warrant/generateWarrantAcceptPopup', {
+      warrantId
+    })
+  })
+
 }

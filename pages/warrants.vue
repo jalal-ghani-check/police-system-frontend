@@ -56,6 +56,7 @@
               </div>
 
               <warrant-reject-modal />
+              <warrant-accept-modal />
               <input type="hidden" :value="getRefreshWarrantListCheck" />
 
           </div>
@@ -65,10 +66,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import WarrantAcceptModal from '~/components/warrants/WarrantAcceptModal.vue'
 import warrantItem from '~/components/warrants/warrantItem.vue'
 import WarrantRejectModal from '~/components/warrants/WarrantRejectModal.vue'
 export default {
-  components: { warrantItem, WarrantRejectModal },
+  components: { warrantItem, WarrantRejectModal, WarrantAcceptModal },
   name: 'Warrants',
   layout: 'master',
   data () {

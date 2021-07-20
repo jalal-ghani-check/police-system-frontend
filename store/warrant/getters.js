@@ -8,4 +8,10 @@ export default {
   getRefreshWarrantList: (state) => {
     return state.refreshWarrantList
   },
+  getIsWarrantAcceptPopupOpen: (state) => {
+    return state.isWarrantAcceptPopupOpen
+  },
+  getAcceptWarrantId: (state) => {
+    return state.acceptWarrantId
+  }
 }

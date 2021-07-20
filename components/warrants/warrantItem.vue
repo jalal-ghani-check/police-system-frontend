@@ -12,7 +12,7 @@
       <div v-else-if="warrant.status === 'rejected'" class="tag">Rejected Warrant</div>
 
       <div class="warrants-item-footer d-grid gap-2">
-          <button v-if="warrant.status === 'pending'" data-bs-toggle="modal" data-bs-target="#activeWarrant" class="btn btn-outline-success">Accept</button>
+          <button v-if="warrant.status === 'pending'" @click="acceptWarrant(warrant.enc_warrant_id)" class="btn btn-outline-success">Accept</button>
           <button v-if="warrant.status === 'pending'"   @click="rejectWarrant(warrant.enc_warrant_id)" class="btn btn-outline-danger">Reject</button>
           <button v-if="warrant.status === 'approved'" class="btn btn-outline-secondary">View Details</button>
       </div>
@@ -39,6 +39,9 @@ export default {
   methods: {
     rejectWarrant(encWarrantId) {
       this.$renderWarrantRejectPopup(encWarrantId)
+    },
+    acceptWarrant(encWarrantId){
+      this.$renderWarrantAcceptPopup(encWarrantId)
     },
     expungeRecord() {
 
