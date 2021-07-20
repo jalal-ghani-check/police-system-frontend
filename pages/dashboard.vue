@@ -10,10 +10,10 @@
             <div class="section-heading red">
               <h4>Latest Reports</h4>
             </div>
-            <div class="dashboard-cards">
+            <div class="report-cards">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="dashboard-card">
+                        <div class="report-card">
                             <div class="tag-no">#4723</div>
                             <h3>Beach Shooting //7/7/21</h3>
                             <h4>By: Timothy Rooney</h4>
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                    <div class="dashboard-card red">
+                    <div class="report-card red">
                         <div class="tag-no">#4723</div>
                         <h3>Beach Shooting //7/7/21</h3>
                         <h4>By: Timothy Rooney</h4>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="dashboard-card red">
+                    <div class="report-card red">
                         <div class="tag-no">#4723</div>
                         <h3>Beach Shooting //7/7/21</h3>
                         <h4>By: Timothy Rooney</h4>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="row">
                 <div class="col-md-4">
-                    <div class="dashboard-card">
+                    <div class="report-card">
                         <div class="tag-no">#4723</div>
                         <h3>Beach Shooting //7/7/21</h3>
                         <h4>By: Timothy Rooney</h4>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="dashboard-card red">
+                  <div class="report-card red">
                       <div class="tag-no">#4723</div>
                       <h3>Beach Shooting //7/7/21</h3>
                       <h4>By: Timothy Rooney</h4>
@@ -55,7 +55,7 @@
                   </div>
               </div>
               <div class="col-md-4">
-                  <div class="dashboard-card red">
+                  <div class="report-card red">
                       <div class="tag-no">#4723</div>
                       <h3>Beach Shooting //7/7/21</h3>
                       <h4>By: Timothy Rooney</h4>

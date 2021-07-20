@@ -175,13 +175,13 @@
                                     <div class="switch-list">
                                         <div class="switch-label">
                                             <div class="switch-heading">Driver License</div>
-                                            <div v-if="profileRecord.is_driver_license_valid" class="switch-validity text-green">Valid</div>
+                                            <div v-if="is_driver_license_valid" class="switch-validity text-green">Valid</div>
                                             <div v-else class="switch-validity text-red">Not Valid</div>
 
                                         </div>
                                         <div class="switch-toggle">
                                             <label class="switch">
-                                                <input v-model="profileRecord.is_driver_license_valid" type="checkbox">
+                                                <input v-model="is_driver_license_valid" type="checkbox">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -189,12 +189,12 @@
                                     <div class="switch-list">
                                         <div class="switch-label">
                                             <div class="switch-heading">Weapon License</div>
-                                            <div v-if="profileRecord.is_weapon_license_valid" class="switch-validity text-green">Valid</div>
+                                            <div v-if="is_weapon_license_valid" class="switch-validity text-green">Valid</div>
                                             <div v-else class="switch-validity text-red">Not Valid</div>
                                         </div>
                                         <div class="switch-toggle">
                                             <label class="switch">
-                                                <input v-model="profileRecord.is_weapon_license_valid" type="checkbox">
+                                                <input v-model="is_weapon_license_valid" type="checkbox">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -202,12 +202,12 @@
                                     <div class="switch-list">
                                         <div class="switch-label">
                                             <div class="switch-heading">Pilot License</div>
-                                            <div v-if="profileRecord.is_pilot_license_valid" class="switch-validity text-green">Valid</div>
+                                            <div v-if="is_pilot_license_valid" class="switch-validity text-green">Valid</div>
                                             <div v-else class="switch-validity text-red">Not Valid</div>
                                         </div>
                                         <div class="switch-toggle">
                                             <label class="switch">
-                                                <input v-model="profileRecord.is_pilot_license_valid" type="checkbox">
+                                                <input v-model="is_pilot_license_valid" type="checkbox">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -215,12 +215,12 @@
                                     <div class="switch-list">
                                         <div class="switch-label">
                                             <div class="switch-heading">Hunting License</div>
-                                            <div v-if="profileRecord.is_hunting_license_valid" class="switch-validity text-green">Valid</div>
+                                            <div v-if="is_hunting_license_valid" class="switch-validity text-green">Valid</div>
                                             <div v-else class="switch-validity text-red">Not Valid</div>
                                         </div>
                                         <div class="switch-toggle">
                                             <label class="switch">
-                                                <input v-model="profileRecord.is_hunting_license_valid" type="checkbox">
+                                                <input v-model="is_hunting_license_valid" type="checkbox">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -228,12 +228,12 @@
                                     <div class="switch-list">
                                         <div class="switch-label">
                                             <div class="switch-heading">Fishing License</div>
-                                            <div v-if="profileRecord.is_fishing_license_valid" class="switch-validity text-green">Valid</div>
+                                            <div v-if="is_fishing_license_valid" class="switch-validity text-green">Valid</div>
                                             <div v-else class="switch-validity text-red">Not Valid</div>
                                         </div>
                                         <div class="switch-toggle">
                                             <label class="switch">
-                                                <input v-model="profileRecord.is_fishing_license_valid" type="checkbox">
+                                                <input v-model="is_fishing_license_valid" type="checkbox">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -357,13 +357,13 @@
                                             </ul>
                                             <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade" id="lastestReports" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                <div class="dashboard-card red">
+                                                <div class="report-card red">
                                                     <div class="tag-no">#4723</div>
                                                     <h3>Beach Shooting //7/7/21</h3>
                                                     <h4>By: Timothy Rooney</h4>
                                                     <div class="tag">Medical Report</div>
                                                 </div>
-                                                <div class="dashboard-card">
+                                                <div class="report-card">
                                                     <div class="tag-no">#4723</div>
                                                     <h3>Beach Shooting //7/7/21</h3>
                                                     <h4>By: Timothy Rooney</h4>
@@ -419,13 +419,36 @@ export default {
   data () {
     return {
       profileRecord: [],
-      profileId: null
+      profileId: null,
+      saveSettingsAllow: false,
+      is_driver_license_valid: 0,
+      is_weapon_license_valid: 0,
+      is_pilot_license_valid: 0,
+      is_hunting_license_valid: 0,
+      is_fishing_license_valid: 0,
     }
   },
   computed: {
     profileIdComputed () {
       return this.profileId
     }
+  },
+  watch: {
+      is_driver_license_valid(newValue , oldValue) {
+          this.postSettings('is_driver_license_valid',newValue)
+      },
+      is_weapon_license_valid(newValue , oldValue) {
+          this.postSettings('is_weapon_license_valid',newValue)
+      },
+      is_pilot_license_valid(newValue , oldValue) {
+          this.postSettings('is_pilot_license_valid',newValue)
+      },
+      is_hunting_license_valid(newValue , oldValue) {
+          this.postSettings('is_hunting_license_valid',newValue)
+      },
+      is_fishing_license_valid(newValue , oldValue) {
+          this.postSettings('is_fishing_license_valid',newValue)
+      }
   },
   async mounted () {
     const profileId = this.$route.query.profile_id
@@ -435,7 +458,34 @@ export default {
         'profile/fetchProfileRecord',
         { profileId }
       )
+
+      this.is_driver_license_valid = this.profileRecord.is_driver_license_valid
+      this.is_weapon_license_valid = this.profileRecord.is_weapon_license_valid
+      this.is_pilot_license_valid = this.profileRecord.is_pilot_license_valid
+      this.is_hunting_license_valid = this.profileRecord.is_hunting_license_valid
+      this.is_fishing_license_valid = this.profileRecord.is_fishing_license_valid
+
+      setTimeout(() => this.saveSettingsAllow = true, 1000)
+      
+
     }
+  },
+  methods: {
+      postSettings(key, value){
+        if(this.saveSettingsAllow) {
+          this.$store
+            .dispatch('profile/saveProfileSettings', {
+                key: key,
+                value: value,
+                profile_id: this.profileId
+            })
+            .then(() => {
+            })
+            .catch(() => {
+
+            })
+        }  
+      }
   }
 }
 </script>

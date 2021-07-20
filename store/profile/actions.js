@@ -5,10 +5,17 @@ export default {
       .get(url)
       .then((response) => {
         const { data } = response.data
-        console.log(data)
         return data
         // commit('setTransactionsDetail', data)
       })
-  }
+  },
+  
+  saveProfileSettings ({ commit }, requestData) {
+    return this.$axios
+      .post('profile/save-settings', requestData)
+      .then((data) => {
+        this.$toast.global.post_success()
+      })
+  },
 
 }
