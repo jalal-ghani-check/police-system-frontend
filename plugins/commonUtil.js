@@ -17,4 +17,11 @@ export default ({ app, store }, inject) => {
     document.getElementById('body').scrollIntoView()
   })
 
+
+  inject('renderWarrantRejectPopup', (warrantId) => {
+    store.dispatch('warrant/generateWarrantRejectPopup', {
+      warrantId
+    })
+  })
+
 }

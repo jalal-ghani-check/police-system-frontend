@@ -17,5 +17,13 @@ export default {
         this.$toast.global.post_success()
       })
   },
+  expungeProfileRecord ({ commit }, requestData) {
+    return this.$axios
+      .post('profile/delete', requestData)
+      .then((data) => {
+        this.$toast.global.post_success()
+      })
+  },
+  
 
 }
