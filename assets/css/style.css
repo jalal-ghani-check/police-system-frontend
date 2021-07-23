@@ -2,9 +2,14 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background: url(~/assets/images/bg.png) no-repeat #fcfcfc;
+  background: url('~/assets/images/bg.png') no-repeat #fcfcfc;
   background-size: cover;
   color: #1f1f1f;
+}
+
+a {
+  color: #5CA7FF;
+  text-decoration: none;
 }
 
 header .navbar {
@@ -41,6 +46,10 @@ header .navbar-light .navbar-nav .nav-link.search-active svg path  {
 }
 header .navbar-light .navbar-nav .nav-link.warrants-active svg path  {
   fill:#F59300;
+  fill-opacity: 1;
+}
+header .navbar-light .navbar-nav .nav-link.admin-active svg path  {
+  fill:#5CA7FF;
   fill-opacity: 1;
 }
 .user-dropdown  {
@@ -94,12 +103,15 @@ header .navbar-light .navbar-nav .nav-link.warrants-active svg path  {
 .text-green {
   color: #1dd100 !important;
 }
+.text-light {
+  color: rgba(27, 27, 27, 0.5) !important;
+}
 .btn {
   border-radius: 10px;
   font-size: 12px;
   height: 40px;
   font-weight: 700;
-  padding: 10px 0;
+  padding: 10px 15px;
 }
 .btn svg {
     position: relative;
@@ -216,6 +228,14 @@ header .navbar-light .navbar-nav .nav-link.warrants-active svg path  {
   color: rgba(27, 27, 27, 0.5);
   border-color: rgba(27, 27, 27, 0.5);
 }
+.btn-light {
+  color: #000;
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+
 .switch {
   position: relative;
   display: inline-block;
@@ -333,6 +353,9 @@ input:checked + .slider:before {
 .section-heading.blue ::before {
   background: #5CA7FF;
 }
+.section-heading.orange ::before {
+  background: #F59300;
+}
 .section-heading h4 {
   font-size: 18px;
   font-weight: 500;
@@ -358,9 +381,7 @@ input:checked + .slider:before {
   width: 20%;
   text-align: right;
 }
-.section-search {
-  margin-bottom: 20px;
-}
+
 .form-control {
   background: #fcfcfc;
   border-radius: 10px;
@@ -391,6 +412,18 @@ input:checked + .slider:before {
 textarea.form-control {
   height: auto;
   resize: none;
+}
+.section-search {
+  margin-bottom: 20px;
+  position: relative;
+}
+.section-search .search-icon {
+  position: absolute;
+  left: 15px;
+  top: 8px;
+}
+.section-search .form-control {
+  padding-left: 45px !important;
 }
 .section-search .form-control {
   background: #f7f7f7;
@@ -617,4 +650,213 @@ textarea.form-control {
 }
 .tags-list ul.items-5 li {
     width: 20%;
+}
+
+/* TOGGLE CHECKBOX */
+
+/* The container */
+.toggle-checkbox {
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+    background: #FCFCFC;
+    border-radius: 10px;
+    color: rgba(73, 55, 55, 0.5);
+    height: 50px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hide the browser's default checkbox */
+.toggle-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* When the checkbox is checked, add a blue background */
+.toggle-checkbox input:checked ~ .value {
+  background: #1dd100;
+  border-radius: 10px;
+  box-shadow: 0px 10px 20px rgba(29, 209, 0, 0.2);
+  color: #fff; 
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+}
+.employees-name-card {
+  background: #FFFFFF;
+  border-radius: 15px; 
+  padding: 30px;
+  display: flex;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+}
+.employees-name-card .tag{
+  background: rgba(92, 167, 255, 0.05);
+  border-radius: 10px;
+  font-size: 18px;
+  text-align: center;
+  color: #5CA7FF;
+  width: 70px;
+  padding: 10px;
+  margin-right: 10px;
+}
+.employees-name-card h3 {
+  font-weight: normal;
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+.employees-name-card h4 {
+  font-weight: normal;
+  font-size: 18px;
+  margin-bottom: 0;
+  color: rgba(27, 27, 27, 0.5);
+}
+.employees-name-card.doc .tag{
+  background: rgba(92, 167, 255, 0.05);
+  color: #1DD100;
+}
+.employees-name-card.doj {
+  background: #FFF7F7;
+  border: 1px solid rgba(255, 128, 128, 0.5);
+}
+.employees-name-card.doj .tag{
+  background: rgba(238, 0, 0, 0.05);
+  color: #EE0000;
+}
+.black-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.black-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.black-checkbox .checkmark {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background: url(~/assets/images/black-checkbox.svg) no-repeat;
+  background-size: 18px;
+}
+
+/* When the checkbox is checked, add a blue background */
+.black-checkbox input:checked ~ .checkmark {
+  background:url(~/assets/images/black-checkbox-checked.svg) no-repeat;
+  background-size: 18px;
+}
+.upload-btn {
+  background: #fcfcfc;
+  border-radius: 10px;
+  border: none;
+  height: 50px;
+  font-size: 18px;
+  padding: 10px 18px 12px;
+  position: relative;
+  cursor: pointer;
+}
+.upload-btn input[type="file"] {
+  position: absolute;
+  display: none;
+}
+.form-select {
+  background: #fcfcfc;
+  border-radius: 10px;
+  border: none;
+  height: 50px;
+  font-size: 18px;
+  padding: 10px 18px 12px;
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-menu-icon {
+  background:url(~/assets/images/dotted-menu.svg) no-repeat;
+  width: 24px;
+  height: 6px;
+  display: block;
+}
+
+/* RESPONSIVE FIXES */
+@media screen and (max-width:990px) {
+  .page-title-banner {
+    height: 108px;
+  }
+  .toggle-checkbox {
+    font-size: 14px;
+  }
+  .toggle-checkbox input:checked ~ .value {
+    font-size: 14px;;
+  }
+  .tags-list ul.items-5 li {
+    width: 25%;
+  }
+}
+
+@media (max-width:768px) {
+  .page-title-banner {
+    height: 65px;
+    margin-left: -18px;
+    margin-right: -18px;
+  }
+  .page-title-banner h2 {
+    font-size: 24px;
+  }
+  .page-title-banner h2 svg {
+    margin-right: 7px;
+    width: 24px;
+  }
+  header .navbar {
+    height: auto;
+    min-height: auto;
+    padding: 30px 0;
+    margin-bottom: 10px;
+  }
+  header .navbar-light .navbar-nav .nav-link {
+    padding: 16px 22px;
+  }
+  .header-buttons {
+    text-align: center !important;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+}
+.tags-list ul.items-5 li {
+  width: 33.33%;
+}
+.house-owner-card {
+  width: 290px;
+}
+}
+@media (max-width:558px) {
+  .tags-list ul.items-5 li {
+    width: 50%;
+  }
+
 }
