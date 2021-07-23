@@ -702,6 +702,10 @@ textarea.form-control {
   margin-bottom: 10px;
   border: 1px solid transparent;
 }
+.employees-name-card.active  {
+  background: #F7FBFF;
+  border: 1px solid rgba(191, 221, 255, 0.5);
+}
 .employees-name-card .tag{
   background: rgba(92, 167, 255, 0.05);
   border-radius: 10px;
@@ -727,7 +731,11 @@ textarea.form-control {
   background: rgba(92, 167, 255, 0.05);
   color: #1DD100;
 }
-.employees-name-card.doj {
+.employees-name-card.doc.active{
+  background: #F7FBFF;
+  border: 1px solid rgba(191, 221, 255, 0.5);
+}
+.employees-name-card.doj.active {
   background: #FFF7F7;
   border: 1px solid rgba(255, 128, 128, 0.5);
 }
