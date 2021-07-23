@@ -2,7 +2,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background: url(~/assets/images/bg.png) no-repeat #fcfcfc;
+  background: url('~/assets/images/bg.png') no-repeat #fcfcfc;
   background-size: cover;
   color: #1f1f1f;
 }
