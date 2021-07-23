@@ -60,8 +60,6 @@ export default {
   },
   methods: {
     submitForm() {
-      console.log(this.getRejectWarrantId)
-
       this.$store
         .dispatch('warrant/updateWarrantStatus', {
             warrant_id: this.getRejectWarrantId,

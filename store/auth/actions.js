@@ -9,16 +9,18 @@ export default {
       return resolve(true)
     })
   },
-  authenticateUser ({ dispatch }, authData) {
+  authenticateUser ({ dispatch , commit }, authData) {
     return this.$axios.$post('auth/login', authData).then(({ data }) => {
       dispatch('saveToken', { token: data.api_token, isLocal: true })
+      commit('setUserData',data)
       // return dispatch('investor/kyc/profileData', null, { root: true })
     })
   },
-  registerUser ({ dispatch }, authData) {
+  registerUser ({ dispatch, commit }, authData) {
     return this.$axios.$post('auth/register', authData).then(({ data }) => {
       dispatch('saveToken', { token: data.api_token, isLocal: true })
-      return dispatch('investor/kyc/profileData', null, { root: true })
+      commit('setUserData',data)
+      // return dispatch('investor/kyc/profileData', null, { root: true })
     })
   },
   logoutUserBackend ({ dispatch }, authData) {
@@ -57,7 +59,7 @@ export default {
     //   })
     //   .catch(() => {})
     return new Promise((resolve, reject) => {
-      // commit('investor/kyc/emptyProfileData', null, { root: true })
+      commit('emptyUserData', null)
       this.$cookies.removeAll()
       if (process.client) {
         localStorage.removeItem('Pb-Token')

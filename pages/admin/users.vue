@@ -432,7 +432,6 @@ export default {
       this.isEditMode = true
     },
     updateProfile() {
-       console.log(this.selectedEmployee)
         this.$store
         .dispatch('auth/updateUserInfo', this.selectedEmployee)
         .then((data) => {
