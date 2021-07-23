@@ -121,7 +121,6 @@ export default {
   },
   mounted () {
     this.$refs.username.focus()
-    this.$store.commit('setShowLoginButton', false)
   },
   methods: {
     onSubmit () {

@@ -107,6 +107,8 @@
                 <li class="nav-item dropdown">
                   <a
                   class="nav-link dropdown-toggle"
+                  :class="{active: 'users' == getActiveTab ,
+                                    'admin-active':'users'== getActiveTab }"
                   id="navbarDropdown"
                   role="button"
                   data-bs-toggle="dropdown"

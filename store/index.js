@@ -1,9 +1,12 @@
-// import axios from 'axios'
+import axios from 'axios'
 export const state = () => ({
   errors: [],
   messages: [],
   notificationClass: 'error',
-  activeTab: 'dashboard'
+  activeTab: 'dashboard',
+  roles: [],
+  departments: [],
+  ranks: []
 })
 
 export const mutations = {
@@ -18,7 +21,10 @@ export const mutations = {
   },
   setActiveTab: (state, tab) => {
     state.activeTab = tab
-  }
+  },
+  setKeyValueInState: (state, keyValuePair) => {
+    state[keyValuePair.key] = keyValuePair.value
+  },
 }
 
 export const getters = {
@@ -33,22 +39,27 @@ export const getters = {
   },
   getActiveTab: (state) => {
     return state.activeTab
-  }
+  },
+  getRoles: (state) => {
+    return state.roles
+  },
+  getRanks: (state) => {
+    return state.ranks
+  },
+  getDepartments: (state) => {
+    return state.departments
+  },
 }
 export const actions = {
   async nuxtServerInit ({ commit, dispatch }, { redirect, $axios }) {
-    // const { data } = await axios.get(
-    //   process.env.BASE_URL + 'investor/meta-data'
-    // )
-    // if (data) {
-    //   commit('setKeyValueInState', { key: 'annualIncome', value: data.data.preferences.annual_income.metadata })
-    //   commit('setKeyValueInState', { key: 'investPerOpp', value: data.data.preferences.invest_per_opp.metadata })
-    //   commit('setKeyValueInState', { key: 'investPerYear', value: data.data.preferences.invest_per_year.metadata })
-    //   commit('setKeyValueInState', { key: 'countries', value: data.data.countries })
-    //   commit('setKeyValueInState', { key: 'professionalDocs', value: data.data.documents.individual_professional })
-    //   commit('setKeyValueInState', { key: 'qualifiedCompanyDocs', value: data.data.documents.qualified_company })
-    //   commit('setKeyValueInState', { key: 'qualifiedNonProfitOrganizationDocs', value: data.data.documents.qualified_non_profit_organization })
-    // }
+    const { data } = await axios.get(
+      process.env.BASE_URL + 'meta-data'
+    )
+    if (data) {
+      commit('setKeyValueInState', { key: 'roles', value: data.data.roles })
+      commit('setKeyValueInState', { key: 'ranks', value: data.data.ranks })
+      commit('setKeyValueInState', { key: 'departments', value: data.data.departments })
+    }
     // const token = this.$cookies.get('Pb-Token')
     // if (token) {
     //   try {

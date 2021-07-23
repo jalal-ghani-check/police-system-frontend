@@ -45,25 +45,60 @@ export default {
     }
   },
   logoutUser ({ dispatch, commit, state }, req) {
-    return dispatch('logoutUserBackend', {})
-      .then((data) => {
-        // commit('investor/kyc/emptyProfileData', null, { root: true })
-        this.$cookies.removeAll()
-        if (process.client) {
-          localStorage.removeItem('Pb-Token')
-        }
-        commit('setToken', null)
+    // return dispatch('logoutUserBackend', {})
+    //   .then((data) => {
+    //     // commit('investor/kyc/emptyProfileData', null, { root: true })
+    //     this.$cookies.removeAll()
+    //     if (process.client) {
+    //       localStorage.removeItem('Pb-Token')
+    //     }
+    //     commit('setToken', null)
+    //     return data
+    //   })
+    //   .catch(() => {})
+    return new Promise((resolve, reject) => {
+      // commit('investor/kyc/emptyProfileData', null, { root: true })
+      this.$cookies.removeAll()
+      if (process.client) {
+        localStorage.removeItem('Pb-Token')
+      }
+      commit('setToken', null)
+      return resolve(true)
+    })
+  },
+
+  fetchAllUsers ({ commit }, profileIdObj) {
+    return this.$axios
+      .get('users/fetch-all')
+      .then((response) => {
+        const { data } = response.data
+        return data
+        // commit('setTransactionsDetail', data)
+      })
+  },
+  updateUserInfo ({ commit }, requestData) {
+    return this.$axios
+      .post('users/update', requestData)
+      .then((response) => {
+        this.$toast.global.post_success()
+        const { data } = response.data
         return data
       })
-      .catch(() => {})
-    // return new Promise((resolve, reject) => {
-      // // commit('investor/kyc/emptyProfileData', null, { root: true })
-      // this.$cookies.removeAll()
-      // if (process.client) {
-      //   localStorage.removeItem('Pb-Token')
-      // }
-      // commit('setToken', null)
-    //   return resolve(true)
-    // })
-  }
+  },
+
+  deleteUser ({ commit }, requestData) {
+    return this.$axios
+      .post('users/delete', requestData)
+      .then((response) => {
+        this.$toast.global.post_success()
+        const { data } = response.data
+        return data
+      })
+  },
+
+  
+
+  
+
+
 }
