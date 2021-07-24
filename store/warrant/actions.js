@@ -34,7 +34,6 @@ export default {
   },
 
   generateWarrantDetailPopup ({ commit }, generateData) {
-    console.log(generateData)
     commit('setDetailWarrantId', generateData.warrantId)
     commit('setIsWarrantDetailPopupOpen', true)
     commit('setDetailWarrantDetail', generateData.warrantDetail)

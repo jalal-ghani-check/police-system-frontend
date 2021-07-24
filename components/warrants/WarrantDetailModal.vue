@@ -129,4 +129,10 @@ export default {
       margin-bottom: 15px;
       color: rgba(27, 27, 27, 0.5);
   }
+
+  .alert-modal .alert-content {
+    max-width: 420px;
+    margin: auto;
+    text-align: left;
+  }
 </style>

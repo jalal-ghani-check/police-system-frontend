@@ -44,7 +44,6 @@ export default {
       this.$renderWarrantAcceptPopup(encWarrantId)
     },
     detailWarrant(warrant){
-      console.log(warrant.enc_warrant_id,warrant)
       this.$renderWarrantDetailPopup(warrant.enc_warrant_id,warrant)
     },
     
