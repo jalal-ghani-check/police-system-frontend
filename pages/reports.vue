@@ -7,6 +7,10 @@
 <script>
 export default {
   name: 'Reports',
-  layout: 'master'
+  layout: 'master',
+  mounted() {
+    this.$store.commit('setActiveTab', 'search')
+    
+  }
 }
 </script>

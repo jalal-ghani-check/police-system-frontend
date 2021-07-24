@@ -71,6 +71,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('setActiveTab', 'users')
     this.fetchAllLaws()
   },
   methods: {

@@ -7,6 +7,10 @@
 <script>
 export default {
   name: 'Vehicles',
-  layout: 'master'
+  layout: 'master',
+  mounted() {
+    this.$store.commit('setActiveTab', 'search')
+    
+  }
 }
 </script>

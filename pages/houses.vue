@@ -107,7 +107,12 @@ export default {
   components: { houseListItem },
   name: "Houses",
   layout: "master",
+  mounted() {
+    this.$store.commit('setActiveTab', 'search')
+    
+  }
 };
+
 </script>
 
 <style lang="css">
