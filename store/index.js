@@ -60,28 +60,28 @@ export const actions = {
       commit('setKeyValueInState', { key: 'ranks', value: data.data.ranks })
       commit('setKeyValueInState', { key: 'departments', value: data.data.departments })
     }
-    // const token = this.$cookies.get('Pb-Token')
-    // if (token) {
-    //   try {
-    //     const response = await axios.get(
-    //       process.env.BASE_URL + 'investor/profile-data',
-    //       {
-    //         headers: {
-    //           'Pb-Token': token
-    //         }
-    //       }
-    //     )
-    //     commit('investor/kyc/setProfileData', response.data.data)
-    //     if (response.headers['Pb-Token']) {
-    //       await dispatch('auth/saveToken', {
-    //         token: response.headers['Pb-Token']
-    //       })
-    //     }
-    //   } catch (e) {
-    //     // redirect to auth path
-    //     dispatch('auth/logoutUser').then(() => redirect('/auth'))
-    //   }
-    // }
+    const token = this.$cookies.get('Pb-Token')
+    if (token) {
+      try {
+        const response = await axios.get(
+          process.env.BASE_URL + 'users/fetch-data',
+          {
+            headers: {
+              'Pb-Token': token
+            }
+          }
+        )
+        commit('auth/setUserData', response.data.data)
+        if (response.headers['Pb-Token']) {
+          await dispatch('auth/saveToken', {
+            token: response.headers['Pb-Token']
+          })
+        }
+      } catch (e) {
+        // redirect to auth path
+        dispatch('auth/logoutUser').then(() => redirect('/auth'))
+      }
+    }
   },
   setErrorInNotificationBar ({ commit }, errorArr) {
     commit('setError', errorArr)

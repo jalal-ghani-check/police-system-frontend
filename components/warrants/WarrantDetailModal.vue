@@ -9,7 +9,28 @@
             <div class="modal-body">
                 <div class="alert-content">
                     <h4>Warrant Detail</h4>
-                    <h2>{{ getDetailWarrantDetail.title }}</h2>
+                    <!-- <h2>{{ getDetailWarrantDetail.title }}</h2> -->
+                    <div class="employee-info">
+
+                      <div class="row">
+                            <div class="col-md-12 mt-3">
+                                <label>Title</label>
+                                <div>{{ getDetailWarrantDetail.title }}</div>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <label>Regarding</label>
+                                <div> {{ getDetailWarrantDetail.profile_full_name }}</div>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <label>Description</label>
+                                <div>{{ getDetailWarrantDetail.description }}</div>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <label>Created At</label>
+                                <div>{{ getDetailWarrantDetail.created_at }}</div>
+                            </div>
+                      </div>
+                    </div>
         
                 </div>
             </div>
@@ -81,3 +102,31 @@ export default {
   }
 }
 </script>
+
+
+<style lang="css" scoped>
+  .page-title-banner.users {
+      background: url(~/assets/images/users-banner.png) no-repeat;
+      background-size: 100% !important;   
+  }
+  .header-buttons {
+      text-align: right;
+      margin-top: 15px;
+  }
+  .header-buttons .btn {
+      font-weight: normal;
+  }
+  .employee-info label {
+      color: rgba(27, 27, 27, 0.5);
+  }
+  .employee-info .row {
+      margin-bottom: 20px;
+  }
+
+  .role-widget > h4 {
+      font-size: 18px;
+      font-weight: normal;
+      margin-bottom: 15px;
+      color: rgba(27, 27, 27, 0.5);
+  }
+</style>

@@ -812,6 +812,19 @@ textarea.form-control {
   display: block;
 }
 
+.no-data {
+  text-align: center;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.no-data h4 {
+  color: rgba(27, 27, 27, 0.5);
+  font-size: 18px;
+  margin-top: 10px;
+}
+
 /* RESPONSIVE FIXES */
 @media screen and (max-width:990px) {
   .page-title-banner {
