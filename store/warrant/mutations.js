@@ -14,5 +14,14 @@ export default {
   setAcceptWarrantId (state, acceptWarrantId) {
     state.acceptWarrantId = acceptWarrantId
   },
+  setIsWarrantDetailPopupOpen (state, isWarrantDetailPopupOpen) {
+    state.isWarrantDetailPopupOpen = isWarrantDetailPopupOpen
+  },
+  setDetailWarrantId (state, detailWarrantId) {
+    state.detailWarrantId = detailWarrantId
+  },
+  setDetailWarrantDetail (state, warrantDetail) {
+    state.warrantDetail = warrantDetail
+  },
 
 }

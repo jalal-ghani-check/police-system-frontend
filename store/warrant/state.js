@@ -3,5 +3,8 @@ export default () => ({
   rejectWarrantId: null,
   refreshWarrantList: false,
   isWarrantAcceptPopupOpen: false,
-  acceptWarrantId: null
+  acceptWarrantId: null,
+  isWarrantDetailPopupOpen: false,
+  detailWarrantId: null,
+  warrantDetail: [],
 })

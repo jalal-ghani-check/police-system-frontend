@@ -30,4 +30,11 @@ export default ({ app, store }, inject) => {
     })
   })
 
+  inject('renderWarrantDetailPopup', (warrantId , warrantDetail) => {
+    store.dispatch('warrant/generateWarrantDetailPopup', {
+      warrantId,
+      warrantDetail
+    })
+  })
+
 }
