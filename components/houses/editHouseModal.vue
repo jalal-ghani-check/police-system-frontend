@@ -1,8 +1,8 @@
 <template>
 
 
-<div aria-hidden="true" :style="{display: getIsAddHousePopupOpen ? 'block' : 'none'}"
-    class="modal fade" id="editHouseModal" tabindex="-1" :class= "{show: getIsAddHousePopupOpen}">
+<div aria-hidden="true" :style="{display: getIsEditHousePopupOpen ? 'block' : 'none'}"
+    class="modal fade" id="editHouseModal" tabindex="-1" :class= "{show: getIsEditHousePopupOpen}">
         <div class="modal-dialog edit-house-modal modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
@@ -57,12 +57,12 @@ export default {
   name: 'editHouseModal',
   computed: {
     ...mapGetters({
-        getIsAddHousePopupOpen: 'house/getIsAddHousePopupOpen'
+        getIsEditHousePopupOpen: 'house/getIsEditHousePopupOpen'
     })
   },
   methods: {
     closeEditHouseModalPopUp () {
-      this.$store.commit('house/setIsAddHousePopupOpen', false)
+      this.$store.commit('house/setIsEditHousePopupOpen', false)
     }
   },
 }

@@ -1,5 +1,6 @@
 <template>
-  <div class="modal fade" id="linkHouseModal" tabindex="-1" aria-hidden="true">
+  <div id="linkHouseModal" tabindex="-1" :style="{display: getIsLinkHouseToProfilePopupOpen ? 'block' : 'none'}"
+    aria-hidden="true" class="modal fade" :class="{show: getIsLinkHouseToProfilePopupOpen}">
         <div class="modal-dialog  modal-xl modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
@@ -38,3 +39,16 @@
       </div>
       </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'linkHouseToProfileModal',
+  computed: {
+    ...mapGetters({
+        getIsLinkHouseToProfilePopupOpen: 'house/getIsLinkHouseToProfilePopupOpen'
+    })
+  }
+}
+</script>
