@@ -93,7 +93,6 @@ export default {
         'house/manageHouse',
         {
           house_id: houseObj ? houseObj.enc_house_id : '',
-          user_id: houseObj ? houseObj.enc_user_id : 'Uw',
           house_name: this.houseName,
           price: this.housePrice,
           image: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'

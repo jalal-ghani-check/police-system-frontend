@@ -33,7 +33,7 @@ export default {
 
   deleteHouse ({ commit }, requestData) {
     return this.$axios
-      .delete(`houses/delete/${requestData.house_id}/${requestData.user_id}`)
+      .delete(`houses/delete/${requestData.house_id}`)
       .then((response) => {
         this.$toast.global.post_success()
       })

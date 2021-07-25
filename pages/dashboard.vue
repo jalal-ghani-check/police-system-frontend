@@ -12,58 +12,21 @@
             </div>
             <div class="report-cards">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="report-card">
-                            <div class="tag-no">#4723</div>
-                            <h3>Beach Shooting //7/7/21</h3>
-                            <h4>By: Timothy Rooney</h4>
-                            <div class="tag">Medical Report</div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                    <div class="report-card red">
-                        <div class="tag-no">#4723</div>
-                        <h3>Beach Shooting //7/7/21</h3>
-                        <h4>By: Timothy Rooney</h4>
-                        <div class="tag">Medical Report</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="report-card red">
-                        <div class="tag-no">#4723</div>
-                        <h3>Beach Shooting //7/7/21</h3>
-                        <h4>By: Timothy Rooney</h4>
-                        <div class="tag">Medical Report</div>
-                    </div>
-                </div>
-                </div>
-                <div class="row">
-                <div class="col-md-4">
-                    <div class="report-card">
-                        <div class="tag-no">#4723</div>
-                        <h3>Beach Shooting //7/7/21</h3>
-                        <h4>By: Timothy Rooney</h4>
-                        <div class="tag">Medical Report</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="report-card red">
-                      <div class="tag-no">#4723</div>
-                      <h3>Beach Shooting //7/7/21</h3>
-                      <h4>By: Timothy Rooney</h4>
-                      <div class="tag">Medical Report</div>
+                  <div class="col-md-4"
+                    v-for="(report, index) in policeReports" :key="index"
+                    @click="openPoliceReportModalPopUp(report)" data-bs-dismiss='modal'
+                  >
+                      <div class="report-card" :class="{red: report.report_type === 'medical_report'}">
+                          <div class="tag-no" v-if="report.report_type !== 'medical_report'">#{{ report.case_number }}</div>
+                          <div class="tag-no" v-else>Citizen ID: LTF46591</div>
+                          <h3>{{ report.report_title }} //{{ report.created_at }}</h3>
+                          <h4>By: {{ report.written_by }}</h4>
+                          <div v-if="report.report_type === 'medical_report'" class="tag">Medical Report</div>
+                          <div v-else class="tag">Police Report</div>
+                      </div>
                   </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="report-card red">
-                      <div class="tag-no">#4723</div>
-                      <h3>Beach Shooting //7/7/21</h3>
-                      <h4>By: Timothy Rooney</h4>
-                      <div class="tag">Medical Report</div>
-                  </div>
-              </div>
-            </div>
-            </div>
+                </div>
+         </div>
           </div>
           <div class="col-md-3">
               <div class="section-heading small green">
@@ -110,6 +73,7 @@ export default {
   data () {
     return {
       showWarrantPendingModal: false,
+      policeReports: []
     }
   },
   computed: {
@@ -120,15 +84,34 @@ export default {
   mounted () {
     this.$store.commit('setActiveTab', 'dashboard')
     this.showWarrantPendingModal = true
+    this.fetchAllReports()
   },
   methods: {
       closePendingWarrantModal() {
           this.showWarrantPendingModal = false
-      }
+      },
+      async fetchAllReports () {
+      this.policeReports = await this.$store.dispatch(
+        'police-report/fetchAllPoliceReports',
+        {}
+      )
+    },
+    openPoliceReportModalPopUp (report) {
+      this.fetchPoliceReportByReportId(report.report_id)
+      this.$store.commit('police-report/setIsPoliceReportPopupOpen', true)
+    },
+    async fetchPoliceReportByReportId (reportId) {
+      await this.$store.dispatch(
+        'police-report/fetchPoliceReportByReportId',
+        {
+          report_id : reportId
+        }
+      )
+    },
   }
 }
 </script>
-<style lang="css" scoped>
+<style lang="css">
   .page-title-banner.dashboard {
       background: url('~/assets/images/dashboard-banner.png') no-repeat;
       background-size: 100% !important;

@@ -58,8 +58,7 @@ export default {
       this.housesList = await this.$store.dispatch(
         'house/deleteHouse',
         {
-          'house_id': houseObj.enc_house_id,
-          'user_id': houseObj.enc_user_id
+          'house_id': houseObj.enc_house_id
         }
       )
       this.closeDeleteHouseModalPopUp()
