@@ -107,38 +107,40 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import editHouseModal from '~/components/houses/editHouseModal.vue'
 import deleteHouseModal from '~/components/houses/deleteHouseModal.vue'
 import linkHouseToProfileModal from '~/components/houses/linkHouseToProfileModal.vue'
 import UnlinkHouseModal from '~/components/houses/unlinkHouseModal.vue'
 import houseListItem from '~/components/houses/houseListItem.vue'
 import addNewHouseModal from '~/components/houses/addNewHouseModal.vue'
-import { mapGetters } from 'vuex'
 export default {
+  name: 'Houses',
   components: { houseListItem, addNewHouseModal, editHouseModal, deleteHouseModal, linkHouseToProfileModal, UnlinkHouseModal },
-  name: "Houses",
-  layout: "master",
+  layout: 'master',
 
-  mounted() {
-    this.fetchAllHouses()
-  },
   computed: {
     ...mapGetters({
-        housesList: 'house/getAllHouses'
+      housesList: 'house/getAllHouses'
     })
-  },    
+  },
+  mounted () {
+    this.fetchAllHouses()
+    this.$store.commit('setActiveTab', 'search')
+  },
   methods: {
     openAddHouseModalPopUp () {
       this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: true, selectedHouseObj: null })
     },
-    async fetchAllHouses(){
-     await this.$store.dispatch(
+    async fetchAllHouses () {
+      await this.$store.dispatch(
         'house/fetchAllHouses',
         {}
       )
     }
-  },
-};
+  }
+}
+
 </script>
 
 <style lang="css">

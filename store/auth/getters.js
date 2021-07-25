@@ -4,6 +4,10 @@ export default {
   },
   getUserData: (state) => {
     return state.userData
+  },
+  getUserFullName: (state) => {
+    return state.userData.full_name
   }
+
 
 }

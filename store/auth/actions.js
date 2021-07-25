@@ -13,14 +13,14 @@ export default {
     return this.$axios.$post('auth/login', authData).then(({ data }) => {
       dispatch('saveToken', { token: data.api_token, isLocal: true })
       commit('setUserData',data)
-      // return dispatch('investor/kyc/profileData', null, { root: true })
+      // return dispatch('fetchUserData', null)
     })
   },
   registerUser ({ dispatch, commit }, authData) {
     return this.$axios.$post('auth/register', authData).then(({ data }) => {
       dispatch('saveToken', { token: data.api_token, isLocal: true })
       commit('setUserData',data)
-      // return dispatch('investor/kyc/profileData', null, { root: true })
+      // return dispatch('fetchUserData', null)
     })
   },
   logoutUserBackend ({ dispatch }, authData) {
@@ -78,6 +78,19 @@ export default {
         // commit('setTransactionsDetail', data)
       })
   },
+
+  fetchUserData ({ commit }, profileIdObj) {
+    return this.$axios
+      .get('users/fetch-data')
+      .then((response) => {
+        const { data } = response.data
+        commit('setUserData',data)
+        return data
+        // commit('setTransactionsDetail', data)
+      })
+  },
+
+
   updateUserInfo ({ commit }, requestData) {
     return this.$axios
       .post('users/update', requestData)

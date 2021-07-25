@@ -10,21 +10,19 @@ export default function ({ $axios, store, redirect, req }) {
       })
     }
     if (error.response && error.response.status !== 500) {
-      if (!error.response.config.url.includes('verify-sms') && !error.response.config.url.includes('verify-email-code')) {
-        if (typeof error.response.data.error === 'string') {
-          store.commit('setError', [
-            {
-              key: 'server error',
-              value: error.response.data.error
-            }
-          ])
-          store.commit('setNotificationClass', 'error')
-        } else {
-          store.commit('setError', error.response.data.error)
-          store.commit('setNotificationClass', 'error')
-        }
-        window.scrollTo(0, 0)
+      if (typeof error.response.data.error === 'string') {
+        store.commit('setError', [
+          {
+            key: 'server error',
+            value: error.response.data.error
+          }
+        ])
+        store.commit('setNotificationClass', 'error')
+      } else {
+        store.commit('setError', error.response.data.error)
+        store.commit('setNotificationClass', 'error')
       }
+      window.scrollTo(0, 0)
     } else {
       store.commit('setError', [
         {

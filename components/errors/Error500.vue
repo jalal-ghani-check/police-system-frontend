@@ -1,6 +1,8 @@
 <template>
- <div>
-      <h1>Error 500</h1>
+   <div class="no-data">
+      <div>
+          <h4>Something went wrong, 500 Error</h4>
+      </div>
   </div>
 </template>
 

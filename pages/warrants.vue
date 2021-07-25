@@ -17,46 +17,26 @@
               </div>
 
 
-              <div class="warrants-list">
+              <div v-if="!showEmptyMessage" class="warrants-list">
                   <div class="warrants-row">
                     <warrant-item  v-for="(warrant, index) in warrantsList" :key="index" :warrant="warrant" />
-                      <!-- <div class="warrants-item">
-                          <div class="tag-no">#2439</div>
-                          <div class="wanted-name">
-                              <h3>Wanted</h3>
-                              <h4>Curtis Everston</h4>
-                              <h5>By: Timothy Rooney</h5>
-                          </div>
-                          <div class="created-by">Created: 07/10/21 16:56</div>
-                          <div class="tag">Pending Warrant</div>
-  
-                          <div class="warrants-item-footer d-grid gap-2">
-                              <button data-bs-toggle="modal" data-bs-target="#activeWarrant" class="btn btn-outline-success">Accept</button>
-                              <button data-bs-toggle="modal" data-bs-target="#rejectWarrant" class="btn btn-outline-danger">Reject</button>
-                          </div>
-  
-                      </div>
-                      <div class="warrants-item active">
-                          <div class="tag-no">#2439</div>
-                          <div class="wanted-name">
-                              <h3>Wanted</h3>
-                              <h4>Curtis Everston</h4>
-                              <h5>By: Timothy Rooney</h5>
-                          </div>
-                          <div class="created-by">Created: 07/10/21 16:56</div>
-                          <div class="tag">Active Warrant</div>
-  
-                          <div class="warrants-item-footer d-grid gap-2">
-                              <button class="btn btn-outline-secondary">View Details</button>
-                          </div>
-  
-                      </div> -->
                   </div>
                   
+              </div>
+              <div v-else class="no-data">
+                  <div>
+                    <svg width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 10.6667H18.6667C18.313 10.6667 17.9739 10.8071 17.7239 11.0572C17.4738 11.3072 17.3333 11.6464 17.3333 12C17.3333 12.3536 17.4738 12.6928 17.7239 12.9428C17.9739 13.1929 18.313 13.3333 18.6667 13.3333H20C20.3536 13.3333 20.6928 13.1929 20.9428 12.9428C21.1929 12.6928 21.3333 12.3536 21.3333 12C21.3333 11.6464 21.1929 11.3072 20.9428 11.0572C20.6928 10.8071 20.3536 10.6667 20 10.6667ZM20 16H18.6667C18.313 16 17.9739 16.1405 17.7239 16.3905C17.4738 16.6406 17.3333 16.9797 17.3333 17.3333C17.3333 17.687 17.4738 18.0261 17.7239 18.2761C17.9739 18.5262 18.313 18.6667 18.6667 18.6667H20C20.3536 18.6667 20.6928 18.5262 20.9428 18.2761C21.1929 18.0261 21.3333 17.687 21.3333 17.3333C21.3333 16.9797 21.1929 16.6406 20.9428 16.3905C20.6928 16.1405 20.3536 16 20 16ZM12 8H20C20.3536 8 20.6928 7.85952 20.9428 7.60948C21.1929 7.35943 21.3333 7.02029 21.3333 6.66667C21.3333 6.31305 21.1929 5.97391 20.9428 5.72386C20.6928 5.47381 20.3536 5.33333 20 5.33333H12C11.6464 5.33333 11.3072 5.47381 11.0572 5.72386C10.8071 5.97391 10.6667 6.31305 10.6667 6.66667C10.6667 7.02029 10.8071 7.35943 11.0572 7.60948C11.3072 7.85952 11.6464 8 12 8ZM25.3333 0H6.66667C6.31304 0 5.97391 0.140476 5.72386 0.390524C5.47381 0.640573 5.33333 0.979711 5.33333 1.33333V5.33333H1.33333C0.979711 5.33333 0.640573 5.47381 0.390524 5.72386C0.140476 5.97391 0 6.31305 0 6.66667V20C0 21.0609 0.421427 22.0783 1.17157 22.8284C1.92172 23.5786 2.93913 24 4 24H21.3333C22.7478 24 24.1044 23.4381 25.1046 22.4379C26.1048 21.4377 26.6667 20.0812 26.6667 18.6667V1.33333C26.6667 0.979711 26.5262 0.640573 26.2761 0.390524C26.0261 0.140476 25.687 0 25.3333 0ZM5.33333 20C5.33333 20.3536 5.19286 20.6928 4.94281 20.9428C4.69276 21.1929 4.35362 21.3333 4 21.3333C3.64638 21.3333 3.30724 21.1929 3.05719 20.9428C2.80714 20.6928 2.66667 20.3536 2.66667 20V8H5.33333V20ZM24 18.6667C24 19.3739 23.719 20.0522 23.219 20.5523C22.7189 21.0524 22.0406 21.3333 21.3333 21.3333H7.76C7.91523 20.9058 7.99639 20.4549 8 20V2.66667H24V18.6667ZM12 13.3333H13.3333C13.687 13.3333 14.0261 13.1929 14.2761 12.9428C14.5262 12.6928 14.6667 12.3536 14.6667 12C14.6667 11.6464 14.5262 11.3072 14.2761 11.0572C14.0261 10.8071 13.687 10.6667 13.3333 10.6667H12C11.6464 10.6667 11.3072 10.8071 11.0572 11.0572C10.8071 11.3072 10.6667 11.6464 10.6667 12C10.6667 12.3536 10.8071 12.6928 11.0572 12.9428C11.3072 13.1929 11.6464 13.3333 12 13.3333ZM12 18.6667H13.3333C13.687 18.6667 14.0261 18.5262 14.2761 18.2761C14.5262 18.0261 14.6667 17.687 14.6667 17.3333C14.6667 16.9797 14.5262 16.6406 14.2761 16.3905C14.0261 16.1405 13.687 16 13.3333 16H12C11.6464 16 11.3072 16.1405 11.0572 16.3905C10.8071 16.6406 10.6667 16.9797 10.6667 17.3333C10.6667 17.687 10.8071 18.0261 11.0572 18.2761C11.3072 18.5262 11.6464 18.6667 12 18.6667Z" fill="#1B1B1B" fill-opacity="0.5"/>
+                      </svg>
+                      
+                      <h4>No Active/Pending<br>
+                        Warrants Yet</h4>
+                  </div>
               </div>
 
               <warrant-reject-modal />
               <warrant-accept-modal />
+              <warrant-detail-modal />
               <input type="hidden" :value="getRefreshWarrantListCheck" />
 
           </div>
@@ -67,15 +47,17 @@
 <script>
 import { mapGetters } from 'vuex'
 import WarrantAcceptModal from '~/components/warrants/WarrantAcceptModal.vue'
+import WarrantDetailModal from '~/components/warrants/WarrantDetailModal.vue'
 import warrantItem from '~/components/warrants/warrantItem.vue'
 import WarrantRejectModal from '~/components/warrants/WarrantRejectModal.vue'
 export default {
-  components: { warrantItem, WarrantRejectModal, WarrantAcceptModal },
+  components: { warrantItem, WarrantRejectModal, WarrantAcceptModal, WarrantDetailModal },
   name: 'Warrants',
   layout: 'master',
   data () {
     return {
-      warrantsList: []
+      warrantsList: [],
+      showEmptyMessage: false,
     }
   },
   mounted () {
@@ -98,6 +80,9 @@ export default {
         'warrant/fetchAllWarrants',
         {}
       )
+      if (this.warrantsList.length <= 0) {
+        this.showEmptyMessage = true
+      }
     }
   }
 }

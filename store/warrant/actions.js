@@ -33,4 +33,10 @@ export default {
     commit('setRefreshWarrantList', false)
   },
 
+  generateWarrantDetailPopup ({ commit }, generateData) {
+    commit('setDetailWarrantId', generateData.warrantId)
+    commit('setIsWarrantDetailPopupOpen', true)
+    commit('setDetailWarrantDetail', generateData.warrantDetail)
+  },
+
 }

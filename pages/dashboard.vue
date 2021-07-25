@@ -97,15 +97,34 @@
         </div>
       </div>
     </div>
+    <dashboard-pending-warrant-modal :show-modal="showWarrantPendingModalComputed" @close="closePendingWarrantModal" />
   </div>
 </template>
 
 <script>
+import DashboardPendingWarrantModal from '~/components/DashboardPendingWarrantModal.vue'
 export default {
+  components: { DashboardPendingWarrantModal },
   name: 'Dashboard',
   layout: 'master',
+  data () {
+    return {
+      showWarrantPendingModal: false,
+    }
+  },
+  computed: {
+    showWarrantPendingModalComputed () {
+        return this.showWarrantPendingModal
+    }
+  },
   mounted () {
     this.$store.commit('setActiveTab', 'dashboard')
+    this.showWarrantPendingModal = true
+  },
+  methods: {
+      closePendingWarrantModal() {
+          this.showWarrantPendingModal = false
+      }
   }
 }
 </script>

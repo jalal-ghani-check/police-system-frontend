@@ -13,5 +13,15 @@ export default {
   },
   getAcceptWarrantId: (state) => {
     return state.acceptWarrantId
+  },
+  getIsWarrantDetailPopupOpen: (state) => {
+    return state.isWarrantDetailPopupOpen
+  },
+  getDetailWarrantId: (state) => {
+    return state.detailWarrantId
+  },
+  getDetailWarrantDetail: (state) => {
+    return state.warrantDetail
   }
+
 }
