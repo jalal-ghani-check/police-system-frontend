@@ -29,8 +29,8 @@
                 <img src="~/assets/images/profile-pic.jpg" alt="" />
               </div>
               <div class="owner-info">
-                <h3>Mac Jones</h3>
-                <h4>Mafia/Gangster</h4>
+                <h3>{{ house.owner_full_name }}</h3>
+                <h4>{{ house.owner_designation }}</h4>
               </div>
               <div class="unlink-btn">
                 <button
@@ -174,11 +174,11 @@ export default {
   layout: "master",
   methods: {
     openEditHouseModalPopUp () {
-      this.$store.commit('house/setIsAddHousePopupOpen', true)
+      this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: true, selectedHouseObj: this.house })
     },
 
     openLinkHouseToProfilePopup () {
-      this.$store.commit('house/setIsLinkHouseToProfilePopupOpen', true)
+      this.$store.commit('house/setIsLinkHouseToProfilePopupOpen', { isLinkHouseToProfilePopupOpen: true, selectedHouseObj: this.house })
     },
 
     openUnlinkHouseToProfilePopup () {
@@ -186,7 +186,7 @@ export default {
     },
 
     openDeleteHouseModalPopUp () {
-      this.$store.commit('house/setIsDeleteHousePopupOpen', true)
+      this.$store.commit('house/setIsDeleteHousePopupOpen', { isDeleteHousePopupOpen: true, selectedHouseObj: this.house })
     }
   },
 };

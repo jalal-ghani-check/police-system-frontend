@@ -70,7 +70,6 @@
                 <div class="col-md-2 header-buttons">
                   <button
                     data-bs-toggle="modal"
-                    data-bs-target="#addHouseModal"
                     @click="openAddHouseModalPopUp()"
                     class="btn btn-success"
                   >
@@ -130,7 +129,7 @@ export default {
   },    
   methods: {
     openAddHouseModalPopUp () {
-      this.$store.commit('house/setIsAddHousePopupOpen', true)
+      this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: true, selectedHouseObj: null })
     },
     async fetchAllHouses(){
      await this.$store.dispatch(

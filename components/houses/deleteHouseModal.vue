@@ -21,7 +21,11 @@
             </div>
             <div class="alert-footer">
                 <button class="btn" data-bs-dismiss="modal" data-bs-target="#deleteHouseAlert" @click="closeDeleteHouseModalPopUp()">Close</button>
-                <button class="btn btn-danger">
+                <button
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+                @click="deleteHouseByHouseId()"
+                >
                     <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7.3 15.4C7.5387 15.4 7.76761 15.3052 7.9364 15.1364C8.10518 14.9676 8.2 14.7387 8.2 14.5V9.1C8.2 8.8613 8.10518 8.63239 7.9364 8.4636C7.76761 8.29482 7.5387 8.2 7.3 8.2C7.06131 8.2 6.83239 8.29482 6.6636 8.4636C6.49482 8.63239 6.4 8.8613 6.4 9.1V14.5C6.4 14.7387 6.49482 14.9676 6.6636 15.1364C6.83239 15.3052 7.06131 15.4 7.3 15.4ZM16.3 4.6H12.7V3.7C12.7 2.98392 12.4155 2.29716 11.9092 1.79081C11.4028 1.28446 10.7161 1 10 1H8.2C7.48392 1 6.79716 1.28446 6.29081 1.79081C5.78446 2.29716 5.5 2.98392 5.5 3.7V4.6H1.9C1.66131 4.6 1.43239 4.69482 1.2636 4.8636C1.09482 5.03239 1 5.2613 1 5.5C1 5.73869 1.09482 5.96761 1.2636 6.1364C1.43239 6.30518 1.66131 6.4 1.9 6.4H2.8V16.3C2.8 17.0161 3.08446 17.7028 3.59081 18.2092C4.09716 18.7155 4.78392 19 5.5 19H12.7C13.4161 19 14.1028 18.7155 14.6092 18.2092C15.1155 17.7028 15.4 17.0161 15.4 16.3V6.4H16.3C16.5387 6.4 16.7676 6.30518 16.9364 6.1364C17.1052 5.96761 17.2 5.73869 17.2 5.5C17.2 5.2613 17.1052 5.03239 16.9364 4.8636C16.7676 4.69482 16.5387 4.6 16.3 4.6ZM7.3 3.7C7.3 3.46131 7.39482 3.23239 7.5636 3.0636C7.73239 2.89482 7.96131 2.8 8.2 2.8H10C10.2387 2.8 10.4676 2.89482 10.6364 3.0636C10.8052 3.23239 10.9 3.46131 10.9 3.7V4.6H7.3V3.7ZM13.6 16.3C13.6 16.5387 13.5052 16.7676 13.3364 16.9364C13.1676 17.1052 12.9387 17.2 12.7 17.2H5.5C5.26131 17.2 5.03239 17.1052 4.8636 16.9364C4.69482 16.7676 4.6 16.5387 4.6 16.3V6.4H13.6V16.3ZM10.9 15.4C11.1387 15.4 11.3676 15.3052 11.5364 15.1364C11.7052 14.9676 11.8 14.7387 11.8 14.5V9.1C11.8 8.8613 11.7052 8.63239 11.5364 8.4636C11.3676 8.29482 11.1387 8.2 10.9 8.2C10.6613 8.2 10.4324 8.29482 10.2636 8.4636C10.0948 8.63239 10 8.8613 10 9.1V14.5C10 14.7387 10.0948 14.9676 10.2636 15.1364C10.4324 15.3052 10.6613 15.4 10.9 15.4Z" fill="white" stroke="#EE0000" stroke-width="0.5"/>
                         </svg>
@@ -47,7 +51,19 @@ export default {
   },
   methods: {
     closeDeleteHouseModalPopUp () {
-      this.$store.commit('house/setIsDeleteHousePopupOpen', false)
+      this.$store.commit('house/setIsDeleteHousePopupOpen', { isDeleteHousePopupOpen: false, selectedHouseObj: null })
+    },
+    async deleteHouseByHouseId () {
+      const houseObj = this.$store.state.house.selectedHouseObj
+      this.housesList = await this.$store.dispatch(
+        'house/deleteHouse',
+        {
+          'house_id': houseObj.enc_house_id,
+          'user_id': houseObj.enc_user_id
+        }
+      )
+      this.closeDeleteHouseModalPopUp()
+      this.$store.dispatch('house/fetchAllHouses', {})
     }
   },
 }

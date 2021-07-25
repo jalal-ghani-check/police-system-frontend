@@ -6,5 +6,5 @@ export default () => ({
   isLinkHouseToProfilePopupOpen: false,
   isUnlinkHouseToProfilePopupOpen: false,
 
-  unlinkHouseId: null,
+  selectedHouseObj: null,
 })

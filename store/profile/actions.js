@@ -1,4 +1,12 @@
 export default {
+  fetchAllProfileRecords () {
+    return this.$axios
+      .get('/profile/fetch-all')
+      .then((response) => {
+        return response.data.data
+      })
+  },
+  
   fetchProfileRecord ({ commit }, profileIdObj) {
     const url = `/profile/fetch/${profileIdObj.profileId}`
     return this.$axios

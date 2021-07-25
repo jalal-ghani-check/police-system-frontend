@@ -21,6 +21,10 @@ export default {
 
   getAllHouses: (state) => {
     return state.housesList
+  },
+
+  getSelectedHouseObject: (state) => {
+    return state.selectedHouseObj
   }
 
 }
