@@ -4,6 +4,10 @@
       <div class="page-title-banner dashboard">
           <h2>Dashboard</h2>
       </div>
+      <ProfileImageUploader
+        profile-image="http://devlocal.police-system.co/api/v1/fetch-house-picture"
+        @file-uploaded="fileUploaded"
+      />
       <div class="dashboard-page">
         <div class="row">
           <div class="col-md-9">
@@ -123,6 +127,9 @@ export default {
   methods: {
       closePendingWarrantModal() {
         this.$store.commit('dashboard/setShowPendingWarrantModalOnDashboard', false)
+      },
+      fileUploaded(files) {
+          console.log(files)
       }
   }
 }
