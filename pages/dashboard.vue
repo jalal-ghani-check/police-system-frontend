@@ -97,11 +97,12 @@
         </div>
       </div>
     </div>
-    <dashboard-pending-warrant-modal :show-modal="showWarrantPendingModalComputed" @close="closePendingWarrantModal" />
+    <dashboard-pending-warrant-modal :show-modal="getShowPendingWarrantModalOnDashboard" @close="closePendingWarrantModal" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import DashboardPendingWarrantModal from '~/components/DashboardPendingWarrantModal.vue'
 export default {
   components: { DashboardPendingWarrantModal },
@@ -109,21 +110,19 @@ export default {
   layout: 'master',
   data () {
     return {
-      showWarrantPendingModal: false,
     }
   },
   computed: {
-    showWarrantPendingModalComputed () {
-        return this.showWarrantPendingModal
-    }
+    ...mapGetters({
+      getShowPendingWarrantModalOnDashboard: 'dashboard/getShowPendingWarrantModalOnDashboard'
+    })
   },
   mounted () {
     this.$store.commit('setActiveTab', 'dashboard')
-    this.showWarrantPendingModal = true
   },
   methods: {
       closePendingWarrantModal() {
-          this.showWarrantPendingModal = false
+        this.$store.commit('dashboard/setShowPendingWarrantModalOnDashboard', false)
       }
   }
 }

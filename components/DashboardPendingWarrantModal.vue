@@ -58,6 +58,7 @@ export default {
       this.$emit('close', this.$event)
     },
     viewWarrants() {
+      this.closeModal()
       this.$router.replace('/warrants')
     }
   }
