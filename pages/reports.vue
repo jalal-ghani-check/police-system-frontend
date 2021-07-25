@@ -8,6 +8,7 @@
 export default {
   name: 'Reports',
   layout: 'master',
+  middleware: ['reportsMW'],
   mounted() {
     this.$store.commit('setActiveTab', 'search')
     

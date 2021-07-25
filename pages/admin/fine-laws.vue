@@ -65,6 +65,7 @@ export default {
   components: { lawItem },
   name: 'FineLaws',
   layout: 'master',
+  middleware: ['lawsMW'],
   data () {
     return {
       lawsList: []

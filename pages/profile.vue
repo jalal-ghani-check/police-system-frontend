@@ -428,6 +428,7 @@ export default {
   components: { ExpungeProfileModal },
   name: 'Profile',
   layout: 'master',
+  middleware: ['profileMW'],
   data () {
     return {
       profileRecord: [],

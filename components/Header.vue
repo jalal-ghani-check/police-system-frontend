@@ -68,7 +68,7 @@
                       </NuxtLink>
                     </li>
                         <li>
-                      <NuxtLink
+                      <NuxtLink v-if="isAllowedToViewReports"
                         id="reports"
                         to="/reports"
                         class="dropdown-item"
@@ -84,7 +84,7 @@
                       </NuxtLink>
                     </li>
                         <li>
-                      <NuxtLink
+                      <NuxtLink v-if="isAllowedToViewWarrants"
                         id="warrants"
                         to="/warrants"
                         class="dropdown-item"
@@ -138,7 +138,7 @@
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <NuxtLink
+                  <NuxtLink v-if="isAllowedToViewWarrants"
                     id="warrants"
                     to="/warrants"
                     class="nav-link"
@@ -170,7 +170,7 @@
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
-                      <NuxtLink
+                      <NuxtLink v-if="isAllowedToViewLaws"
                         id="fine-laws"
                         to="/admin/fine-laws"
                         class="dropdown-item"
@@ -256,6 +256,10 @@ export default {
       getActiveTab: 'getActiveTab',
       isAuthenticated: 'auth/isAuthenticated',
       getUserFullName: 'auth/getUserFullName',
+      isAllowedToViewWarrants: 'auth/isAllowedToViewWarrants',
+      isAllowedToViewReports: 'auth/isAllowedToViewReports',
+      isAllowedToViewLaws: 'auth/isAllowedToViewLaws',
+
 
     })
   },
