@@ -12,8 +12,8 @@
       <div v-else-if="warrant.status === 'rejected'" class="tag">Rejected Warrant</div>
 
       <div class="warrants-item-footer d-grid gap-2">
-          <button v-if="warrant.status === 'pending'" @click="acceptWarrant(warrant.enc_warrant_id)" class="btn btn-outline-success">Accept</button>
-          <button v-if="warrant.status === 'pending'"   @click="rejectWarrant(warrant.enc_warrant_id)" class="btn btn-outline-danger">Reject</button>
+          <button v-if="(warrant.status === 'pending') && isAllowedToApproveWarrants" @click="acceptWarrant(warrant.enc_warrant_id)" class="btn btn-outline-success">Accept</button>
+          <button v-if="(warrant.status === 'pending') && isAllowedToDeleteWarrants"   @click="rejectWarrant(warrant.enc_warrant_id)" class="btn btn-outline-danger">Reject</button>
           <button v-if="warrant.status === 'approved'" @click="detailWarrant(warrant)"   class="btn btn-outline-secondary">View Details</button>
       </div>
 
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props: ['warrant'],
   name: 'WarrantItem',
@@ -31,11 +32,13 @@ export default {
   },
   // mounted() {
   // },
-  // computed: {
-  //   showModalComputed() {
-  //     return this.showModal
-  //   }
-  // },
+  computed: {
+      ...mapGetters({
+      isAllowedToApproveWarrants: 'auth/isAllowedToApproveWarrants',
+      isAllowedToDeleteWarrants: 'auth/isAllowedToDeleteWarrants'
+
+    })
+  },
   methods: {
     rejectWarrant(encWarrantId) {
       this.$renderWarrantRejectPopup(encWarrantId)

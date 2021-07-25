@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="cover-btns">
-                        <button @click="expungeRecord" class="btn btn-warning"><svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <button v-if="isAllowedToExpungeRecords" @click="expungeRecord" class="btn btn-warning"><svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.69777 6.99797H3.49899C3.31339 6.99797 3.13539 7.0717 3.00415 7.20294C2.87292 7.33417 2.79919 7.51217 2.79919 7.69777C2.79919 7.88337 2.87292 8.06136 3.00415 8.1926C3.13539 8.32384 3.31339 8.39756 3.49899 8.39756H7.69777C7.88337 8.39756 8.06136 8.32384 8.1926 8.1926C8.32384 8.06136 8.39756 7.88337 8.39756 7.69777C8.39756 7.51217 8.32384 7.33417 8.1926 7.20294C8.06136 7.0717 7.88337 6.99797 7.69777 6.99797ZM11.4837 11.8966L12.3934 10.9938C12.5252 10.862 12.5992 10.6833 12.5992 10.497C12.5992 10.3106 12.5252 10.1319 12.3934 10.0001C12.2616 9.86833 12.0829 9.7943 11.8966 9.7943C11.7102 9.7943 11.5315 9.86833 11.3997 10.0001L10.497 10.9098L9.59422 10.0001C9.46244 9.86833 9.28372 9.7943 9.09736 9.7943C8.91101 9.7943 8.73228 9.86833 8.60051 10.0001C8.46873 10.1319 8.3947 10.3106 8.3947 10.497C8.3947 10.6833 8.46873 10.862 8.60051 10.9938L9.51024 11.8966L8.60051 12.7993C8.53491 12.8643 8.48285 12.9417 8.44733 13.027C8.4118 13.1123 8.39351 13.2038 8.39351 13.2961C8.39351 13.3885 8.4118 13.48 8.44733 13.5653C8.48285 13.6505 8.53491 13.7279 8.60051 13.793C8.66556 13.8586 8.74296 13.9107 8.82824 13.9462C8.91351 13.9817 9.00498 14 9.09736 14C9.18974 14 9.28121 13.9817 9.36649 13.9462C9.45177 13.9107 9.52916 13.8586 9.59422 13.793L10.497 12.8833L11.3997 13.793C11.4648 13.8586 11.5421 13.9107 11.6274 13.9462C11.7127 13.9817 11.8042 14 11.8966 14C11.9889 14 12.0804 13.9817 12.1657 13.9462C12.251 13.9107 12.3284 13.8586 12.3934 13.793C12.459 13.7279 12.5111 13.6505 12.5466 13.5653C12.5821 13.48 12.6004 13.3885 12.6004 13.2961C12.6004 13.2038 12.5821 13.1123 12.5466 13.027C12.5111 12.9417 12.459 12.8643 12.3934 12.7993L11.4837 11.8966ZM6.29817 12.5963H2.09939C1.91379 12.5963 1.7358 12.5226 1.60456 12.3914C1.47332 12.2601 1.39959 12.0821 1.39959 11.8966V2.09939C1.39959 1.91379 1.47332 1.7358 1.60456 1.60456C1.7358 1.47332 1.91379 1.39959 2.09939 1.39959H5.59838V3.49899C5.59838 4.05578 5.81956 4.58977 6.21327 4.98348C6.60699 5.37719 7.14097 5.59838 7.69777 5.59838H9.79716V7.69777C9.79716 7.88337 9.87089 8.06136 10.0021 8.1926C10.1334 8.32384 10.3114 8.39756 10.497 8.39756C10.6826 8.39756 10.8606 8.32384 10.9918 8.1926C11.123 8.06136 11.1968 7.88337 11.1968 7.69777V4.89858V4.85659C11.1895 4.7923 11.1754 4.72897 11.1548 4.66765V4.60466C11.1211 4.53271 11.0762 4.46657 11.0218 4.40872L6.82302 0.209939C6.76517 0.155506 6.69903 0.110625 6.62708 0.0769776C6.60393 0.0729254 6.58025 0.0729254 6.5571 0.0769776C6.48905 0.0405904 6.41592 0.0146411 6.34016 0H2.09939C1.5426 0 1.00861 0.221185 0.614898 0.614898C0.221185 1.00861 0 1.5426 0 2.09939V11.8966C0 12.4533 0.221185 12.9873 0.614898 13.381C1.00861 13.7748 1.5426 13.9959 2.09939 13.9959H6.29817C6.48377 13.9959 6.66177 13.9222 6.793 13.791C6.92424 13.6597 6.99797 13.4817 6.99797 13.2961C6.99797 13.1105 6.92424 12.9326 6.793 12.8013C6.66177 12.6701 6.48377 12.5963 6.29817 12.5963ZM6.99797 2.38631L8.81045 4.19878H7.69777C7.51217 4.19878 7.33417 4.12505 7.20294 3.99382C7.0717 3.86258 6.99797 3.68458 6.99797 3.49899V2.38631ZM3.49899 4.19878C3.31339 4.19878 3.13539 4.27251 3.00415 4.40375C2.87292 4.53499 2.79919 4.71298 2.79919 4.89858C2.79919 5.08418 2.87292 5.26217 3.00415 5.39341C3.13539 5.52465 3.31339 5.59838 3.49899 5.59838H4.19878C4.38438 5.59838 4.56238 5.52465 4.69361 5.39341C4.82485 5.26217 4.89858 5.08418 4.89858 4.89858C4.89858 4.71298 4.82485 4.53499 4.69361 4.40375C4.56238 4.27251 4.38438 4.19878 4.19878 4.19878H3.49899ZM6.29817 9.79716H3.49899C3.31339 9.79716 3.13539 9.87089 3.00415 10.0021C2.87292 10.1334 2.79919 10.3114 2.79919 10.497C2.79919 10.6826 2.87292 10.8606 3.00415 10.9918C3.13539 11.123 3.31339 11.1968 3.49899 11.1968H6.29817C6.48377 11.1968 6.66177 11.123 6.793 10.9918C6.92424 10.8606 6.99797 10.6826 6.99797 10.497C6.99797 10.3114 6.92424 10.1334 6.793 10.0021C6.66177 9.87089 6.48377 9.79716 6.29817 9.79716Z" fill="white"/>
                             </svg>
                                 Expunge Records</button>
@@ -181,7 +181,7 @@
                                         </div>
                                         <div class="switch-toggle">
                                             <label class="switch">
-                                                <input v-model="is_driver_license_valid" type="checkbox">
+                                                <input v-model="is_driver_license_valid" type="checkbox" :disabled="!isAllowedToEditProfile">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -194,7 +194,7 @@
                                         </div>
                                         <div class="switch-toggle">
                                             <label class="switch">
-                                                <input v-model="is_weapon_license_valid" type="checkbox">
+                                                <input v-model="is_weapon_license_valid" type="checkbox" :disabled="!isAllowedToEditProfile">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -207,7 +207,7 @@
                                         </div>
                                         <div class="switch-toggle">
                                             <label class="switch">
-                                                <input v-model="is_pilot_license_valid" type="checkbox">
+                                                <input v-model="is_pilot_license_valid" type="checkbox" :disabled="!isAllowedToEditProfile">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -220,7 +220,7 @@
                                         </div>
                                         <div class="switch-toggle">
                                             <label class="switch">
-                                                <input v-model="is_hunting_license_valid" type="checkbox">
+                                                <input v-model="is_hunting_license_valid" type="checkbox" :disabled="!isAllowedToEditProfile">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -233,7 +233,7 @@
                                         </div>
                                         <div class="switch-toggle">
                                             <label class="switch">
-                                                <input v-model="is_fishing_license_valid" type="checkbox">
+                                                <input v-model="is_fishing_license_valid" type="checkbox" :disabled="!isAllowedToEditProfile">
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -423,11 +423,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import ExpungeProfileModal from '~/components/profile/ExpungeProfileModal.vue'
 export default {
   components: { ExpungeProfileModal },
   name: 'Profile',
   layout: 'master',
+  middleware: ['profileMW'],
   data () {
     return {
       profileRecord: [],
@@ -451,7 +453,11 @@ export default {
     },
     showEmptyMessageComputed () {
         return !this.profileIdComputed && !this.showEmptyMessage
-    }
+    },
+    ...mapGetters({
+      isAllowedToExpungeRecords: 'auth/isAllowedToExpungeRecords',
+      isAllowedToEditProfile: 'auth/isAllowedToEditProfile',
+    })
   },
   watch: {
       is_driver_license_valid(newValue , oldValue) {
@@ -496,7 +502,7 @@ export default {
   },
   methods: {
       postSettings(key, value){
-        if(this.saveSettingsAllow) {
+        if(this.saveSettingsAllow && this.isAllowedToEditProfile) {
           this.$store
             .dispatch('profile/saveProfileSettings', {
                 key: key,

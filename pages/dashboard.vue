@@ -4,6 +4,10 @@
       <div class="page-title-banner dashboard">
           <h2>Dashboard</h2>
       </div>
+      <ProfileImageUploader
+        profile-image="http://devlocal.police-system.co/api/v1/fetch-house-picture"
+        @file-uploaded="fileUploaded"
+      />
       <div class="dashboard-page">
         <div class="row">
           <div class="col-md-9">
@@ -60,11 +64,12 @@
         </div>
       </div>
     </div>
-    <dashboard-pending-warrant-modal :show-modal="showWarrantPendingModalComputed" @close="closePendingWarrantModal" />
+    <dashboard-pending-warrant-modal :show-modal="getShowPendingWarrantModalOnDashboard" @close="closePendingWarrantModal" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import DashboardPendingWarrantModal from '~/components/DashboardPendingWarrantModal.vue'
 export default {
   components: { DashboardPendingWarrantModal },
@@ -72,24 +77,25 @@ export default {
   layout: 'master',
   data () {
     return {
-      showWarrantPendingModal: false,
       policeReports: []
     }
   },
   computed: {
-    showWarrantPendingModalComputed () {
-        return this.showWarrantPendingModal
-    }
+    ...mapGetters({
+      getShowPendingWarrantModalOnDashboard: 'dashboard/getShowPendingWarrantModalOnDashboard'
+    })
   },
   mounted () {
     this.$store.commit('setActiveTab', 'dashboard')
-    this.showWarrantPendingModal = true
     this.fetchAllReports()
   },
   methods: {
-      closePendingWarrantModal() {
-          this.showWarrantPendingModal = false
-      },
+    closePendingWarrantModal() {
+      this.$store.commit('dashboard/setShowPendingWarrantModalOnDashboard', false)
+    },
+    fileUploaded(files) {
+      console.log(files)
+    },
       async fetchAllReports () {
       this.policeReports = await this.$store.dispatch(
         'police-report/fetchAllPoliceReports',

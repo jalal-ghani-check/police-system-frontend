@@ -54,6 +54,7 @@ export default {
   components: { warrantItem, WarrantRejectModal, WarrantAcceptModal, WarrantDetailModal },
   name: 'Warrants',
   layout: 'master',
+  middleware: ['warrantMW'],
   data () {
     return {
       warrantsList: [],
