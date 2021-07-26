@@ -5,6 +5,9 @@
             <div class="modal-dialog edit-house-modal modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-body">
+
+                    <notification-bar />
+                    
                     <div class="mb-3">
                       
                       <div class="house-pic">
