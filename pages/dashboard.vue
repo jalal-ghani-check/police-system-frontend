@@ -98,17 +98,17 @@ export default {
     },
       async fetchAllReports () {
       this.policeReports = await this.$store.dispatch(
-        'police-report/fetchAllPoliceReports',
+        'report/fetchAllReports',
         {}
       )
     },
     openPoliceReportModalPopUp (report) {
       this.fetchPoliceReportByReportId(report.report_id)
-      this.$store.commit('police-report/setIsPoliceReportPopupOpen', true)
+      this.$store.commit('report/setIsPoliceReportPopupOpen', true)
     },
     async fetchPoliceReportByReportId (reportId) {
       await this.$store.dispatch(
-        'police-report/fetchPoliceReportByReportId',
+        'report/fetchPoliceReportByReportId',
         {
           report_id : reportId
         }

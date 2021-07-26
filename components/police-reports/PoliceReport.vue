@@ -169,14 +169,14 @@ export default {
   name: 'policeReportDetails',
   computed: {
     ...mapGetters({
-        isPoliceReportPopupOpen: 'police-report/getIsPoliceReportPopupOpen',
-        selectedPoliceReportObject: 'police-report/getSelectedPoliceReportObject'
+        isPoliceReportPopupOpen: 'report/getIsPoliceReportPopupOpen',
+        selectedPoliceReportObject: 'report/getSelectedPoliceReportObject'
     })
   },
   methods: {
     closePoliceReportModalPopUp () {
-      this.$store.commit('police-report/setIsPoliceReportPopupOpen', false)
-      this.$store.commit('police-report/setSelectedPoliceReport', null)
+      this.$store.commit('report/setIsPoliceReportPopupOpen', false)
+      this.$store.commit('report/setSelectedPoliceReport', null)
     }
   },
 }

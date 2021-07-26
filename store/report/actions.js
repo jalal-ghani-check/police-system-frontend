@@ -1,5 +1,5 @@
 export default {
-  fetchAllPoliceReports ({ commit }, requestData) {
+  fetchAllReports ({ commit }, requestData) {
     return this.$axios
       .get('reports/fetch-all')
       .then((response) => {
