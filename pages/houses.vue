@@ -98,7 +98,7 @@
         </div>
       </div>
     </div>
-    <add-new-house-modal />
+    <!-- <add-new-house-modal /> -->
     <edit-house-modal />
     <delete-house-modal />
     <link-house-to-profile-modal />
