@@ -1,8 +1,10 @@
 <template>
-  <div class="modal fade" id="linkHouseModal" tabindex="-1" aria-hidden="true">
+  <div id="linkHouseModal" tabindex="-1" :style="{display: getIsLinkHouseToProfilePopupOpen ? 'block' : 'none'}"
+    aria-hidden="true" class="modal fade" :class="{show: getIsLinkHouseToProfilePopupOpen}">
         <div class="modal-dialog  modal-xl modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
+                <h3>Link profile</h3>
                 <div class="link-house-wrapper">
                     <div class="section-search">
                         <div class="form-group">
@@ -18,17 +20,19 @@
 
                     <div class="owener-list">
                       <div class="row g-2">
-                        <div class="col-md-3">
+                        <div class="col-md-3 house-link-card" v-for="(profile, index) in allProfiles" :key="index"
+                        @click="linkHouseToProfile(profile.profile_id)" data-bs-dismiss='modal'>
                           <div class="house-owner-card">
-                            <div class="owner-pic">
+                            <div class="owner-pic"> <!-- makepic dynamic -->
                               <img src="~/assets/images/profile-pic.jpg" alt="">
                             </div>
                             <div class="owner-info">
-                              <h3>Mac Jones</h3>
-                              <h4>Mafia/Gangster</h4>
+                              <h3> {{ profile.full_name }} </h3>
+                              <h4> {{ profile.designation }} </h4>
                             </div>
                           </div>
                         </div>
+                        
                       </div>
                 </div>
 
@@ -38,3 +42,51 @@
       </div>
       </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'linkHouseToProfileModal',
+  computed: {
+    ...mapGetters({
+        getIsLinkHouseToProfilePopupOpen: 'house/getIsLinkHouseToProfilePopupOpen',
+        allProfiles: 'profile/getAllProfiles'
+    })
+  },
+  mounted() {
+    this.fetchAllProfiles()
+  },
+  methods: {
+    async fetchAllProfiles () {
+      const allProfiles = await this.$store.dispatch(
+        'profile/fetchAllProfileRecords',
+        {}
+      )
+      this.$store.commit('profile/setAllProfiles', allProfiles)
+    },
+    async linkHouseToProfile (profileId) {
+      const houseObj = this.$store.state.house.selectedHouseObj
+      await this.$store.dispatch(
+        'house/linkHouseToProfile',
+        {
+          profile_id: profileId,
+          house_id: houseObj.enc_house_id,
+          user_id: houseObj.enc_user_id
+        }
+      )
+      this.closeDeleteHouseModalPopUp()
+      this.$store.dispatch('house/fetchAllHouses', {})
+    },
+    closeDeleteHouseModalPopUp () {
+      this.$store.commit('house/setIsLinkHouseToProfilePopupOpen', { isLinkHouseToProfilePopupOpen:false, selectedHouseObj: null })
+    },
+  },
+}
+</script>
+
+<style lang="css" scoped>
+  .house-link-card :hover {
+    cursor: pointer;
+  }
+</style>

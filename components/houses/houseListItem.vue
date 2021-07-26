@@ -4,11 +4,11 @@
       <div class="col-md-5">
         <div class="column-1">
           <div class="hosue-img">
-            <img src="~/assets/images/house-thumb.png" />
+            <img :src="house.image" />
           </div>
           <div class="house-name">
             <span class="label">Name</span>
-            <h4>The Master Penthouse, The Diamond Casino & Resort</h4>
+            <h4>{{ house.house_name}}</h4>
           </div>
         </div>
       </div>
@@ -16,27 +16,28 @@
         <div class="column-2">
           <div class="house-price">
             <span class="label">Price</span>
-            <div><span class="text-green">$$$</span> 3,776,500</div>
+            <div><span class="text-green">$$$</span> {{ house.price}}</div>
           </div>
         </div>
       </div>
       <div class="col-md-5">
         <div class="column-3 align-items-center">
-          <div class="owner-cell" v-if="false">
+          <div class="owner-cell" v-if="house.is_house_linked">
             <div class="label">Owner:</div>
             <div class="house-owner-card">
               <div class="owner-pic">
                 <img src="~/assets/images/profile-pic.jpg" alt="" />
               </div>
               <div class="owner-info">
-                <h3>Mac Jones</h3>
-                <h4>Mafia/Gangster</h4>
+                <h3>{{ house.owner_full_name }}</h3>
+                <h4>{{ house.owner_designation }}</h4>
               </div>
               <div class="unlink-btn">
                 <button
                   class="btn btn-danger"
                   data-bs-toggle="modal"
                   data-bs-target="#unLinkHouseAlert"
+                  @click="openUnlinkHouseToProfilePopup()"
                 >
                   <svg
                     width="19"
@@ -66,6 +67,7 @@
                   class="btn btn-success"
                   data-bs-toggle="modal"
                   data-bs-target="#linkHouseModal"
+                  @click="openLinkHouseToProfilePopup()"
                 >
                   <svg
                     width="18"
@@ -160,26 +162,31 @@
         </div>
       </div>
     </div>
-    <edit-house-modal></edit-house-modal>
-    <delete-house-modal></delete-house-modal>
+    
   </div>
 
 </template>
 
 <script>
-import editHouseModal from '~/components/houses/editHouseModal.vue'
-import deleteHouseModal from '~/components/houses/deleteHouseModal.vue'
 export default {
-  components: { editHouseModal, deleteHouseModal },
+  props: ['house'],
   name: "Houses",
   layout: "master",
   methods: {
     openEditHouseModalPopUp () {
-      this.$store.commit('house/setIsAddHousePopupOpen', true)
+      this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: true, selectedHouseObj: this.house })
+    },
+
+    openLinkHouseToProfilePopup () {
+      this.$store.commit('house/setIsLinkHouseToProfilePopupOpen', { isLinkHouseToProfilePopupOpen: true, selectedHouseObj: this.house })
+    },
+
+    openUnlinkHouseToProfilePopup () {
+      this.$store.commit('house/setIsUnlinkHouseToProfilePopupOpen', { isUnlinkHouseToProfilePopupOpen: true, selectedHouseObj: this.house })
     },
 
     openDeleteHouseModalPopUp () {
-      this.$store.commit('house/setIsDeleteHousePopupOpen', true)
+      this.$store.commit('house/setIsDeleteHousePopupOpen', { isDeleteHousePopupOpen: true, selectedHouseObj: this.house })
     }
   },
 };

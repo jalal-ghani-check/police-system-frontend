@@ -1,8 +1,8 @@
 <template>
 
 
-<div aria-hidden="true" :style="{display: getIsAddHousePopupOpen ? 'block' : 'none'}"
-    class="modal fade" id="editHouseModal" tabindex="-1" :class= "{show: getIsAddHousePopupOpen}">
+<div aria-hidden="true" :style="{display: getIsEditHousePopupOpen ? 'block' : 'none'}" :key="selectedHouseObj"
+    class="modal fade" id="editHouseModal" tabindex="-1" :class= "{show: getIsEditHousePopupOpen}">
         <div class="modal-dialog edit-house-modal modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
@@ -10,19 +10,19 @@
                    
                    <div class="house-pic">
                     <div class="add-picture">
-                        <label for="housePic"><img src="~/assets/images/plus-icon.svg"></label>
+                        <label for="housePic"><img src="~/assets/images/plus-icon.svg" height="150" width="150"></label>
                         <input type="file" id="housePic">
                    </div>
 
-                    <img src="~/assets/images/house pic.png" alt="">
+                    <img :src="houseImage" alt="">
                    </div>
                 </div>
                 
                 <div class="mb-3">
-                    <input type="text" value="The Master Penthouse, The Diamond Casino & Resort"  class="form-control" placeholder="Name">
+                    <input type="text" v-model="houseName" maxlength="255" class="form-control" placeholder="Name">
                 </div>
                 <div class="mb-3">
-                    <input type="text" value="2000" class="form-control" placeholder="Price">
+                    <input type="text" maxlength="11" v-model="housePrice" class="form-control" placeholder="Price">
                 </div>
                 <div class="row g-2">
                     <div class="col-sm-6">
@@ -35,7 +35,10 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="d-grid">
-                            <button class="btn btn-success" type="button"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <button class="btn btn-success" type="button"
+                              @click="updateHouseInfo()"
+                            >
+                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.36394 19.3641C7.62262 20.6227 9.22626 21.4799 10.9721 21.8272C12.7179 22.1744 14.5275 21.9962 16.1721 21.315C17.8166 20.6338 19.2222 19.4803 20.2111 18.0002C21.2001 16.5202 21.7279 14.7801 21.7279 13.0001C21.7279 11.2201 21.2001 9.48002 20.2111 7.99997C19.2222 6.51993 17.8166 5.36638 16.1721 4.68519C14.5275 4.004 12.7179 3.82578 10.9721 4.17304C9.22626 4.52031 7.62262 5.37748 6.36394 6.63615C5.52822 7.47187 4.86528 8.46403 4.41299 9.55596C3.9607 10.6479 3.7279 11.8182 3.72791 13.0001C3.72791 14.182 3.9607 15.3523 4.41299 16.4443C4.86528 17.5362 5.52822 18.5283 6.36394 19.3641ZM17.8191 7.90894C18.826 8.91588 19.5117 10.1988 19.7896 11.5955C20.0674 12.9921 19.9248 14.4398 19.3798 15.7554C18.8349 17.0711 17.912 18.1955 16.728 18.9867C15.544 19.7778 14.1519 20.2001 12.7279 20.2001C11.3039 20.2001 9.91183 19.7778 8.7278 18.9867C7.54376 18.1955 6.62092 17.0711 6.07597 15.7554C5.53102 14.4398 5.38844 12.9921 5.66625 11.5955C5.94406 10.1988 6.6298 8.91588 7.63674 7.90894C8.987 6.55868 10.8183 5.80011 12.7279 5.80011C14.6375 5.80011 16.4688 6.55868 17.8191 7.90894ZM8.04593 13.8436C8.89445 14.6921 9.74298 15.5407 10.5915 16.3892C10.7603 16.558 10.9892 16.6528 11.2279 16.6528C11.4666 16.6528 11.6955 16.558 11.8643 16.3892C15.1585 13.095 13.6613 14.5922 16.9555 11.298C17.1243 11.1292 17.2191 10.9003 17.2191 10.6616C17.2191 10.4229 17.1243 10.194 16.9555 10.0252C16.7867 9.85645 16.5578 9.76163 16.3191 9.76163C16.0804 9.76163 15.8515 9.85645 15.6827 10.0252L11.2279 14.48L9.31872 12.5708C9.14993 12.402 8.92102 12.3072 8.68232 12.3072C8.44363 12.3072 8.21471 12.402 8.04593 12.5708C7.87714 12.7396 7.78232 12.9685 7.78232 13.2072C7.78232 13.4459 7.87714 13.6748 8.04593 13.8436Z" fill="white"/>
                                 </svg>
                                 
@@ -55,15 +58,51 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'editHouseModal',
+  data() {
+    return {
+      housePrice: '',
+      houseName: '',
+      // houseImage: "~/assets/images/plus-icon.svg"
+      houseImage: "~assets/images/add-pic-icon.svg"
+    }
+  },
   computed: {
     ...mapGetters({
-        getIsAddHousePopupOpen: 'house/getIsAddHousePopupOpen'
-    })
+        getIsEditHousePopupOpen: 'house/getIsEditHousePopupOpen',
+        // selectedHouseObject: 'house/getSelectedHouseObject'
+    }),
+    selectedHouseObj () {
+      const obj = this.$store.getters['house/getSelectedHouseObject']
+      if(obj) {
+        this.housePrice = obj.non_formatted_price
+        this.houseName = obj.house_name,
+        this.houseImage = obj.image
+      }
+    }
   },
   methods: {
     closeEditHouseModalPopUp () {
-      this.$store.commit('house/setIsAddHousePopupOpen', false)
+      this.housePrice = ''
+      this.houseName = ''
+      this.houseImage = "~assets/images/add-pic-icon.svg"
+      this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: false, selectedHouseObj: null })
+    },
+    async updateHouseInfo(){
+      const houseObj = this.$store.state.house.selectedHouseObj
+      await this.$store.dispatch(
+        'house/manageHouse',
+        {
+          house_id: houseObj ? houseObj.enc_house_id : '',
+          house_name: this.houseName,
+          price: this.housePrice,
+          image: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'
+          
+        }
+      )
+      this.closeEditHouseModalPopUp()
+      this.$store.dispatch('house/fetchAllHouses', {})
     }
+
   },
 }
 </script>

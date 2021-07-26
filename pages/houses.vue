@@ -70,7 +70,7 @@
                 <div class="col-md-2 header-buttons">
                   <button
                     data-bs-toggle="modal"
-                    data-bs-target="#addHouseModal"
+                    @click="openAddHouseModalPopUp()"
                     class="btn btn-success"
                   >
                     <svg
@@ -91,27 +91,55 @@
               </div>
             </div>
 
-            <div class="houses-list">
-              <house-list-item></house-list-item>
+            <div class="houses-list" v-if="housesList.length">
+              <house-list-item v-for="(house, index) in housesList" :key="index" :house="house"></house-list-item>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <add-new-house-modal />
+    <edit-house-modal />
+    <delete-house-modal />
+    <link-house-to-profile-modal />
+    <unlink-house-modal />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import editHouseModal from '~/components/houses/editHouseModal.vue'
+import deleteHouseModal from '~/components/houses/deleteHouseModal.vue'
+import linkHouseToProfileModal from '~/components/houses/linkHouseToProfileModal.vue'
+import UnlinkHouseModal from '~/components/houses/unlinkHouseModal.vue'
 import houseListItem from '~/components/houses/houseListItem.vue'
+import addNewHouseModal from '~/components/houses/addNewHouseModal.vue'
 export default {
-  components: { houseListItem },
-  name: "Houses",
-  layout: "master",
-  mounted() {
+  name: 'Houses',
+  components: { houseListItem, addNewHouseModal, editHouseModal, deleteHouseModal, linkHouseToProfileModal, UnlinkHouseModal },
+  layout: 'master',
+
+  computed: {
+    ...mapGetters({
+      housesList: 'house/getAllHouses'
+    })
+  },
+  mounted () {
+    this.fetchAllHouses()
     this.$store.commit('setActiveTab', 'search')
-    
+  },
+  methods: {
+    openAddHouseModalPopUp () {
+      this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: true, selectedHouseObj: null })
+    },
+    async fetchAllHouses () {
+      await this.$store.dispatch(
+        'house/fetchAllHouses',
+        {}
+      )
+    }
   }
-};
+}
 
 </script>
 
