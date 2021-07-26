@@ -18,7 +18,7 @@
                 <div class="row">
                   <div class="col-md-4"
                     v-for="(report, index) in policeReports" :key="index"
-                    @click="openPoliceReportModalPopUp(report)" data-bs-dismiss='modal'
+                    @click="openReportModalPopUp(report)" data-bs-dismiss='modal'
                   >
                       <div class="report-card" :class="{red: report.report_type === 'medical_report'}">
                           <div class="tag-no" v-if="report.report_type !== 'medical_report'">#{{ report.case_number }}</div>
@@ -96,15 +96,14 @@ export default {
     fileUploaded(files) {
       console.log(files)
     },
-      async fetchAllReports () {
-      this.policeReports = await this.$store.dispatch(
-        'report/fetchAllReports',
-        {}
-      )
-    },
-    openPoliceReportModalPopUp (report) {
-      this.fetchPoliceReportByReportId(report.report_id)
-      this.$store.commit('report/setIsPoliceReportPopupOpen', true)
+    openReportModalPopUp (report) {
+      if(report.report_type === 'police_report') {
+        this.fetchPoliceReportByReportId(report.report_id)
+        this.$store.commit('report/setIsPoliceReportPopupOpen', true)
+      } else {
+        this.fetchMedicalReportByReportId(report.report_id)
+        this.$store.commit('report/setIsMedicalReportPopupOpen', true)
+      }
     },
     async fetchPoliceReportByReportId (reportId) {
       await this.$store.dispatch(
@@ -114,6 +113,20 @@ export default {
         }
       )
     },
+    async fetchMedicalReportByReportId (reportId) {
+      await this.$store.dispatch(
+        'report/fetchMedicalReportByReportId',
+        {
+          report_id : reportId
+        }
+      )
+    },
+    async fetchAllReports () {
+      this.policeReports = await this.$store.dispatch(
+        'report/fetchAllReports',
+        {}
+      )
+    }
   }
 }
 </script>
