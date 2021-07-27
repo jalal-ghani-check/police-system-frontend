@@ -8,7 +8,9 @@ export default {
   getUserFullName: (state) => {
     return state.userData.full_name
   },
-
+  isLoggedInUserAdmin: (state) => {
+    return state.userData.role_id == 1
+  },
   isAllowedToApproveWarrants: (state) => {
     return state.userData.is_allowed_to_approve_warrants
   },
