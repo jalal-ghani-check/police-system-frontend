@@ -22,7 +22,7 @@
                                 Employees</h4>
                         </div>
                         <div class="employees-card-list">
-                            <div v-for="(user, index) in usersList" :key="index" @click="selectEmployee(index)" class="employees-name-card" :class="[user.role_key, {active: index == selectedIndexComputed }]" >
+                            <div v-for="(user, index) in usersListComputed" :key="index" @click="selectEmployee(index)" class="employees-name-card" :class="[user.role_key, {active: index == selectedIndexComputed }]" >
                                 <div class="tag">{{ user.role_name }}</div>
                                 <div class="info">
                                     <h3>{{ user.full_name }}</h3>
@@ -133,17 +133,35 @@
                                 <notification-bar />
                                 <div v-if="isEditModeComputed"  class="edit-employee-info">
                                     <div class="row g-3">
-                                        <div class="col">
+                                        <div class="col" >
                                             <input type="text" v-model="selectedEmployee.full_name" class="form-control" placeholder="Full Name">
+                                            <div
+                                                v-if="$v.selectedEmployee.full_name.$error && !$v.selectedEmployee.full_name.required"
+                                                class="error"
+                                            >
+                                                Full Name is required
+                                            </div>
                                         </div>
                                         <div class="col">
                                             <input type="text" v-model="selectedEmployee.username" class="form-control" placeholder="Username">
+                                             <div
+                                                v-if="$v.selectedEmployee.username.$error && !$v.selectedEmployee.username.required"
+                                                class="error"
+                                            >
+                                                Username is required
+                                            </div>
                                         </div>
                                         <div class="col">
-                                            <input type="password"  class="form-control" placeholder="Password">
+                                            <input type="password" v-model="selectedEmployee.password"  class="form-control" placeholder="Password">
                                         </div>
                                         <div class="col">
                                             <input type="text" v-model="selectedEmployee.citizen_id"  class="form-control" placeholder="Citizen ID">
+                                            <div
+                                                v-if="$v.selectedEmployee.citizen_id.$error && !$v.selectedEmployee.citizen_id.required"
+                                                class="error"
+                                            >
+                                                Citizen ID is required
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row g-3">
@@ -151,22 +169,46 @@
                                             <!-- <div class="upload-btn"> -->
                                                 <!-- <label for="profilePicture">Profile Picture</label> -->
                                                 <input type="text" v-model="selectedEmployee.profile_picture" class="form-control" placeholder="Profile picture"  id="profilePicture">
+                                                <div
+                                                    v-if="$v.selectedEmployee.profile_picture.$error && !$v.selectedEmployee.profile_picture.required"
+                                                    class="error"
+                                                    >
+                                                        Profile picture url is required
+                                                </div>
                                             <!-- </div> -->
                                         </div>
                                         <div class="col">
                                             <select v-model="selectedEmployee.enc_department_id" class="form-select">
-                                                <option >Select Department</option>
+                                                <option value="" >Select Department</option>
                                                 <option v-for="dept in getDepartments" :key="dept.key" :value="dept.key"  >{{ dept.value }}</option>
                                             </select>
+                                            <div
+                                                v-if="$v.selectedEmployee.enc_department_id.$error && !$v.selectedEmployee.enc_department_id.required"
+                                                class="error"
+                                            >
+                                                Department is required
+                                            </div>
                                         </div>
                                         <div class="col">
                                             <select v-model="selectedEmployee.enc_rank_id" class="form-select">
-                                                <option >Select Rank</option>
+                                                <option value="" >Select Rank</option>
                                                 <option v-for="rank in getRanks" :key="rank.key" :value="rank.key"  >{{ rank.value }}</option>
                                             </select>
+                                            <div
+                                                v-if="$v.selectedEmployee.enc_rank_id.$error && !$v.selectedEmployee.enc_rank_id.required"
+                                                class="error"
+                                            >
+                                                Rank is required
+                                            </div>
                                         </div>
                                         <div class="col">
                                             <input type="text" v-model="selectedEmployee.call_sign" class="form-control" placeholder="Callsign">
+                                            <div
+                                                v-if="$v.selectedEmployee.call_sign.$error && !$v.selectedEmployee.call_sign.required"
+                                                class="error"
+                                            >
+                                                Call sign is required
+                                            </div>
                                         </div>
                                     </div>
 
@@ -388,6 +430,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { required, minLength } from 'vuelidate/lib/validators'
 import DeleteUserModal from '~/components/users/DeleteUserModal.vue'
 export default {
   components: { DeleteUserModal },
@@ -404,7 +447,35 @@ export default {
       showEmptyMessage: false,
     }
   },
+  validations: {
+    selectedEmployee: {
+      full_name: {
+        required
+      },
+     username: {
+        required
+      },
+     citizen_id: {
+        required
+      },
+     profile_picture: {
+        required
+      },
+     enc_department_id: {
+        required
+      },
+     enc_rank_id: {
+        required
+      },
+     call_sign: {
+        required
+      },
+    }
+  },
   computed: {
+    usersListComputed() {
+      return this.usersList
+    },
     selectedIndexComputed() {
       return this.selectedIndex
     },
@@ -445,15 +516,22 @@ export default {
       this.isEditMode = true
     },
     updateProfile() {
-        this.$store
-        .dispatch('auth/updateUserInfo', this.selectedEmployee)
-        .then((data) => {
-          this.fetchAllUsers()
-          this.selectEmployee(0)
-        })
-        .catch(() => {
 
-        })
+        this.$v.$touch()
+        if (!this.$v.$invalid) {
+            this.$store
+                .dispatch('auth/updateUserInfo', this.selectedEmployee)
+                .then((data) => {
+                    this.fetchAllUsers()
+                    this.selectEmployee(0)
+                    this.$v.$reset()
+                })
+                .catch(() => {
+
+                })
+        }
+
+
     },
     deleteProfile() {
       this.isDeleteModalOpen = true

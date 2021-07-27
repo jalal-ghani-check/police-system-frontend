@@ -825,6 +825,15 @@ textarea.form-control {
   margin-top: 10px;
 }
 
+/*=========vuejs form field validation message============*/
+
+.form-group--error ~ .error {
+  margin-top: -35px;
+  font-size: 12px;
+  margin-right: 5px;
+  margin-bottom: 30px;
+}
+
 /* RESPONSIVE FIXES */
 @media screen and (max-width:990px) {
   .page-title-banner {
