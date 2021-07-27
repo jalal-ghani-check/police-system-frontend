@@ -12,6 +12,7 @@
             <div class="white-widget">
               <div class="form-section">
                 <h4>Add New User</h4>
+                <notification-bar />
                 <div class="row mb-5 mt-3 g-3">
                   <div class="col" >
                       <input type="text" v-model="full_name" class="form-control" placeholder="Full Name">
