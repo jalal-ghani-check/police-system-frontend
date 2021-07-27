@@ -90,6 +90,7 @@ export default {
         }
       },
       fetch (url, load) {
+        console.log(url)
         window.$nuxt.$axios.$get(url).then(({ data }) => {
           const base64 = data.content
           const bstr = atob(base64)
@@ -120,7 +121,8 @@ export default {
     handleFile (error, file) {
       if (error == null) {
         if (typeof file.source !== 'string') {
-          this.uploadFiles.push(file.serverId)
+          let fileJson = JSON.parse(file.serverId)
+          this.uploadFiles.push(fileJson.name)
           this.submitFiles()
         }
       }
