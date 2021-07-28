@@ -17,6 +17,16 @@ export default {
       })
   },
 
+  addWarrant ({ commit }, requestData) {
+    return this.$axios
+      .post('warrants/add', requestData)
+      .then((response) => {
+        this.$toast.global.post_success()
+        const { data } = response.data
+        return data
+      })
+  },
+
 
   
 
