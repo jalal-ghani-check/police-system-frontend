@@ -8,6 +8,9 @@ export default {
   getUserFullName: (state) => {
     return state.userData.full_name
   },
+  getUserProfilePicture: (state) => {
+    return state.userData.profile_picture
+  },
   isLoggedInUserAdmin: (state) => {
     return state.userData.role_id == 1
   },

@@ -256,6 +256,7 @@ export default {
       getActiveTab: 'getActiveTab',
       isAuthenticated: 'auth/isAuthenticated',
       getUserFullName: 'auth/getUserFullName',
+      getUserProfilePicture: 'auth/getUserProfilePicture',
       isAllowedToViewWarrants: 'auth/isAllowedToViewWarrants',
       isAllowedToViewReports: 'auth/isAllowedToViewReports',
       isAllowedToViewLaws: 'auth/isAllowedToViewLaws',
