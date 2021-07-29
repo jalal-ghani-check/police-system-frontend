@@ -7,4 +7,13 @@ export default {
         return data
       })
   },
+  addLaw ({ commit }, requestData) {
+    return this.$axios
+      .post('laws/add', requestData)
+      .then((response) => {
+        this.$toast.global.post_success()
+        const { data } = response.data
+        return data
+      })
+  },
 }
