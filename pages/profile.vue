@@ -258,7 +258,7 @@
                                         </svg>
                                         Houses</h4>
                                         <div class="badge-count">
-                                            <span class="badge bg-danger">4</span>
+                                            <span class="badge bg-danger">{{ houseCountComputed }}</span>
 
                                         </div>
                                 </div>
@@ -266,33 +266,22 @@
                             </div>
                             <div class="section-search">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                    <input type="text" class="form-control" v-model="search_house" placeholder="Search">
                                 </div>
                             </div>
                             <div class="white-widget">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="house-card">
-                                            <div class="house-thumb">
-                                                <img src="~/assets/images/house-thumb.png" alt="">
-                                            </div>
-                                            <div class="house-card-caption">
-                                                <h3>Eclipse Towers Penthouse Suite 3</h3>
-                                                <div class="house-price"><span class="text-green">$$$</span>
-                                                    1,100,000</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div v-if="houseListFilteredComputed.length > 0" class="row">
+                                    <profile-house-card  v-for="(house, index) in houseListFilteredComputed" :key="index" :house="house" />
 
-                                    <div class="col-md-4">
+                                    <!-- <div v-for="(house, index) in houseList" :key="index"  class="col-md-4">
                                         <div class="house-card">
                                             <div class="house-thumb">
-                                                <img src="~/assets/images/house-thumb-2.png" alt="">
+                                                <img :src="house.image" alt="">
                                             </div>
                                             <div class="house-card-caption">
-                                                <h3>3655 Wild Oats Drive</h3>
+                                                <h3>{{ house.house_name }}</h3>
                                                 <div class="house-price"><span class="text-green">$$$</span>
-                                                    1,100,000</div>
+                                                    {{ house.price }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -309,8 +298,23 @@
                                                     1,100,000</div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
+                                </div>
+                                <div v-else class="no-data">
+                                    <div>
+                                        <svg
+                                        width="13"
+                                        height="14"
+                                        viewBox="0 0 13 14"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M11.8858 4.21171L7.69086 0.534113C7.30631 0.190156 6.80847 0 6.29254 0C5.7766 0 5.27877 0.190156 4.89421 0.534113L0.69923 4.21171C0.477153 4.41033 0.299937 4.65397 0.179382 4.92643C0.0588266 5.19888 -0.00230204 5.4939 6.62766e-05 5.79182V11.9025C6.62766e-05 12.4588 0.221051 12.9923 0.614407 13.3857C1.00776 13.779 1.54127 14 2.09756 14H10.4875C11.0438 14 11.5773 13.779 11.9707 13.3857C12.364 12.9923 12.585 12.4588 12.585 11.9025V5.78483C12.5864 5.48808 12.5248 5.19442 12.4042 4.92324C12.2837 4.65206 12.107 4.40955 11.8858 4.21171ZM7.69086 12.6017H4.89421V9.10586C4.89421 8.92043 4.96787 8.74259 5.09899 8.61147C5.23011 8.48036 5.40794 8.40669 5.59337 8.40669H6.9917C7.17713 8.40669 7.35496 8.48036 7.48608 8.61147C7.6172 8.74259 7.69086 8.92043 7.69086 9.10586V12.6017ZM11.1867 11.9025C11.1867 12.0879 11.113 12.2658 10.9819 12.3969C10.8508 12.528 10.6729 12.6017 10.4875 12.6017H9.08919V9.10586C9.08919 8.54957 8.8682 8.01606 8.47485 7.62271C8.08149 7.22935 7.54799 7.00837 6.9917 7.00837H5.59337C5.03708 7.00837 4.50358 7.22935 4.11022 7.62271C3.71687 8.01606 3.49588 8.54957 3.49588 9.10586V12.6017H2.09756C1.91213 12.6017 1.73429 12.528 1.60317 12.3969C1.47205 12.2658 1.39839 12.0879 1.39839 11.9025V5.78483C1.39852 5.68556 1.41978 5.58745 1.46077 5.49704C1.50176 5.40663 1.56153 5.32598 1.63611 5.26046L5.83109 1.58985C5.95868 1.47776 6.1227 1.41594 6.29254 1.41594C6.46237 1.41594 6.62639 1.47776 6.75398 1.58985L10.949 5.26046C11.0235 5.32598 11.0833 5.40663 11.1243 5.49704C11.1653 5.58745 11.1866 5.68556 11.1867 5.78483V11.9025Z"
+                                                fill="#1F1F1F" />
+                                        </svg> 
+                                        <h4>No Houses Linked</h4>
+                                    </div>
                                 </div>
                             </div>
 
@@ -372,30 +376,27 @@
 
                                             </div>
                                             <div class="tab-pane fade  show active charges-list" id="chargesList" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                                <ul>
-                                                    <li>
+                                                <ul v-if="chargesDetailList.length > 0">
+                                                    <li v-for="(charge, index) in chargesDetailList" :key="index" :class="charge.crime_class">
                                                         <div class="charges-item">
                                                             <div class="rate-value">
-                                                                x1
+                                                                x{{ charge.number_of_times }}
                                                             </div>
                                                             <div class="charges-names">
-                                                                <h3>Assault & Battery</h3>
-                                                                <h4>Misdemeanor</h4>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="red">
-                                                        <div class="charges-item">
-                                                            <div class="rate-value">
-                                                                x7
-                                                            </div>
-                                                            <div class="charges-names">
-                                                                <h3>Kidnapping</h3>
-                                                                <h4>Felony</h4>
+                                                                <h3>{{ charge.name }}</h3>
+                                                                <h4>{{ charge.crime_type }}</h4>
                                                             </div>
                                                         </div>
                                                     </li>
                                                 </ul>
+                                                <div v-else class="no-data">
+                                                    <div>
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M32.5414 24.0994L32.6 24.0408V23.958V12.042V11.9592L32.5414 11.9006L24.0994 3.45858L24.0408 3.4H23.958H12.042H11.9592L11.9006 3.45858L3.45858 11.9006L3.4 11.9592V12.042V23.958V24.0408L3.45858 24.0994L11.9006 32.5414L11.9592 32.6H12.042H23.958H24.0408L24.0994 32.5414L32.5414 24.0994ZM16.8686 9.66863C17.1687 9.36857 17.5757 9.2 18 9.2C18.4243 9.2 18.8313 9.36857 19.1314 9.66863C19.4314 9.96869 19.6 10.3757 19.6 10.8V18C19.6 18.4243 19.4314 18.8313 19.1314 19.1314C18.8313 19.4314 18.4243 19.6 18 19.6C17.5757 19.6 17.1687 19.4314 16.8686 19.1314C16.5686 18.8313 16.4 18.4243 16.4 18V10.8C16.4 10.3757 16.5686 9.96869 16.8686 9.66863ZM17.1111 23.8696C17.3742 23.6938 17.6835 23.6 18 23.6C18.4243 23.6 18.8313 23.7686 19.1314 24.0686C19.4314 24.3687 19.6 24.7757 19.6 25.2C19.6 25.5164 19.5062 25.8258 19.3304 26.0889C19.1545 26.352 18.9047 26.5571 18.6123 26.6782C18.3199 26.7993 17.9982 26.831 17.6879 26.7693C17.3775 26.7075 17.0924 26.5551 16.8686 26.3314C16.6449 26.1076 16.4925 25.8225 16.4307 25.5121C16.369 25.2018 16.4007 24.8801 16.5218 24.5877C16.6429 24.2953 16.848 24.0455 17.1111 23.8696ZM25.8523 0.665116C25.8528 0.665658 25.8534 0.6662 25.854 0.666742L35.3333 10.146C35.3338 10.1466 35.3343 10.1472 35.3349 10.1477C35.6277 10.4557 35.7938 10.8626 35.8 11.2874V24.7125C35.7938 25.1374 35.6277 25.5443 35.3349 25.8523C35.3343 25.8528 35.3338 25.8534 35.3333 25.854L25.854 35.3333C25.8534 35.3338 25.8528 35.3343 25.8523 35.3349C25.5443 35.6277 25.1374 35.7938 24.7125 35.8H11.2874C10.8626 35.7938 10.4557 35.6277 10.1477 35.3349C10.1472 35.3343 10.1466 35.3338 10.146 35.3333L0.666742 25.854C0.6662 25.8534 0.665658 25.8528 0.665116 25.8523C0.372325 25.5444 0.206251 25.1374 0.2 24.7126V11.2874C0.206251 10.8625 0.372339 10.4556 0.665155 10.1477L10.1477 0.665155C10.4556 0.372339 10.8625 0.206251 11.2874 0.2H24.7126C25.1374 0.206251 25.5444 0.372325 25.8523 0.665116Z" fill="white" stroke="white" stroke-width="0.4"/>
+                                                        </svg>   
+                                                        <h4>No List of Charges</h4>
+                                                    </div>
+                                                </div>
                                             </div>
                                             </div>
                                     </div>
@@ -425,16 +426,21 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import ProfileHouseCard from '~/components/houses/ProfileHouseCard.vue'
 import ExpungeProfileModal from '~/components/profile/ExpungeProfileModal.vue'
 import AddNewWarrantModal from '~/components/warrants/AddNewWarrantModal.vue'
 export default {
-  components: { ExpungeProfileModal, AddNewWarrantModal },
+  components: { ExpungeProfileModal, AddNewWarrantModal, ProfileHouseCard, },
   name: 'Profile',
   layout: 'master',
   middleware: ['profileMW'],
   data () {
     return {
       profileRecord: [],
+      houseList: [],
+      houseListFiltered: [],
+      chargesDetailList: [],
+      search_house: "",
       profileId: null,
       saveSettingsAllow: false,
       is_driver_license_valid: 0,
@@ -448,6 +454,12 @@ export default {
     }
   },
   computed: {
+    houseListFilteredComputed () {
+       return this.houseListFiltered
+    },
+    houseCountComputed () {
+       return this.houseList.length
+    },
     profileIdComputed () {
       return this.profileId
     },
@@ -482,6 +494,13 @@ export default {
       },
       is_fishing_license_valid(newValue , oldValue) {
           this.postSettings('is_fishing_license_valid',newValue)
+      },
+      search_house(newValue, oldValue){
+          if(newValue.length > 2){
+              this.filterHouses(newValue)
+          }else {
+              this.houseListFiltered = this.houseList
+          }
       }
   },
   async mounted () {
@@ -496,7 +515,9 @@ export default {
       if(!this.profileRecord.full_name){
         this.showEmptyMessage = true
       }
-
+      this.houseList = this.profileRecord.houseList
+      this.houseListFiltered = this.profileRecord.houseList
+      this.chargesDetailList = this.profileRecord.laws_details
       this.is_driver_license_valid = this.profileRecord.is_driver_license_valid
       this.is_weapon_license_valid = this.profileRecord.is_weapon_license_valid
       this.is_pilot_license_valid = this.profileRecord.is_pilot_license_valid
@@ -536,6 +557,23 @@ export default {
       closeWarrantModal() {
         this.showCreateWarrantModal = false
       },
+      filterHouses(searchedName) {
+          var list = this.houseList
+
+          const filtered = list.filter( (
+                house,
+                index,
+                array
+            ) => {
+                let name = house.house_name
+                if (name.includes(searchedName)) {
+                return true
+                } else {
+                return false
+                }
+            })
+            this.houseListFiltered = filtered
+      }
   }
 }
 </script>
