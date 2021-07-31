@@ -98,7 +98,6 @@
         </div>
       </div>
     </div>
-    <!-- <add-new-house-modal /> -->
     <edit-house-modal />
     <delete-house-modal />
     <link-house-to-profile-modal />
@@ -113,10 +112,9 @@ import deleteHouseModal from '~/components/houses/deleteHouseModal.vue'
 import linkHouseToProfileModal from '~/components/houses/linkHouseToProfileModal.vue'
 import UnlinkHouseModal from '~/components/houses/unlinkHouseModal.vue'
 import houseListItem from '~/components/houses/houseListItem.vue'
-import addNewHouseModal from '~/components/houses/addNewHouseModal.vue'
 export default {
   name: 'Houses',
-  components: { houseListItem, addNewHouseModal, editHouseModal, deleteHouseModal, linkHouseToProfileModal, UnlinkHouseModal },
+  components: { houseListItem, editHouseModal, deleteHouseModal, linkHouseToProfileModal, UnlinkHouseModal },
   layout: 'master',
 
   computed: {

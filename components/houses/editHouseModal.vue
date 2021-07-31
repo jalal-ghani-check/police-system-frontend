@@ -97,9 +97,9 @@ export default {
       this.image = ""
       this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: false, selectedHouseObj: null })
     },
-    async updateHouseInfo(){
+    updateHouseInfo(){
       const houseObj = this.$store.state.house.selectedHouseObj
-      await this.$store.dispatch(
+      this.$store.dispatch(
         'house/manageHouse',
         {
           house_id: houseObj ? houseObj.enc_house_id : '',
@@ -108,9 +108,10 @@ export default {
           image: this.image
           
         }
-      )
-      this.closeEditHouseModalPopUp()
-      this.$store.dispatch('house/fetchAllHouses', {})
+      ).then((response) => {
+        this.closeEditHouseModalPopUp()
+        this.$store.dispatch('house/fetchAllHouses', {})
+      })
     },
     fileUploaded(files) {
       this.image = files
