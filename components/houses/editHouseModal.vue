@@ -8,8 +8,7 @@
 
                     <notification-bar />
                     
-                    <div class="mb-3">
-                      
+                    <div class="mb-3"> 
                       <div class="house-pic">
                         <div class="add-picture">
                             <label for="housePic"><img src="~/assets/images/plus-icon.svg" height="150" width="150"></label>
@@ -21,12 +20,30 @@
 
                       </div>
                     </div>
+                    <div
+                      v-if="$v.houseImage.$error && !$v.houseImage.required"
+                      class="error"
+                    >
+                      <span class="text-danger">House image required</span>
+                    </div> 
                     
                     <div class="mb-3">
                         <input type="text" v-model="houseName" maxlength="255" class="form-control" placeholder="Name">
                     </div>
+                    <div
+                      v-if="$v.houseName.$error && !$v.houseName.required"
+                      class="error"
+                    >
+                      <span class="text-danger">House name required</span>
+                    </div>
                     <div class="mb-3">
                         <input type="text" maxlength="11" v-model="housePrice" class="form-control" placeholder="Price">
+                    </div>
+                    <div
+                      v-if="$v.housePrice.$error && !$v.housePrice.required"
+                      class="error"
+                    >
+                      <span class="text-danger">House price required</span>
                     </div>
                     <div class="row g-2">
                         <div class="col-sm-6">
@@ -61,6 +78,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   name: 'editHouseModal',
@@ -75,7 +93,6 @@ export default {
   computed: {
     ...mapGetters({
         getIsEditHousePopupOpen: 'house/getIsEditHousePopupOpen',
-        // selectedHouseObject: 'house/getSelectedHouseObject'
     }),
     selectedHouseObj () {
       const obj = this.$store.getters['house/getSelectedHouseObject']
@@ -89,8 +106,20 @@ export default {
       return this.houseImage
     }
   },
+  validations: {
+    houseName: {
+      required
+    },
+    housePrice: {
+      required
+    },
+    houseImage: {
+      required
+    },
+  },
   methods: {
     closeEditHouseModalPopUp () {
+      this.$v.$reset()
       this.housePrice = ''
       this.houseName = ''
       this.houseImage = ""
@@ -98,20 +127,23 @@ export default {
       this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: false, selectedHouseObj: null })
     },
     updateHouseInfo(){
-      const houseObj = this.$store.state.house.selectedHouseObj
-      this.$store.dispatch(
-        'house/manageHouse',
-        {
-          house_id: houseObj ? houseObj.enc_house_id : '',
-          house_name: this.houseName,
-          price: this.housePrice,
-          image: this.image
-          
-        }
-      ).then((response) => {
-        this.closeEditHouseModalPopUp()
-        this.$store.dispatch('house/fetchAllHouses', {})
-      })
+      this.$v.$touch()
+      if (!this.$v.$invalid) {
+        const houseObj = this.$store.state.house.selectedHouseObj
+        this.$store.dispatch(
+          'house/manageHouse',
+          {
+            house_id: houseObj ? houseObj.enc_house_id : '',
+            house_name: this.houseName,
+            price: this.housePrice,
+            image: this.image
+            
+          }
+        ).then((response) => {
+          this.closeEditHouseModalPopUp()
+          this.$store.dispatch('house/fetchAllHouses', {})
+        })
+      }
     },
     fileUploaded(files) {
       this.image = files

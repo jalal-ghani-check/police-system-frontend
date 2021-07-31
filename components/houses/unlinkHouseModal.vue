@@ -57,17 +57,18 @@ export default {
     closeUnlinkHouseToProfilePopup () {
       this.$store.commit('house/setIsUnlinkHouseToProfilePopupOpen', { isUnlinkHouseToProfilePopupOpen: false, selectedHouseObj: null })
     },
-    async unlinkHouse(){
+    unlinkHouse(){
       const houseObj = this.$store.state.house.selectedHouseObj
-      this.housesList = await this.$store.dispatch(
+      this.housesList = this.$store.dispatch(
         'house/unlinkHouse',
         {
           'user_id': houseObj.enc_user_id,
           'house_id': houseObj.enc_house_id
         }
-      )
-      this.closeUnlinkHouseToProfilePopup()
-      this.$store.dispatch('house/fetchAllHouses', {})
+      ).then(() => {
+        this.closeUnlinkHouseToProfilePopup()
+        this.$store.dispatch('house/fetchAllHouses', {})
+      })
     }
   },
 }
