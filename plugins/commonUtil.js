@@ -37,4 +37,7 @@ export default ({ app, store }, inject) => {
     })
   })
 
+  inject('getRangeReverse', (size, startAt) => {
+    return [...Array(size).keys()].map(i => startAt - i);
+  })
 }
