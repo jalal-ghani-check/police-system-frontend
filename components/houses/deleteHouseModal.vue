@@ -53,16 +53,17 @@ export default {
     closeDeleteHouseModalPopUp () {
       this.$store.commit('house/setIsDeleteHousePopupOpen', { isDeleteHousePopupOpen: false, selectedHouseObj: null })
     },
-    async deleteHouseByHouseId () {
+    deleteHouseByHouseId () {
       const houseObj = this.$store.state.house.selectedHouseObj
-      this.housesList = await this.$store.dispatch(
+      this.housesList = this.$store.dispatch(
         'house/deleteHouse',
         {
           'house_id': houseObj.enc_house_id
         }
-      )
-      this.closeDeleteHouseModalPopUp()
-      this.$store.dispatch('house/fetchAllHouses', {})
+      ).then((response) => {
+        this.closeDeleteHouseModalPopUp()
+        this.$store.dispatch('house/fetchAllHouses', {})
+      })
     }
   },
 }
