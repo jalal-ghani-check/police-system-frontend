@@ -17,6 +17,10 @@ export default {
       })
   },
 
+  createPoliceReport ({ dispatch , commit }, data) {
+    return this.$axios.$post('police-report/save-settings', data)
+  },
+
   // Medical report actions
 
   fetchMedicalReportByReportId ({ commit }, requestData) {
@@ -28,7 +32,6 @@ export default {
   },
 
   createMedicalReport ({ dispatch , commit }, data) {
-    console.log('input data: ', data)
     return this.$axios.$post('medical-report/save-settings', data)
   }
 }

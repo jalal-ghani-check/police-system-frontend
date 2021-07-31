@@ -49,7 +49,7 @@
                             <h4>{{ (selectedPoliceReportObject.officers_involved) ? 'Yes' : 'No' }}</h4>
                         </div>
                         <div class="col-md-3">
-                            <h3>shots fired:</h3>
+                            <h3>Shots Fired:</h3>
                             <h4>{{ (selectedPoliceReportObject.shorts_fired) ? 'Yes' : 'No' }}</h4>
                         </div>
                         <div class="col-md-3">
@@ -136,8 +136,8 @@
                     <div class="row g-0" style="border-bottom: none;">
                         <div class="col-md-6">
                            <h3>Total:</h3> 
-                            <p><span class="text-green">$$$</span> {{ selectedPoliceReportObject.sum.total_fine }} Fine<br>
-                                {{ selectedPoliceReportObject.sum.total_points }} Points
+                            <p><span class="text-green">$$$</span> {{ selectedPoliceReportObject.total_charges.fine }} Fine<br>
+                                {{ selectedPoliceReportObject.total_charges.points }} Points
                             </p>
                            
                         </div>
@@ -145,8 +145,8 @@
                    
                         <div class="col-md-6">
                             <h3>Received Sentence:</h3> 
-                            <p><span class="text-green">$$$</span> 1,600 Fine<br>
-                                5 Months
+                            <p><span class="text-green">$$$</span> {{ selectedPoliceReportObject.received_charges.fine }} Fine<br>
+                                {{ selectedPoliceReportObject.received_charges.jail_time }} months
                             </p>
                         </div>
                     </div>

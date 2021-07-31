@@ -1,9 +1,8 @@
 <template>
   <div>
     <div>
-      <div class="create-medical-report-container">
-        <div class="container">
-          <div class="title-header">
+      <div class="container">
+        <div class="title-header">
             <div class="row">
               <div class="col-md-9">
                 <div class="section-heading small green">
@@ -20,13 +19,13 @@
                         fill="#1F1F1F"
                       />
                     </svg>
-                    Report Details
+                    Create Police Report
                   </h4>
                 </div>
               </div>
               <div class="col-md-3 header-buttons">
                 <button class="btn btn-danger"
-                  data-bs-toggle='modal'
+                  data-bs-toggle="modal"
                   data-bs-target="#discardReportAlert"
                 >
                   <svg
@@ -44,9 +43,9 @@
                   Discard
                 </button>
                 <button
-                  class="btn btn-success"
-                  data-bs-toggle="modal"
-                  data-bs-target="#createReportAlert"
+                    class="btn btn-success"
+                    data-bs-toggle="modal"
+                    data-bs-target="#createReportAlert"
                 >
                   <svg
                     width="18"
@@ -65,339 +64,189 @@
               </div>
             </div>
           </div>
-          <div class="white-widget">
-            <div class="form-section">
-              <div class="row mb-3 g-3">
-                <div class="col">
-                  <input
-                    type="text"
-                    v-model="citizenId"
-                    class="form-control"
-                    placeholder="Citizen ID"
-                  />
-                  <div
-                    v-if="$v.citizenId.$error && !$v.citizenId.required"
-                    class="error"
-                  >
-                    <span class="text-danger">Citizen ID required</span>
-                  </div>
-                </div>
-                <div class="col mx-5">
-                  <date-picker class="mt-2" v-model="problemStartedAt" valueType="format" placeholder="Problem start at?">When did this problem start?</date-picker>
-                  <div
-                    v-if="$v.problemStartedAt.$error && !$v.problemStartedAt.required"
-                    class="error"
-                  >
-                <span class="text-danger">Problem start required</span>
-              </div>
-                </div>
-              </div>
-              <textarea
-                rows="3"
-                placeholder="Problem Description"
-                v-model="problemDescription"
-                class="form-control"
-              ></textarea>
+
+          <notification-bar />
+
+<div class="white-widget">
+    <div class="form-section">
+        <div class="row mb-3 g-3">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Report Title" v-model="reportTitle" >
               <div
-                v-if="$v.problemDescription.$error && !$v.problemDescription.required"
+                v-if="$v.reportTitle.$error && !$v.reportTitle.required"
+                class="error"
+              >
+                <span class="text-danger">Title required</span>
+              </div>
+            </div>
+            
+            <div class="col">
+              <input type="text" class="form-control" placeholder="CID" v-model="cid" >
+              <div
+                v-if="$v.cid.$error && !$v.cid.required"
+                class="error"
+              >
+                <span class="text-danger">CID required</span>
+              </div>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Case Number" v-model="caseNumber" >
+              <div
+                v-if="$v.caseNumber.$error && !$v.caseNumber.required"
+                class="error"
+              >
+                <span class="text-danger">Case number required</span>
+            </div>
+            </div>
+
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Reference Case Number" v-model="refCaseNumber">
+            </div>
+         
+          </div>
+    </div>
+</div>
+
+
+<div class="white-widget">
+
+            <h4 class="widget-heading"></h4>
+            <div class="tags-list">
+              <ul class="items-4">
+                <li>
+                  <label class="toggle-checkbox">
+                    <input type="checkbox" v-model="officersInvolved" />
+                    <div class="value">Officers Involved</div>
+                  </label>
+                </li>
+                <li>
+                  <label class="toggle-checkbox">
+                    <input type="checkbox" v-model="shotsFired" />
+                    <div class="value">Shots Fired</div>
+                  </label>
+                </li>
+                <li>
+                  <label class="toggle-checkbox">
+                    <input type="checkbox" v-model="gsrTestResults" />
+                    <div class="value">GSR Test Results</div>
+                  </label>
+                </li>
+                <li>
+                  <label class="toggle-checkbox">
+                    <input type="checkbox" v-model="casingsRecovered" />
+                    <div class="value">Casings Recovered</div>
+                  </label>
+                </li>
+	</ul>
+	</div>
+</div>
+
+
+<div class="white-widget">
+
+          <textarea rows="3" placeholder="Report Description" class="form-control" v-model="reportDesc"></textarea>
+          <div
+                v-if="$v.reportDesc.$error && !$v.reportDesc.required"
                 class="error"
               >
                 <span class="text-danger">Description required</span>
-              </div>
             </div>
-          </div>
-          <div class="white-widget">
-            <h4 class="widget-heading">Cause of current problem</h4>
-            <div
-                v-if="$v.problemCause.$error && !$v.problemCause.required"
-                class="error"
-              >
-                <span class="text-danger">Cause of problem required</span>
-            </div>
+</div>
+
+
+<div class="white-widget">
+
+            <h4 class="widget-heading"></h4>
             <div class="tags-list">
               <ul class="items-4">
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="radio" value="Car Accident" name="problems" v-model="problemCause" />
-                    <div class="value">Car Accident</div>
+                    <input type="checkbox" v-model="suspectsInvolved" />
+                    <div class="value">Suspects Involed</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="radio" value="Work Injury" name="problems" v-model="problemCause" />
-                    <div class="value">Work Injury</div>
+                    <input type="checkbox" v-model="useOfViolence" />
+                    <div class="value">Use of Violence</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="radio" value="Gradual Onset" name="problems" v-model="problemCause" />
-                    <div class="value">Gradual Onset</div>
+                    <input type="checkbox" v-model="medicalTreatment" />
+                    <div class="value">Medical Treatment</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="radio" value="Other" name="problems" v-model="problemCause" />
-                    <div class="value">Other</div>
+                    <input type="checkbox" v-model="legalAid" />
+                    <div class="value">Legal Aid</div>
                   </label>
                 </li>
-              </ul>
-            </div>
-            <input
-              type="text"
-              class="form-control" v-model="problemDetails"
-              placeholder="Details (optional)"
-            />
-          </div>
-          <div class="white-widget">
-            <h4 class="widget-heading">Past Medical History</h4>
-            <input type="hidden" v-model="medicalHistory">
-            <div
-                v-if="$v.medicalHistory.$error && !$v.medicalHistory.required"
+	</ul>
+	</div>
+</div>
+
+<div class="white-widget">
+
+          <textarea rows="3" placeholder="Items Seized" class="form-control" v-model="itemsSeized"></textarea>
+          <div
+                v-if="$v.itemsSeized.$error && !$v.itemsSeized.required"
                 class="error"
               >
-                <span class="text-danger">Medical history required</span>
+                <span class="text-danger">Items seized required</span>
             </div>
-            <div class="tags-list">
-              <ul class="items-5">
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Anxiety Attacks" v-on:click ='updateMedHistoryArray($event)' v-model="optionAnxietyAttacks" />
-                    <div class="value">Anxiety Attacks</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Bone/Joint Problems" v-on:click ='updateMedHistoryArray($event)' v-model="optionBoneJointProblem" />
-                    <div class="value">Bone/Joint Problems</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Bowel/Bladder" v-on:click ='updateMedHistoryArray($event)' v-model="optionBowelBladder" />
-                    <div class="value">Bowel/Bladder</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Breathing Problems" v-on:click ='updateMedHistoryArray($event)' v-model="optionBeathingProblem" />
-                    <div class="value">Breathing Problems</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Depression" v-on:click ='updateMedHistoryArray($event)' v-model="optionDrepression" />
-                    <div class="value">Depression</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Diabetes" v-on:click ='updateMedHistoryArray($event)' v-model="optionDiabetes" />
-                    <div class="value">Diabetes</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Drug Use" v-on:click ='updateMedHistoryArray($event)' v-model="optionDrugUse" />
-                    <div class="value">Drug Use</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Electrical Implants" v-on:click ='updateMedHistoryArray($event)' v-model="optionElectricalImplants" />
-                    <div class="value">Electrical Implants</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Gallbladder/Liver" v-on:click ='updateMedHistoryArray($event)' v-model="optionGalBladderLiver" />
-                    <div class="value">Gallbladder/Liver</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Headaches" v-on:click ='updateMedHistoryArray($event)' v-model="optionHeadaches" />
-                    <div class="value">Headaches</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Heart Problems" v-on:click ='updateMedHistoryArray($event)' v-model="optionHeartProblems" />
-                    <div class="value">Heart Problems</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="History of Alcohol Use" v-on:click ='updateMedHistoryArray($event)' v-model="optionAlcoholic" />
-                    <div class="value">History of Alcohol Use</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Kideny Problems" v-on:click ='updateMedHistoryArray($event)' v-model="optionKidneyProblems" />
-                    <div class="value">Kideny Problems</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Pacemaker" v-on:click ='updateMedHistoryArray($event)' v-model="optionPacemaker" />
-                    <div class="value">Pacemaker</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Pregnant" v-on:click ='updateMedHistoryArray($event)' v-model="optionPregnant" />
-                    <div class="value">Pregnant</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Sleep Apnea" v-on:click ='updateMedHistoryArray($event)' v-model="optionSleepApnea" />
-                    <div class="value">Sleep Apnea</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Smoking" ref="optionSmoking" v-on:click ='updateMedHistoryArray($event)' v-model="optionSmoking" />
-                    <div class="value">Smoking</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Stroke" v-on:click ='updateMedHistoryArray($event)' v-model="optionStroke" />
-                    <div class="value">Stroke</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Tumor/Cancer" v-on:click ='updateMedHistoryArray($event)' v-model="optionTumorCancer" />
-                    <div class="value">Tumor/Cancer</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="checkbox" value="Wound/Skin Problems" v-on:click ='updateMedHistoryArray($event)' v-model="optionWoundSkinProblem" />
-                    <div class="value">Wound/Skin Problems</div>
-                  </label>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="white-widget">
-            <h4 class="widget-heading">Surgeries (optional)</h4>
-            <div class="form-section">
-              <div class="row mb-3 g-3">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Name" v-model="surgeryName" />
-                </div>
-                <div class="col">
-                  <select class="form-control" placeholder="Year" v-model="surgeryYear" >
-                    <option value="" >Select year</option>
-                    <option v-for="(year, index) in yearsRange" :key="index" :value="year" >{{ year }}</option>
-                  </select> 
-                </div>
-                <div class="col">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Complications"
-                    v-model="surgeryComplications"
-                  />
-                </div>
-              </div>
-              <textarea
-                rows="3"
-                placeholder="Description"
-                v-model="surgeryDescription"
-                class="form-control"
-              ></textarea>
-            </div>
-          </div>
+</div>
 
-          <div class="white-widget">
-            <h4 class="widget-heading">Medication (optional)</h4>
-            <div class="form-section">
-              <div class="row mb-3 g-3">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Name" v-model="medicationName" />
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Done" v-model="medicationDone" />
-                </div>
-                <div class="col">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Reason of Medication"
-                    v-model="medicationReason"
-                  />
-                </div>
-              </div>
-              <textarea
-                rows="3"
-                placeholder="Description"
-                class="form-control"
-                v-model="medicationDescription"
-              ></textarea>
+<h3>Fines/Laws</h3>
+<div
+                v-if="$v.lawsArray.$error && !$v.lawsArray.required"
+                class="error"
+              >
+                <span class="text-danger">At least one law must be selected</span>
             </div>
-          </div>
-
-          <div class="white-widget">
-            <h4 class="widget-heading">Allergies (Optional)</h4>
+<div class="white-widget">
+            <h4 class="widget-heading">Infractions</h4>
             <div class="tags-list">
               <ul class="items-4">
-                <li>
+                <li v-for="(law, index) in lawListInfraction" :key="index">
                   <label class="toggle-checkbox">
-                    <input type="radio" name="allergies" 
-                    value="Latex" v-model="allergy" />
-                    <div class="value">Latex</div>
+                     <input type="checkbox" :value="law.law_id" v-on:click ='updateLawsArray($event)' />
+                    <div class="value">{{ law.law_title }}</div>
                   </label>
                 </li>
-                <li>
+
+	</ul>
+	</div>
+</div>
+<div class="white-widget">
+            <h4 class="widget-heading">Demeanor</h4>
+            <div class="tags-list">
+              <ul class="items-4">
+                <li v-for="(law, index) in lawListMisdemeanor" :key="index">
                   <label class="toggle-checkbox">
-                    <input type="radio" name="allergies"
-                    value="Iodine" v-model="allergy" />
-                    <div class="value">Iodine</div>
+                    <input type="checkbox" :value="law.law_id" v-on:click ='updateLawsArray($event)' />
+                    <div class="value">{{ law.law_title }}</div>
                   </label>
                 </li>
-                <li>
+	</ul>
+	</div>
+</div>
+<div class="white-widget">
+            <h4 class="widget-heading">Felony</h4>
+            <div class="tags-list">
+              <ul class="items-4">
+                <li v-for="(law, index) in lawListFelony" :key="index">
                   <label class="toggle-checkbox">
-                    <input type="radio" name="allergies"
-                    value="Bromine" v-model="allergy" />
-                    
-                    <div class="value">Bromine</div>
-                  </label>
-                </li>
-                <li>
-                  <label class="toggle-checkbox">
-                    <input type="radio" name="allergies"
-                    value="Other" v-model="allergy" />
-                    <div class="value">Other</div>
+                    <input type="checkbox" :value="law.law_id" v-on:click ='updateLawsArray($event)' />
+                    <div class="value">{{ law.law_title }}</div>
                   </label>
                 </li>
               </ul>
-            </div>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Details (optional)"
-              v-model="allergyDetails"
-            />
-          </div>
-          <div class="white-widget">
-            <h4 class="widget-heading">
-              Do you have any religious/cultural views that affect your
-              treatment?
-            </h4>
-            <div
-                v-if="$v.religiousCulturalViews.$error && !$v.religiousCulturalViews.required"
-                class="error"
-              >
-                <span class="text-danger">Medical history required</span>
-            </div>
-            <input type="text" class="form-control" placeholder="Answer" v-model="religiousCulturalViews" />
-          </div>
-        </div>
-      </div>
+	</div>
+</div>
+
+</div>
     </div>
 
     <div
@@ -435,9 +284,9 @@
           <div class="alert-footer">
             <button class="btn" data-bs-dismiss="modal">Close</button>
             <button class="btn btn-success"
-              data-bs-toggle="modal"
+              data-bs-toggle='modal'
               data-bs-target="#createReportAlert"
-              @click="createMedicalReport()"
+            @click="createPoliceReport()"
             >
               <svg
                 width="18"
@@ -493,7 +342,7 @@
             <button class="btn btn-danger"
               data-bs-toggle='modal'
               data-bs-target="#discardReportAlert"
-              @click="discardMedicalReport()"
+              @click="discardPoliceReport()"
             >
               <svg
                 width="17"
@@ -519,124 +368,85 @@
 
 <script>
   import { required, minLength } from 'vuelidate/lib/validators'
-  import DatePicker from 'vue2-datepicker'
-  import 'vue2-datepicker/index.css'
 
 
 export default {
-  name: 'Profile',
-  components: { DatePicker },
+  name: 'CreatePoliceReport',
   layout: 'master',
   middleware: [],
 
   data() {
     return {
-      medicalHistory: [],
-      yearsRange: this.$getRangeReverse(70, new Date().getFullYear()),
-      citizenId: '',
-      problemStartedAt: null,
-      problemDescription: '',
-
-      problemCause: '',
-      problemDetails: '',
-
-      surgeryName: '',
-      surgeryYear: '',
-      surgeryComplications: '',
-      surgeryDescription: '',
-
-      medicationName: '',
-      medicationDone: '',
-      medicationReason: '',
-      medicationDescription: '',
-
-      allergy: false,
-      allergyDetails: '',
-
-      religiousCulturalViews: '',
-
-      optionAnxietyAttacks: false,
-      optionBoneJointProblem: false,
-      optionBowelBladder: false,
-      optionBeathingProblem: false,
-      optionDrepression: false,
-      optionDiabetes: false,
-      optionDrugUse: false,
-      optionElectricalImplants: false,
-      optionGalBladderLiver: false,
-      optionHeadaches: false,
-      optionHeartProblems: false,
-      optionAlcoholic: false,
-      optionKidneyProblems: false,
-      optionPacemaker: false,
-      optionPregnant: false,
-      optionSleepApnea: false,
-      optionSmoking: false,
-      optionStroke: false,
-      optionTumorCancer: false,
-      optionWoundSkinProblem: false,
+      reportTitle: '',
+      cid: '',
+      caseNumber: '',
+      refCaseNumber: '',
       
+      officersInvolved: false,
+      shotsFired: false,
+      gsrTestResults: false,
+      casingsRecovered: false,
+      
+      reportDesc: '',
+
+      suspectsInvolved: false,
+      useOfViolence: false,
+      medicalTreatment: false,
+      legalAid: false,
+
+      itemsSeized: '',
+
+      lawsArray: [],
+      lawListInfraction: [],
+      lawListFelony: [],
+      lawListMisdemeanor: [],
     }
   },
   validations: {
-    citizenId: {
+    reportTitle: {
       required
     },
-    problemDescription: {
+    cid: {
       required
     },
-    problemStartedAt: {
+    caseNumber: {
       required
     },
-    problemCause: {
+    reportDesc: {
       required
     },
-    medicalHistory: {
+    itemsSeized: {
       required
     },
-    religiousCulturalViews: {
+    lawsArray: {
       required
-    }
+    },
+  },
+  mounted() {
+    this.fetchAllLaws()
   },
   methods: {
-    updateMedHistoryArray (el) {
-      const valueToPush = el.currentTarget.value
-      const exists = this.medicalHistory.find(
-        function (val) {
-        return val == valueToPush
-      })
-      
-      if(exists) {
-        const index = this.medicalHistory.indexOf(valueToPush)
-        this.medicalHistory.splice(index, 1)
-      } else {
-        this.medicalHistory.push(valueToPush)
-        console.log(this.medicalHistory)
-      }
-    },
-    createMedicalReport () {
+    createPoliceReport () {
       this.$v.$touch()
       if (!this.$v.$invalid) {
         this.$store
-          .dispatch('report/createMedicalReport', {
+          .dispatch('report/createPoliceReport', {
+            reportTitle: this.reportTitle,
             profileId: this.$route.query.profile_id,
-            citizenId: this.citizenId,
-            problemStartedAt: this.problemStartedAt,
-            problemDescription: this.problemDescription,
-            problemCause: this.problemCause,
-            problemDetails: this.problemDetails,
-            surgeryName: this.surgeryName,
-            surgeryYear: this.surgeryYear,
-            surgeryComplications: this.surgeryComplications,
-            surgeryDescription: this.surgeryDescription,
-            medicationName: this.medicationName,
-            medicationDone: this.medicationDone,
-            medicationReason: this.medicationReason,
-            medicationDescription: this.medicationDescription,
-            allergy: this.allergy,
-            allergyDetails: this.allergyDetails,
-            religiousCulturalView: this.religiousCulturalViews,
-            medicalHistory: this.medicalHistory
+            cid: this.cid,
+            caseNumber: this.caseNumber,
+            reportDesc: this.reportDesc,
+            itemsSeized: this.itemsSeized,
+            lawsArray: this.lawsArray,
+            refCaseNumber: this.refCaseNumber,
+            officersInvolved: this.officersInvolved,
+            shotsFired: this.shotsFired,
+            gsrTestResults: this.gsrTestResults,
+            casingsRecovered: this.casingsRecovered,
+            suspectsInvolved: this.suspectsInvolved,
+            useOfViolence: this.useOfViolence,
+            medicalTreatment: this.medicalTreatment,
+            legalAid: this.legalAid,
           })
           .then(() => {
             this.$toast.global.post_success()
@@ -645,7 +455,33 @@ export default {
           .catch(() => {})
       }
     },
-    discardMedicalReport () {
+
+    async fetchAllLaws(){
+      this.lawsList = await this.$store.dispatch(
+        'law/fetchAllLaws',
+        {}
+      )
+      this.lawListInfraction = this.lawsList.infraction
+      this.lawListFelony = this.lawsList.felony
+      this.lawListMisdemeanor = this.lawsList.misdemeanor
+    },
+
+    updateLawsArray (el) {
+      const valueToPush = el.currentTarget.value
+      const exists = this.lawsArray.find(
+        function (val) {
+        return val == valueToPush
+      })
+      
+      if(exists) {
+        const index = this.lawsArray.indexOf(valueToPush)
+        this.lawsArray.splice(index, 1)
+      } else {
+        this.lawsArray.push(valueToPush)
+        console.log(this.lawsArray)
+      }
+    },
+    discardPoliceReport () {
       this.$router.push({
         path: '/profile?profile_id=' + this.$route.query.profile_id
       })
