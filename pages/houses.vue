@@ -39,7 +39,7 @@
                 ></path>
               </svg>
             </div>
-            <input type="text" class="form-control" placeholder="Search" />
+            <input type="text" class="form-control" v-model="house_search" placeholder="Search" />
           </div>
         </div>
 
@@ -91,8 +91,25 @@
               </div>
             </div>
 
-            <div class="houses-list" v-if="housesList.length">
-              <house-list-item v-for="(house, index) in housesList" :key="index" :house="house"></house-list-item>
+            <input type="hidden" :value="setHouseListFilteredComputed" />
+
+            <div class="houses-list" v-if="housesListFilteredComputed.length > 0">
+              <house-list-item v-for="(house, index) in housesListFilteredComputed" :key="index" :selectedindex="index" :house="house"></house-list-item>
+            </div>
+            <div v-else class="no-data">
+                <div>
+                    <svg
+                    width="13"
+                    height="14"
+                    viewBox="0 0 13 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M11.8858 4.21171L7.69086 0.534113C7.30631 0.190156 6.80847 0 6.29254 0C5.7766 0 5.27877 0.190156 4.89421 0.534113L0.69923 4.21171C0.477153 4.41033 0.299937 4.65397 0.179382 4.92643C0.0588266 5.19888 -0.00230204 5.4939 6.62766e-05 5.79182V11.9025C6.62766e-05 12.4588 0.221051 12.9923 0.614407 13.3857C1.00776 13.779 1.54127 14 2.09756 14H10.4875C11.0438 14 11.5773 13.779 11.9707 13.3857C12.364 12.9923 12.585 12.4588 12.585 11.9025V5.78483C12.5864 5.48808 12.5248 5.19442 12.4042 4.92324C12.2837 4.65206 12.107 4.40955 11.8858 4.21171ZM7.69086 12.6017H4.89421V9.10586C4.89421 8.92043 4.96787 8.74259 5.09899 8.61147C5.23011 8.48036 5.40794 8.40669 5.59337 8.40669H6.9917C7.17713 8.40669 7.35496 8.48036 7.48608 8.61147C7.6172 8.74259 7.69086 8.92043 7.69086 9.10586V12.6017ZM11.1867 11.9025C11.1867 12.0879 11.113 12.2658 10.9819 12.3969C10.8508 12.528 10.6729 12.6017 10.4875 12.6017H9.08919V9.10586C9.08919 8.54957 8.8682 8.01606 8.47485 7.62271C8.08149 7.22935 7.54799 7.00837 6.9917 7.00837H5.59337C5.03708 7.00837 4.50358 7.22935 4.11022 7.62271C3.71687 8.01606 3.49588 8.54957 3.49588 9.10586V12.6017H2.09756C1.91213 12.6017 1.73429 12.528 1.60317 12.3969C1.47205 12.2658 1.39839 12.0879 1.39839 11.9025V5.78483C1.39852 5.68556 1.41978 5.58745 1.46077 5.49704C1.50176 5.40663 1.56153 5.32598 1.63611 5.26046L5.83109 1.58985C5.95868 1.47776 6.1227 1.41594 6.29254 1.41594C6.46237 1.41594 6.62639 1.47776 6.75398 1.58985L10.949 5.26046C11.0235 5.32598 11.0833 5.40663 11.1243 5.49704C11.1653 5.58745 11.1866 5.68556 11.1867 5.78483V11.9025Z"
+                            fill="#1F1F1F" />
+                    </svg> 
+                    <h4>No Houses</h4>
+                </div>
             </div>
           </div>
         </div>
@@ -117,7 +134,31 @@ export default {
   components: { houseListItem, editHouseModal, deleteHouseModal, linkHouseToProfileModal, UnlinkHouseModal },
   layout: 'master',
 
+  data () {
+    return {
+      housesListFiltered: [],
+      house_search: ''
+
+    }
+  },
+  watch:{
+    house_search(newValue, oldValue) {
+      if(newValue.length > 2){
+          this.filterHouses(newValue)
+      }else {
+          this.housesListFiltered = this.housesList
+      }
+    }
+  },
+
   computed: {
+    housesListFilteredComputed() {
+      return this.housesListFiltered
+    },
+    setHouseListFilteredComputed() {
+      this.housesListFiltered = this.housesList
+      return 1
+    },
     ...mapGetters({
       housesList: 'house/getAllHouses'
     })
@@ -128,13 +169,31 @@ export default {
   },
   methods: {
     openAddHouseModalPopUp () {
-      this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: true, selectedHouseObj: null })
+      this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: true, selectedHouseObj: null , selectedindex: 0 })
     },
     async fetchAllHouses () {
       await this.$store.dispatch(
         'house/fetchAllHouses',
         {}
       )
+    },
+    filterHouses(searchedName) {
+        searchedName = searchedName.toLowerCase()
+        var list = this.housesList
+
+        const filtered = list.filter( (
+              house,
+              index,
+              array
+          ) => {
+              let name = house.house_name.toLowerCase()
+              if (name.includes(searchedName)) {
+              return true
+              } else {
+              return false
+              }
+          })
+          this.housesListFiltered = filtered
     }
   }
 }

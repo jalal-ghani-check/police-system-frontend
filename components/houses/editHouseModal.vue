@@ -18,15 +18,32 @@
                               @file-uploaded="fileUploaded"
                             />
                         </div>
-
+                        <div
+                          v-if="$v.image.$error && !$v.image.required"
+                          class="error"
+                          >
+                              Image is required
+                        </div>
                       </div>
                     </div>
                     
                     <div class="mb-3">
                         <input type="text" v-model="houseName" maxlength="255" class="form-control" placeholder="Name">
+                        <div
+                          v-if="$v.houseName.$error && !$v.houseName.required"
+                          class="error"
+                          >
+                              Name is required
+                        </div>
                     </div>
                     <div class="mb-3">
                         <input type="text" maxlength="11" v-model="housePrice" class="form-control" placeholder="Price">
+                        <div
+                          v-if="$v.housePrice.$error && !$v.housePrice.required"
+                          class="error"
+                          >
+                              Price is required
+                        </div>
                     </div>
                     <div class="row g-2">
                         <div class="col-sm-6">
@@ -61,6 +78,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { required, requiredIf } from 'vuelidate/lib/validators'
 
 export default {
   name: 'editHouseModal',
@@ -72,6 +90,19 @@ export default {
       houseImage: ""
     }
   },
+  validations: {
+    houseName: {
+      required,
+    },
+    housePrice: {
+      required
+    },
+    image: {
+      required
+    },
+
+  },
+
   computed: {
     ...mapGetters({
         getIsEditHousePopupOpen: 'house/getIsEditHousePopupOpen',
@@ -95,23 +126,29 @@ export default {
       this.houseName = ''
       this.houseImage = ""
       this.image = ""
-      this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: false, selectedHouseObj: null })
+      this.$v.$reset()
+      this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: false, selectedHouseObj: null , selectedindex: 0 })
     },
     updateHouseInfo(){
       const houseObj = this.$store.state.house.selectedHouseObj
-      this.$store.dispatch(
-        'house/manageHouse',
-        {
-          house_id: houseObj ? houseObj.enc_house_id : '',
-          house_name: this.houseName,
-          price: this.housePrice,
-          image: this.image
-          
-        }
-      ).then((response) => {
-        this.closeEditHouseModalPopUp()
-        this.$store.dispatch('house/fetchAllHouses', {})
-      })
+      const houseindex = this.$store.state.house.selectedindex
+      this.$v.$touch()
+      if (!this.$v.$invalid) {
+        this.$store.dispatch(
+          'house/manageHouse',
+          {
+            house_id: houseObj ? houseObj.enc_house_id : '',
+            house_name: this.houseName,
+            price: this.housePrice,
+            image: this.image,
+            selectedindex: houseindex
+            
+          }
+        ).then((response) => {
+          this.closeEditHouseModalPopUp()
+          this.$store.dispatch('house/fetchAllHouses', {})
+        })
+      }
     },
     fileUploaded(files) {
       this.image = files
