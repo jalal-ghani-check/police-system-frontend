@@ -121,18 +121,19 @@ export default {
       )
       this.$store.commit('profile/setAllProfiles', allProfiles)
     },
-    async linkHouseToProfile (profileId) {
+    linkHouseToProfile (profileId) {
       const houseObj = this.$store.state.house.selectedHouseObj
-      await this.$store.dispatch(
+      this.$store.dispatch(
         'house/linkHouseToProfile',
         {
           profile_id: profileId,
           house_id: houseObj.enc_house_id,
           user_id: houseObj.enc_user_id
         }
-      )
-      this.closeDeleteHouseModalPopUp()
-      this.$store.dispatch('house/fetchAllHouses', {})
+      ).then(() => {
+        this.closeDeleteHouseModalPopUp()
+        this.$store.dispatch('house/fetchAllHouses', {})
+      })
     },
     closeDeleteHouseModalPopUp () {
       this.$store.commit('house/setIsLinkHouseToProfilePopupOpen', { isLinkHouseToProfilePopupOpen:false, selectedHouseObj: null })

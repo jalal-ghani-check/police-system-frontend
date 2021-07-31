@@ -20,7 +20,7 @@
                           v-if="$v.name.$error && !$v.name.required"
                           class="error"
                       >
-                          Name is required
+                          <span class="text-danger">Name is required</span>
                       </div>
                   </div>
                   <div class="col-md-8">
@@ -29,7 +29,7 @@
                           v-if="$v.description.$error && !$v.description.required"
                           class="error"
                       >
-                          Description is required
+                          <span class="text-danger">Description is required</span>
                       </div>
                   </div>
  
@@ -41,7 +41,7 @@
                           v-if="$v.law_code.$error && !$v.law_code.required"
                           class="error"
                       >
-                          Law Code is required
+                          <span class="text-danger">Law is required</span>
                       </div>
                   </div>
                   <div class="col">
@@ -50,13 +50,13 @@
                           v-if="$v.points.$error && !$v.points.required"
                           class="error"
                       >
-                          Points is required
+                          <span class="text-danger">Points is required</span>
                       </div>
                       <div
                           v-if="$v.points.$error && !$v.points.numeric"
                           class="error"
                       >
-                          Points must be numeric
+                          <span class="text-danger">Points must be numeric</span>
                       </div>
                   </div>
          
@@ -66,13 +66,13 @@
                           v-if="$v.fine_amount.$error && !$v.fine_amount.required"
                           class="error"
                       >
-                          Fine Amount is required
+                          <span class="text-danger">Fine Amount is required</span>
                       </div>
                       <div
                           v-if="$v.fine_amount.$error && !$v.fine_amount.numeric"
                           class="error"
                       >
-                          Fine Amount must be numeric
+                          <span class="text-danger">Fine Amount must be numeric</span>
                       </div>
                   </div>
                 </div>
@@ -86,7 +86,7 @@
                           v-if="$v.crime_type.$error && !$v.crime_type.required"
                           class="error"
                       >
-                          Crime Type is required
+                          <span class="text-danger">Crime Type is required</span>
                       </div>
                   </div>
                   <div class="col">
@@ -95,13 +95,13 @@
                           v-if="$v.jail_time.$error && !$v.jail_time.required"
                           class="error"
                       >
-                          Jail Time is required
+                          <span class="text-danger">Jail Time is required</span>
                       </div>
                       <div
                           v-if="$v.jail_time.$error && !$v.jail_time.numeric"
                           class="error"
                       >
-                          Jail Time must be numeric
+                          <span class="text-danger">Jail Time must be numeric</span>
                       </div>
                   </div>
                 </div>
