@@ -2,6 +2,8 @@ export default {
   setIsEditHousePopupOpen (state, data) {
     state.isEditHousePopupOpen = data.isEditHousePopupOpen
     state.selectedHouseObj = data.selectedHouseObj
+    state.selectedindex = data.selectedindex
+
   },
   
   setIsAddHousePopupOpen (state, isAddHousePopupOpen) {
@@ -25,6 +27,15 @@ export default {
 
   updateHousesList: (state, data) => {
     state.housesList = data
+  },
+
+  updateHouseSingle: (state, data) => {
+    var index = data.selectedindex
+    var house = state.housesList[index]
+    house.house_name = data.house_name
+    house.price = data.price
+    house.image = data.image
+    state.housesList[index] = house
   }
 
 }

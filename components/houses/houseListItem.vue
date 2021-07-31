@@ -169,12 +169,12 @@
 
 <script>
 export default {
-  props: ['house'],
+  props: ['house','selectedindex'],
   name: "Houses",
   layout: "master",
   methods: {
     openEditHouseModalPopUp () {
-      this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: true, selectedHouseObj: this.house })
+      this.$store.commit('house/setIsEditHousePopupOpen', { isEditHousePopupOpen: true, selectedHouseObj: this.house , selectedindex:this.selectedindex })
     },
 
     openLinkHouseToProfilePopup () {

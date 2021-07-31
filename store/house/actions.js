@@ -27,6 +27,9 @@ export default {
     return this.$axios
       .post(`houses/manage`, requestData)
       .then((response) => {
+        if(requestData.house_id !== ""){
+          commit('updateHouseSingle',{...requestData, ...response.data.data}) 
+        }
         this.$toast.global.post_success()
       })
   },
