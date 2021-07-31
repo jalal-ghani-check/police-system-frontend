@@ -367,44 +367,54 @@
                                             </li>
                                             </ul>
                                             <div class="tab-content" id="nav-tabContent">
-                                            <div class="tab-pane fade" id="lastestReports" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                <div class="report-card red">
-                                                    <div class="tag-no">#4723</div>
-                                                    <h3>Beach Shooting //7/7/21</h3>
-                                                    <h4>By: Timothy Rooney</h4>
-                                                    <div class="tag">Medical Report</div>
-                                                </div>
-                                                <div class="report-card">
-                                                    <div class="tag-no">#4723</div>
-                                                    <h3>Beach Shooting //7/7/21</h3>
-                                                    <h4>By: Timothy Rooney</h4>
-                                                    <div class="tag">Medical Report</div>
-                                                </div>
+                                                <div v-if="reports.length > 0 && isAllowedToViewReports" class="tab-pane fade" id="lastestReports" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                    <div v-for="(report, index) in reports" :key="index" 
+                                                    :class="{red: report.report_type === 'medical_report'}" class="report-card"
+                                                    @click="openReportModalPopUp(report)"
+                                                    >
+                                                        <div class="tag-no" v-if="report.report_type !== 'medical_report'">#{{ report.case_number }}</div>
+                                                        <div class="tag-no" v-else>#{{ report.report_id_dec }}</div>
+                                                        <h3>{{ report.report_title }} //{{ report.created_at }}</h3>
+                                                        <h4>By: {{ report.written_by }}</h4>
+                                                        <div v-if="report.report_type === 'medical_report'" class="tag">Medical Report</div>
+                                                        <div v-else class="tag">Police Report</div>
 
-                                            </div>
-                                            <div class="tab-pane fade  show active charges-list" id="chargesList" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                                <ul v-if="chargesDetailList.length > 0">
-                                                    <li v-for="(charge, index) in chargesDetailList" :key="index" :class="charge.crime_class">
-                                                        <div class="charges-item">
-                                                            <div class="rate-value">
-                                                                x{{ charge.number_of_times }}
-                                                            </div>
-                                                            <div class="charges-names">
-                                                                <h3>{{ charge.name }}</h3>
-                                                                <h4>{{ charge.crime_type }}</h4>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                                <div v-else class="no-data">
-                                                    <div>
-                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M32.5414 24.0994L32.6 24.0408V23.958V12.042V11.9592L32.5414 11.9006L24.0994 3.45858L24.0408 3.4H23.958H12.042H11.9592L11.9006 3.45858L3.45858 11.9006L3.4 11.9592V12.042V23.958V24.0408L3.45858 24.0994L11.9006 32.5414L11.9592 32.6H12.042H23.958H24.0408L24.0994 32.5414L32.5414 24.0994ZM16.8686 9.66863C17.1687 9.36857 17.5757 9.2 18 9.2C18.4243 9.2 18.8313 9.36857 19.1314 9.66863C19.4314 9.96869 19.6 10.3757 19.6 10.8V18C19.6 18.4243 19.4314 18.8313 19.1314 19.1314C18.8313 19.4314 18.4243 19.6 18 19.6C17.5757 19.6 17.1687 19.4314 16.8686 19.1314C16.5686 18.8313 16.4 18.4243 16.4 18V10.8C16.4 10.3757 16.5686 9.96869 16.8686 9.66863ZM17.1111 23.8696C17.3742 23.6938 17.6835 23.6 18 23.6C18.4243 23.6 18.8313 23.7686 19.1314 24.0686C19.4314 24.3687 19.6 24.7757 19.6 25.2C19.6 25.5164 19.5062 25.8258 19.3304 26.0889C19.1545 26.352 18.9047 26.5571 18.6123 26.6782C18.3199 26.7993 17.9982 26.831 17.6879 26.7693C17.3775 26.7075 17.0924 26.5551 16.8686 26.3314C16.6449 26.1076 16.4925 25.8225 16.4307 25.5121C16.369 25.2018 16.4007 24.8801 16.5218 24.5877C16.6429 24.2953 16.848 24.0455 17.1111 23.8696ZM25.8523 0.665116C25.8528 0.665658 25.8534 0.6662 25.854 0.666742L35.3333 10.146C35.3338 10.1466 35.3343 10.1472 35.3349 10.1477C35.6277 10.4557 35.7938 10.8626 35.8 11.2874V24.7125C35.7938 25.1374 35.6277 25.5443 35.3349 25.8523C35.3343 25.8528 35.3338 25.8534 35.3333 25.854L25.854 35.3333C25.8534 35.3338 25.8528 35.3343 25.8523 35.3349C25.5443 35.6277 25.1374 35.7938 24.7125 35.8H11.2874C10.8626 35.7938 10.4557 35.6277 10.1477 35.3349C10.1472 35.3343 10.1466 35.3338 10.146 35.3333L0.666742 25.854C0.6662 25.8534 0.665658 25.8528 0.665116 25.8523C0.372325 25.5444 0.206251 25.1374 0.2 24.7126V11.2874C0.206251 10.8625 0.372339 10.4556 0.665155 10.1477L10.1477 0.665155C10.4556 0.372339 10.8625 0.206251 11.2874 0.2H24.7126C25.1374 0.206251 25.5444 0.372325 25.8523 0.665116Z" fill="white" stroke="white" stroke-width="0.4"/>
-                                                        </svg>   
-                                                        <h4>No List of Charges</h4>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div v-else class="tab-pane fade" id="lastestReports" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                    <div  class="no-data">
+                                                        <div>
+                                                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M32.5414 24.0994L32.6 24.0408V23.958V12.042V11.9592L32.5414 11.9006L24.0994 3.45858L24.0408 3.4H23.958H12.042H11.9592L11.9006 3.45858L3.45858 11.9006L3.4 11.9592V12.042V23.958V24.0408L3.45858 24.0994L11.9006 32.5414L11.9592 32.6H12.042H23.958H24.0408L24.0994 32.5414L32.5414 24.0994ZM16.8686 9.66863C17.1687 9.36857 17.5757 9.2 18 9.2C18.4243 9.2 18.8313 9.36857 19.1314 9.66863C19.4314 9.96869 19.6 10.3757 19.6 10.8V18C19.6 18.4243 19.4314 18.8313 19.1314 19.1314C18.8313 19.4314 18.4243 19.6 18 19.6C17.5757 19.6 17.1687 19.4314 16.8686 19.1314C16.5686 18.8313 16.4 18.4243 16.4 18V10.8C16.4 10.3757 16.5686 9.96869 16.8686 9.66863ZM17.1111 23.8696C17.3742 23.6938 17.6835 23.6 18 23.6C18.4243 23.6 18.8313 23.7686 19.1314 24.0686C19.4314 24.3687 19.6 24.7757 19.6 25.2C19.6 25.5164 19.5062 25.8258 19.3304 26.0889C19.1545 26.352 18.9047 26.5571 18.6123 26.6782C18.3199 26.7993 17.9982 26.831 17.6879 26.7693C17.3775 26.7075 17.0924 26.5551 16.8686 26.3314C16.6449 26.1076 16.4925 25.8225 16.4307 25.5121C16.369 25.2018 16.4007 24.8801 16.5218 24.5877C16.6429 24.2953 16.848 24.0455 17.1111 23.8696ZM25.8523 0.665116C25.8528 0.665658 25.8534 0.6662 25.854 0.666742L35.3333 10.146C35.3338 10.1466 35.3343 10.1472 35.3349 10.1477C35.6277 10.4557 35.7938 10.8626 35.8 11.2874V24.7125C35.7938 25.1374 35.6277 25.5443 35.3349 25.8523C35.3343 25.8528 35.3338 25.8534 35.3333 25.854L25.854 35.3333C25.8534 35.3338 25.8528 35.3343 25.8523 35.3349C25.5443 35.6277 25.1374 35.7938 24.7125 35.8H11.2874C10.8626 35.7938 10.4557 35.6277 10.1477 35.3349C10.1472 35.3343 10.1466 35.3338 10.146 35.3333L0.666742 25.854C0.6662 25.8534 0.665658 25.8528 0.665116 25.8523C0.372325 25.5444 0.206251 25.1374 0.2 24.7126V11.2874C0.206251 10.8625 0.372339 10.4556 0.665155 10.1477L10.1477 0.665155C10.4556 0.372339 10.8625 0.206251 11.2874 0.2H24.7126C25.1374 0.206251 25.5444 0.372325 25.8523 0.665116Z" fill="white" stroke="white" stroke-width="0.4"/>
+                                                            </svg>   
+                                                            <h4>{{ no_reports_message }}</h4>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="tab-pane fade  show active charges-list" id="chargesList" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                                    <ul v-if="chargesDetailList.length > 0">
+                                                        <li v-for="(charge, index) in chargesDetailList" :key="index" :class="charge.crime_class">
+                                                            <div class="charges-item">
+                                                                <div class="rate-value">
+                                                                    x{{ charge.number_of_times }}
+                                                                </div>
+                                                                <div class="charges-names">
+                                                                    <h3>{{ charge.name }}</h3>
+                                                                    <h4>{{ charge.crime_type }}</h4>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <div v-else class="no-data">
+                                                        <div>
+                                                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M32.5414 24.0994L32.6 24.0408V23.958V12.042V11.9592L32.5414 11.9006L24.0994 3.45858L24.0408 3.4H23.958H12.042H11.9592L11.9006 3.45858L3.45858 11.9006L3.4 11.9592V12.042V23.958V24.0408L3.45858 24.0994L11.9006 32.5414L11.9592 32.6H12.042H23.958H24.0408L24.0994 32.5414L32.5414 24.0994ZM16.8686 9.66863C17.1687 9.36857 17.5757 9.2 18 9.2C18.4243 9.2 18.8313 9.36857 19.1314 9.66863C19.4314 9.96869 19.6 10.3757 19.6 10.8V18C19.6 18.4243 19.4314 18.8313 19.1314 19.1314C18.8313 19.4314 18.4243 19.6 18 19.6C17.5757 19.6 17.1687 19.4314 16.8686 19.1314C16.5686 18.8313 16.4 18.4243 16.4 18V10.8C16.4 10.3757 16.5686 9.96869 16.8686 9.66863ZM17.1111 23.8696C17.3742 23.6938 17.6835 23.6 18 23.6C18.4243 23.6 18.8313 23.7686 19.1314 24.0686C19.4314 24.3687 19.6 24.7757 19.6 25.2C19.6 25.5164 19.5062 25.8258 19.3304 26.0889C19.1545 26.352 18.9047 26.5571 18.6123 26.6782C18.3199 26.7993 17.9982 26.831 17.6879 26.7693C17.3775 26.7075 17.0924 26.5551 16.8686 26.3314C16.6449 26.1076 16.4925 25.8225 16.4307 25.5121C16.369 25.2018 16.4007 24.8801 16.5218 24.5877C16.6429 24.2953 16.848 24.0455 17.1111 23.8696ZM25.8523 0.665116C25.8528 0.665658 25.8534 0.6662 25.854 0.666742L35.3333 10.146C35.3338 10.1466 35.3343 10.1472 35.3349 10.1477C35.6277 10.4557 35.7938 10.8626 35.8 11.2874V24.7125C35.7938 25.1374 35.6277 25.5443 35.3349 25.8523C35.3343 25.8528 35.3338 25.8534 35.3333 25.854L25.854 35.3333C25.8534 35.3338 25.8528 35.3343 25.8523 35.3349C25.5443 35.6277 25.1374 35.7938 24.7125 35.8H11.2874C10.8626 35.7938 10.4557 35.6277 10.1477 35.3349C10.1472 35.3343 10.1466 35.3338 10.146 35.3333L0.666742 25.854C0.6662 25.8534 0.665658 25.8528 0.665116 25.8523C0.372325 25.5444 0.206251 25.1374 0.2 24.7126V11.2874C0.206251 10.8625 0.372339 10.4556 0.665155 10.1477L10.1477 0.665155C10.4556 0.372339 10.8625 0.206251 11.2874 0.2H24.7126C25.1374 0.206251 25.5444 0.372325 25.8523 0.665116Z" fill="white" stroke="white" stroke-width="0.4"/>
+                                                            </svg>   
+                                                            <h4>No List of Charges</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                     </div>
                                 </div>
@@ -447,7 +457,9 @@ export default {
       houseList: [],
       houseListFiltered: [],
       chargesDetailList: [],
+      reports: [],
       search_house: "",
+      no_reports_message: "No Reports",
       profileId: null,
       saveSettingsAllow: false,
       is_driver_license_valid: 0,
@@ -485,6 +497,7 @@ export default {
       isAllowedToEditProfile: 'auth/isAllowedToEditProfile',
       isAllowedToCreateWarrants: 'auth/isAllowedToCreateWarrants',
       isAllowedToCreateReports: 'auth/isAllowedToCreateReports',
+      isAllowedToViewReports: 'auth/isAllowedToViewReports',
     })
   },
   watch: {
@@ -517,6 +530,9 @@ export default {
     if (profileId) {
         this.fetchProfileData(profileId)
     }
+    if(!this.isAllowedToViewReports){
+        this.no_reports_message = "No Rights to view reports"
+    }
   },
   methods: {
       async fetchProfileData(profileId) {
@@ -531,6 +547,7 @@ export default {
         this.houseList = this.profileRecord.houseList
         this.houseListFiltered = this.profileRecord.houseList
         this.chargesDetailList = this.profileRecord.laws_details
+        this.reports = this.profileRecord.reports
         this.is_driver_license_valid = this.profileRecord.is_driver_license_valid
         this.is_weapon_license_valid = this.profileRecord.is_weapon_license_valid
         this.is_pilot_license_valid = this.profileRecord.is_pilot_license_valid
@@ -540,6 +557,7 @@ export default {
         setTimeout(() => this.saveSettingsAllow = true, 1000)
     
       },
+
       postSettings(key, value){
         if(this.saveSettingsAllow && this.isAllowedToEditProfile) {
           this.$store
@@ -585,8 +603,33 @@ export default {
                 }
             })
             this.houseListFiltered = filtered
-      }
-  }
+    },
+    openReportModalPopUp (report) {
+        if(report.report_type === 'police_report') {
+            this.fetchPoliceReportByReportId(report.report_id)
+            this.$store.commit('report/setIsPoliceReportPopupOpen', true)
+        } else {
+            this.fetchMedicalReportByReportId(report.report_id)
+            this.$store.commit('report/setIsMedicalReportPopupOpen', true)
+        }
+    },
+    async fetchPoliceReportByReportId (reportId) {
+        await this.$store.dispatch(
+            'report/fetchPoliceReportByReportId',
+            {
+            report_id : reportId
+            }
+        )
+    },
+    async fetchMedicalReportByReportId (reportId) {
+        await this.$store.dispatch(
+            'report/fetchMedicalReportByReportId',
+            {
+            report_id : reportId
+            }
+        )
+        },
+    }
 }
 </script>
 <style lang="css" scoped>
