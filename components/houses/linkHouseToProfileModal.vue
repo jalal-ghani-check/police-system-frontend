@@ -14,13 +14,13 @@
                                     </svg>
                                     
                             </div>
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" v-model="profile_search" placeholder="Search">
                         </div>
                     </div>
 
                     <div class="owener-list">
-                      <div class="row g-2">
-                        <div class="col-md-3 house-link-card" v-for="(profile, index) in allProfiles" :key="index"
+                      <div v-if="profileListFilteredComputed.length > 0" class="row g-2">
+                        <div  class="col-md-3 house-link-card" v-for="(profile, index) in profileListFilteredComputed" :key="index"
                         @click="linkHouseToProfile(profile.profile_id)" data-bs-dismiss='modal'>
                           <div class="house-owner-card">
                             <div class="owner-pic"> <!-- makepic dynamic -->
@@ -34,7 +34,21 @@
                         </div>
                         
                       </div>
-                </div>
+                      <div v-else class="no-data">
+                      <div>
+                          <svg width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16.2421 12.694L15.969 12.9089L16.292 13.0371C18.2814 13.8266 20.0184 15.1426 21.3169 16.8441C22.6152 18.5455 23.4261 20.5681 23.6626 22.6951C23.6906 22.9572 23.614 23.2198 23.4493 23.4256C23.2869 23.6286 23.0518 23.7602 22.7941 23.7928L22.6742 23.7928L22.6729 23.7928C22.4259 23.7943 22.1871 23.7042 22.0025 23.54C21.818 23.3757 21.7008 23.1489 21.6736 22.9034L21.6736 22.9031C21.4048 20.5098 20.2636 18.2994 18.4681 16.6943C16.6726 15.0892 14.3487 14.2019 11.9404 14.2019C9.53201 14.2019 7.2081 15.0892 5.41261 16.6943C3.61712 18.2994 2.47594 20.5098 2.2071 22.9031L2.20705 22.9035C2.17786 23.1689 2.04446 23.4117 1.83619 23.5787C1.62792 23.7457 1.36184 23.8231 1.09649 23.794C0.831134 23.7648 0.588247 23.6314 0.421256 23.4231C0.338569 23.32 0.277005 23.2016 0.240078 23.0747C0.203163 22.9478 0.191589 22.8149 0.206018 22.6835C0.441369 20.5623 1.24794 18.5448 2.53974 16.8459C3.83155 15.147 5.56016 13.8306 7.54131 13.0368L7.8627 12.9081L7.5906 12.694C6.44748 11.7946 5.61312 10.5613 5.20357 9.16569C4.79402 7.77005 4.82966 6.28145 5.30553 4.907C5.78141 3.53255 6.67384 2.3406 7.85869 1.49697C9.04354 0.653348 10.4619 0.2 11.9164 0.2C13.3709 0.2 14.7892 0.653348 15.974 1.49697C17.1589 2.3406 18.0513 3.53255 18.5272 4.907C19.0031 6.28145 19.0387 7.77005 18.6292 9.16569C18.2196 10.5613 17.3852 11.7946 16.2421 12.694ZM9.14005 11.3575C9.96184 11.9066 10.928 12.1997 11.9164 12.1997C13.2417 12.1997 14.5128 11.6732 15.4499 10.736C16.3871 9.79886 16.9136 8.52779 16.9136 7.20244C16.9136 6.21408 16.6205 5.24792 16.0714 4.42613C15.5223 3.60434 14.7418 2.96383 13.8287 2.5856C12.9156 2.20737 11.9108 2.10841 10.9415 2.30123C9.97208 2.49405 9.08166 2.96999 8.38279 3.66886C7.68391 4.36774 7.20797 5.25816 7.01515 6.22753C6.82233 7.1969 6.92129 8.20168 7.29952 9.1148C7.67775 10.0279 8.31826 10.8084 9.14005 11.3575Z"
+                                fill="#1B1B1B" fill-opacity="0.5" stroke="white"
+                                stroke-width="0.4" />
+                          </svg>
+                          <h4>No Profiles</h4>
+                      </div>
+            </div>
+
+                    </div>
+                    <input type="hidden" :value="setprofileListFilteredComputed" />
 
             </div>
           </div>
@@ -48,7 +62,31 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'linkHouseToProfileModal',
+
+  data () {
+    return {
+      profileListFiltered: [],
+      profile_search: ''
+
+    }
+  },
+  watch:{
+    profile_search(newValue, oldValue) {
+      if(newValue.length > 2){
+          this.filterProfiles(newValue)
+      }else {
+          this.profileListFiltered = this.allProfiles
+      }
+    }
+  },
   computed: {
+    profileListFilteredComputed() {
+      return this.profileListFiltered
+    },
+    setprofileListFilteredComputed() {
+      this.profileListFiltered = this.allProfiles
+      return 1
+    },
     ...mapGetters({
         getIsLinkHouseToProfilePopupOpen: 'house/getIsLinkHouseToProfilePopupOpen',
         allProfiles: 'profile/getAllProfiles'
@@ -58,6 +96,24 @@ export default {
     this.fetchAllProfiles()
   },
   methods: {
+    filterProfiles(searchedProfileName) {
+        searchedProfileName = searchedProfileName.toLowerCase()
+        var list = this.allProfiles
+
+        const filtered = list.filter( (
+              profile,
+              index,
+              array
+          ) => {
+              let name = profile.full_name.toLowerCase()
+              if (name.includes(searchedProfileName)) {
+              return true
+              } else {
+              return false
+              }
+          })
+          this.profileListFiltered = filtered
+    },
     async fetchAllProfiles () {
       const allProfiles = await this.$store.dispatch(
         'profile/fetchAllProfileRecords',
