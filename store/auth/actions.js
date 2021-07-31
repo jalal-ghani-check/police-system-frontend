@@ -113,6 +113,18 @@ export default {
       })
   },
 
+  addUser ({ commit }, requestData) {
+    return this.$axios
+      .post('users/add', requestData)
+      .then((response) => {
+        this.$toast.global.post_success()
+        const { data } = response.data
+        return data
+      })
+  },
+
+  
+
   
 
   

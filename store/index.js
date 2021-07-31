@@ -6,7 +6,9 @@ export const state = () => ({
   activeTab: 'dashboard',
   roles: [],
   departments: [],
-  ranks: []
+  ranks: [],
+  genders: [],
+  crimetypes: [],
 })
 
 export const mutations = {
@@ -49,6 +51,14 @@ export const getters = {
   getDepartments: (state) => {
     return state.departments
   },
+  getGenders: (state) => {
+    return state.genders
+  },
+  getCrimeTypes: (state) => {
+    return state.crimetypes
+  },
+  
+  
 }
 export const actions = {
   async nuxtServerInit ({ commit, dispatch }, { redirect, $axios }) {
@@ -59,6 +69,9 @@ export const actions = {
       commit('setKeyValueInState', { key: 'roles', value: data.data.roles })
       commit('setKeyValueInState', { key: 'ranks', value: data.data.ranks })
       commit('setKeyValueInState', { key: 'departments', value: data.data.departments })
+      commit('setKeyValueInState', { key: 'genders', value: data.data.genders })
+      commit('setKeyValueInState', { key: 'crimetypes', value: data.data.crimetypes })
+
     }
     const token = this.$cookies.get('Pb-Token')
     if (token) {

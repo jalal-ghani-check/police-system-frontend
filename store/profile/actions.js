@@ -32,6 +32,26 @@ export default {
         this.$toast.global.post_success()
       })
   },
+
+  fetchAllProfiles ({ commit }, profileIdObj) {
+    return this.$axios
+      .get('profile/fetch-all-list')
+      .then((response) => {
+        const { data } = response.data
+        return data
+        // commit('setTransactionsDetail', data)
+      })
+  },
+
+  addProfle ({ commit }, requestData) {
+    return this.$axios
+      .post('profile/add', requestData)
+      .then((response) => {
+        this.$toast.global.post_success()
+        const { data } = response.data
+        return data
+      })
+  },
   
 
 }

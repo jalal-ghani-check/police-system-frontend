@@ -18,10 +18,10 @@
                             <path d="M7.69777 6.99797H3.49899C3.31339 6.99797 3.13539 7.0717 3.00415 7.20294C2.87292 7.33417 2.79919 7.51217 2.79919 7.69777C2.79919 7.88337 2.87292 8.06136 3.00415 8.1926C3.13539 8.32384 3.31339 8.39756 3.49899 8.39756H7.69777C7.88337 8.39756 8.06136 8.32384 8.1926 8.1926C8.32384 8.06136 8.39756 7.88337 8.39756 7.69777C8.39756 7.51217 8.32384 7.33417 8.1926 7.20294C8.06136 7.0717 7.88337 6.99797 7.69777 6.99797ZM11.4837 11.8966L12.3934 10.9938C12.5252 10.862 12.5992 10.6833 12.5992 10.497C12.5992 10.3106 12.5252 10.1319 12.3934 10.0001C12.2616 9.86833 12.0829 9.7943 11.8966 9.7943C11.7102 9.7943 11.5315 9.86833 11.3997 10.0001L10.497 10.9098L9.59422 10.0001C9.46244 9.86833 9.28372 9.7943 9.09736 9.7943C8.91101 9.7943 8.73228 9.86833 8.60051 10.0001C8.46873 10.1319 8.3947 10.3106 8.3947 10.497C8.3947 10.6833 8.46873 10.862 8.60051 10.9938L9.51024 11.8966L8.60051 12.7993C8.53491 12.8643 8.48285 12.9417 8.44733 13.027C8.4118 13.1123 8.39351 13.2038 8.39351 13.2961C8.39351 13.3885 8.4118 13.48 8.44733 13.5653C8.48285 13.6505 8.53491 13.7279 8.60051 13.793C8.66556 13.8586 8.74296 13.9107 8.82824 13.9462C8.91351 13.9817 9.00498 14 9.09736 14C9.18974 14 9.28121 13.9817 9.36649 13.9462C9.45177 13.9107 9.52916 13.8586 9.59422 13.793L10.497 12.8833L11.3997 13.793C11.4648 13.8586 11.5421 13.9107 11.6274 13.9462C11.7127 13.9817 11.8042 14 11.8966 14C11.9889 14 12.0804 13.9817 12.1657 13.9462C12.251 13.9107 12.3284 13.8586 12.3934 13.793C12.459 13.7279 12.5111 13.6505 12.5466 13.5653C12.5821 13.48 12.6004 13.3885 12.6004 13.2961C12.6004 13.2038 12.5821 13.1123 12.5466 13.027C12.5111 12.9417 12.459 12.8643 12.3934 12.7993L11.4837 11.8966ZM6.29817 12.5963H2.09939C1.91379 12.5963 1.7358 12.5226 1.60456 12.3914C1.47332 12.2601 1.39959 12.0821 1.39959 11.8966V2.09939C1.39959 1.91379 1.47332 1.7358 1.60456 1.60456C1.7358 1.47332 1.91379 1.39959 2.09939 1.39959H5.59838V3.49899C5.59838 4.05578 5.81956 4.58977 6.21327 4.98348C6.60699 5.37719 7.14097 5.59838 7.69777 5.59838H9.79716V7.69777C9.79716 7.88337 9.87089 8.06136 10.0021 8.1926C10.1334 8.32384 10.3114 8.39756 10.497 8.39756C10.6826 8.39756 10.8606 8.32384 10.9918 8.1926C11.123 8.06136 11.1968 7.88337 11.1968 7.69777V4.89858V4.85659C11.1895 4.7923 11.1754 4.72897 11.1548 4.66765V4.60466C11.1211 4.53271 11.0762 4.46657 11.0218 4.40872L6.82302 0.209939C6.76517 0.155506 6.69903 0.110625 6.62708 0.0769776C6.60393 0.0729254 6.58025 0.0729254 6.5571 0.0769776C6.48905 0.0405904 6.41592 0.0146411 6.34016 0H2.09939C1.5426 0 1.00861 0.221185 0.614898 0.614898C0.221185 1.00861 0 1.5426 0 2.09939V11.8966C0 12.4533 0.221185 12.9873 0.614898 13.381C1.00861 13.7748 1.5426 13.9959 2.09939 13.9959H6.29817C6.48377 13.9959 6.66177 13.9222 6.793 13.791C6.92424 13.6597 6.99797 13.4817 6.99797 13.2961C6.99797 13.1105 6.92424 12.9326 6.793 12.8013C6.66177 12.6701 6.48377 12.5963 6.29817 12.5963ZM6.99797 2.38631L8.81045 4.19878H7.69777C7.51217 4.19878 7.33417 4.12505 7.20294 3.99382C7.0717 3.86258 6.99797 3.68458 6.99797 3.49899V2.38631ZM3.49899 4.19878C3.31339 4.19878 3.13539 4.27251 3.00415 4.40375C2.87292 4.53499 2.79919 4.71298 2.79919 4.89858C2.79919 5.08418 2.87292 5.26217 3.00415 5.39341C3.13539 5.52465 3.31339 5.59838 3.49899 5.59838H4.19878C4.38438 5.59838 4.56238 5.52465 4.69361 5.39341C4.82485 5.26217 4.89858 5.08418 4.89858 4.89858C4.89858 4.71298 4.82485 4.53499 4.69361 4.40375C4.56238 4.27251 4.38438 4.19878 4.19878 4.19878H3.49899ZM6.29817 9.79716H3.49899C3.31339 9.79716 3.13539 9.87089 3.00415 10.0021C2.87292 10.1334 2.79919 10.3114 2.79919 10.497C2.79919 10.6826 2.87292 10.8606 3.00415 10.9918C3.13539 11.123 3.31339 11.1968 3.49899 11.1968H6.29817C6.48377 11.1968 6.66177 11.123 6.793 10.9918C6.92424 10.8606 6.99797 10.6826 6.99797 10.497C6.99797 10.3114 6.92424 10.1334 6.793 10.0021C6.66177 9.87089 6.48377 9.79716 6.29817 9.79716Z" fill="white"/>
                             </svg>
                                 Expunge Records</button>
-                        <!-- <button class="btn btn-danger"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <button v-if="isAllowedToCreateWarrants" @click="createWarrant" class="btn btn-danger"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7 3.5C6.81435 3.5 6.6363 3.57375 6.50503 3.70503C6.37375 3.8363 6.3 4.01435 6.3 4.2V7C6.3 7.18565 6.37375 7.3637 6.50503 7.49497C6.6363 7.62625 6.81435 7.7 7 7.7C7.18565 7.7 7.3637 7.62625 7.49497 7.49497C7.62625 7.3637 7.7 7.18565 7.7 7V4.2C7.7 4.01435 7.62625 3.8363 7.49497 3.70503C7.3637 3.57375 7.18565 3.5 7 3.5ZM7 9.1C6.86155 9.1 6.72621 9.14105 6.6111 9.21797C6.49599 9.29489 6.40627 9.40421 6.35328 9.53212C6.3003 9.66003 6.28644 9.80078 6.31345 9.93656C6.34046 10.0724 6.40713 10.1971 6.50503 10.295C6.60292 10.3929 6.72765 10.4595 6.86344 10.4865C6.99922 10.5136 7.13997 10.4997 7.26788 10.4467C7.39579 10.3937 7.50511 10.304 7.58203 10.1889C7.65895 10.0738 7.7 9.93845 7.7 9.8C7.7 9.61435 7.62625 9.4363 7.49497 9.30503C7.3637 9.17375 7.18565 9.1 7 9.1ZM13.797 3.892L10.108 0.203C9.97386 0.0750864 9.79634 0.00257844 9.611 0H4.389C4.20366 0.00257844 4.02614 0.0750864 3.892 0.203L0.203 3.892C0.0750864 4.02614 0.00257844 4.20366 0 4.389V9.611C0.00257844 9.79634 0.0750864 9.97386 0.203 10.108L3.892 13.797C4.02614 13.9249 4.20366 13.9974 4.389 14H9.611C9.79634 13.9974 9.97386 13.9249 10.108 13.797L13.797 10.108C13.9249 9.97386 13.9974 9.79634 14 9.611V4.389C13.9974 4.20366 13.9249 4.02614 13.797 3.892ZM12.6 9.317L9.317 12.6H4.683L1.4 9.317V4.683L4.683 1.4H9.317L12.6 4.683V9.317Z" fill="white"/>
                             </svg>
-                                Fine</button> -->
+                                Create Warrant</button>
                     </div>
                 </div>
                 <div class="profile-container">
@@ -258,7 +258,7 @@
                                         </svg>
                                         Houses</h4>
                                         <div class="badge-count">
-                                            <span class="badge bg-danger">4</span>
+                                            <span class="badge bg-danger">{{ houseCountComputed }}</span>
 
                                         </div>
                                 </div>
@@ -266,33 +266,22 @@
                             </div>
                             <div class="section-search">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                    <input type="text" class="form-control" v-model="search_house" placeholder="Search">
                                 </div>
                             </div>
                             <div class="white-widget">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="house-card">
-                                            <div class="house-thumb">
-                                                <img src="~/assets/images/house-thumb.png" alt="">
-                                            </div>
-                                            <div class="house-card-caption">
-                                                <h3>Eclipse Towers Penthouse Suite 3</h3>
-                                                <div class="house-price"><span class="text-green">$$$</span>
-                                                    1,100,000</div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div v-if="houseListFilteredComputed.length > 0" class="row">
+                                    <profile-house-card  v-for="(house, index) in houseListFilteredComputed" :key="index" :house="house" />
 
-                                    <div class="col-md-4">
+                                    <!-- <div v-for="(house, index) in houseList" :key="index"  class="col-md-4">
                                         <div class="house-card">
                                             <div class="house-thumb">
-                                                <img src="~/assets/images/house-thumb-2.png" alt="">
+                                                <img :src="house.image" alt="">
                                             </div>
                                             <div class="house-card-caption">
-                                                <h3>3655 Wild Oats Drive</h3>
+                                                <h3>{{ house.house_name }}</h3>
                                                 <div class="house-price"><span class="text-green">$$$</span>
-                                                    1,100,000</div>
+                                                    {{ house.price }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -309,8 +298,23 @@
                                                     1,100,000</div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
+                                </div>
+                                <div v-else class="no-data">
+                                    <div>
+                                        <svg
+                                        width="13"
+                                        height="14"
+                                        viewBox="0 0 13 14"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M11.8858 4.21171L7.69086 0.534113C7.30631 0.190156 6.80847 0 6.29254 0C5.7766 0 5.27877 0.190156 4.89421 0.534113L0.69923 4.21171C0.477153 4.41033 0.299937 4.65397 0.179382 4.92643C0.0588266 5.19888 -0.00230204 5.4939 6.62766e-05 5.79182V11.9025C6.62766e-05 12.4588 0.221051 12.9923 0.614407 13.3857C1.00776 13.779 1.54127 14 2.09756 14H10.4875C11.0438 14 11.5773 13.779 11.9707 13.3857C12.364 12.9923 12.585 12.4588 12.585 11.9025V5.78483C12.5864 5.48808 12.5248 5.19442 12.4042 4.92324C12.2837 4.65206 12.107 4.40955 11.8858 4.21171ZM7.69086 12.6017H4.89421V9.10586C4.89421 8.92043 4.96787 8.74259 5.09899 8.61147C5.23011 8.48036 5.40794 8.40669 5.59337 8.40669H6.9917C7.17713 8.40669 7.35496 8.48036 7.48608 8.61147C7.6172 8.74259 7.69086 8.92043 7.69086 9.10586V12.6017ZM11.1867 11.9025C11.1867 12.0879 11.113 12.2658 10.9819 12.3969C10.8508 12.528 10.6729 12.6017 10.4875 12.6017H9.08919V9.10586C9.08919 8.54957 8.8682 8.01606 8.47485 7.62271C8.08149 7.22935 7.54799 7.00837 6.9917 7.00837H5.59337C5.03708 7.00837 4.50358 7.22935 4.11022 7.62271C3.71687 8.01606 3.49588 8.54957 3.49588 9.10586V12.6017H2.09756C1.91213 12.6017 1.73429 12.528 1.60317 12.3969C1.47205 12.2658 1.39839 12.0879 1.39839 11.9025V5.78483C1.39852 5.68556 1.41978 5.58745 1.46077 5.49704C1.50176 5.40663 1.56153 5.32598 1.63611 5.26046L5.83109 1.58985C5.95868 1.47776 6.1227 1.41594 6.29254 1.41594C6.46237 1.41594 6.62639 1.47776 6.75398 1.58985L10.949 5.26046C11.0235 5.32598 11.0833 5.40663 11.1243 5.49704C11.1653 5.58745 11.1866 5.68556 11.1867 5.78483V11.9025Z"
+                                                fill="#1F1F1F" />
+                                        </svg> 
+                                        <h4>No Houses Linked</h4>
+                                    </div>
                                 </div>
                             </div>
 
@@ -379,30 +383,27 @@
 
                                             </div>
                                             <div class="tab-pane fade  show active charges-list" id="chargesList" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                                <ul>
-                                                    <li>
+                                                <ul v-if="chargesDetailList.length > 0">
+                                                    <li v-for="(charge, index) in chargesDetailList" :key="index" :class="charge.crime_class">
                                                         <div class="charges-item">
                                                             <div class="rate-value">
-                                                                x1
+                                                                x{{ charge.number_of_times }}
                                                             </div>
                                                             <div class="charges-names">
-                                                                <h3>Assault & Battery</h3>
-                                                                <h4>Misdemeanor</h4>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="red">
-                                                        <div class="charges-item">
-                                                            <div class="rate-value">
-                                                                x7
-                                                            </div>
-                                                            <div class="charges-names">
-                                                                <h3>Kidnapping</h3>
-                                                                <h4>Felony</h4>
+                                                                <h3>{{ charge.name }}</h3>
+                                                                <h4>{{ charge.crime_type }}</h4>
                                                             </div>
                                                         </div>
                                                     </li>
                                                 </ul>
+                                                <div v-else class="no-data">
+                                                    <div>
+                                                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M32.5414 24.0994L32.6 24.0408V23.958V12.042V11.9592L32.5414 11.9006L24.0994 3.45858L24.0408 3.4H23.958H12.042H11.9592L11.9006 3.45858L3.45858 11.9006L3.4 11.9592V12.042V23.958V24.0408L3.45858 24.0994L11.9006 32.5414L11.9592 32.6H12.042H23.958H24.0408L24.0994 32.5414L32.5414 24.0994ZM16.8686 9.66863C17.1687 9.36857 17.5757 9.2 18 9.2C18.4243 9.2 18.8313 9.36857 19.1314 9.66863C19.4314 9.96869 19.6 10.3757 19.6 10.8V18C19.6 18.4243 19.4314 18.8313 19.1314 19.1314C18.8313 19.4314 18.4243 19.6 18 19.6C17.5757 19.6 17.1687 19.4314 16.8686 19.1314C16.5686 18.8313 16.4 18.4243 16.4 18V10.8C16.4 10.3757 16.5686 9.96869 16.8686 9.66863ZM17.1111 23.8696C17.3742 23.6938 17.6835 23.6 18 23.6C18.4243 23.6 18.8313 23.7686 19.1314 24.0686C19.4314 24.3687 19.6 24.7757 19.6 25.2C19.6 25.5164 19.5062 25.8258 19.3304 26.0889C19.1545 26.352 18.9047 26.5571 18.6123 26.6782C18.3199 26.7993 17.9982 26.831 17.6879 26.7693C17.3775 26.7075 17.0924 26.5551 16.8686 26.3314C16.6449 26.1076 16.4925 25.8225 16.4307 25.5121C16.369 25.2018 16.4007 24.8801 16.5218 24.5877C16.6429 24.2953 16.848 24.0455 17.1111 23.8696ZM25.8523 0.665116C25.8528 0.665658 25.8534 0.6662 25.854 0.666742L35.3333 10.146C35.3338 10.1466 35.3343 10.1472 35.3349 10.1477C35.6277 10.4557 35.7938 10.8626 35.8 11.2874V24.7125C35.7938 25.1374 35.6277 25.5443 35.3349 25.8523C35.3343 25.8528 35.3338 25.8534 35.3333 25.854L25.854 35.3333C25.8534 35.3338 25.8528 35.3343 25.8523 35.3349C25.5443 35.6277 25.1374 35.7938 24.7125 35.8H11.2874C10.8626 35.7938 10.4557 35.6277 10.1477 35.3349C10.1472 35.3343 10.1466 35.3338 10.146 35.3333L0.666742 25.854C0.6662 25.8534 0.665658 25.8528 0.665116 25.8523C0.372325 25.5444 0.206251 25.1374 0.2 24.7126V11.2874C0.206251 10.8625 0.372339 10.4556 0.665155 10.1477L10.1477 0.665155C10.4556 0.372339 10.8625 0.206251 11.2874 0.2H24.7126C25.1374 0.206251 25.5444 0.372325 25.8523 0.665116Z" fill="white" stroke="white" stroke-width="0.4"/>
+                                                        </svg>   
+                                                        <h4>No List of Charges</h4>
+                                                    </div>
+                                                </div>
                                             </div>
                                             </div>
                                     </div>
@@ -426,20 +427,27 @@
             </div>
         </div>
         <expunge-profile-modal :show-modal="showExpungeModalComputed" :profile-id="profileIdComputed" @close="closeExpungeModal"/>
+        <add-new-warrant-modal :show-modal="showCreateWarrantModalComputed"  :profile-id="profileIdComputed" @close="closeWarrantModal"  />
     </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import ProfileHouseCard from '~/components/houses/ProfileHouseCard.vue'
 import ExpungeProfileModal from '~/components/profile/ExpungeProfileModal.vue'
+import AddNewWarrantModal from '~/components/warrants/AddNewWarrantModal.vue'
 export default {
-  components: { ExpungeProfileModal },
+  components: { ExpungeProfileModal, AddNewWarrantModal, ProfileHouseCard, },
   name: 'Profile',
   layout: 'master',
   middleware: ['profileMW'],
   data () {
     return {
       profileRecord: [],
+      houseList: [],
+      houseListFiltered: [],
+      chargesDetailList: [],
+      search_house: "",
       profileId: null,
       saveSettingsAllow: false,
       is_driver_license_valid: 0,
@@ -449,14 +457,24 @@ export default {
       is_fishing_license_valid: 0,
       showExpungeModal: false,
       showEmptyMessage: false,
+      showCreateWarrantModal: false
     }
   },
   computed: {
+    houseListFilteredComputed () {
+       return this.houseListFiltered
+    },
+    houseCountComputed () {
+       return this.houseList.length
+    },
     profileIdComputed () {
       return this.profileId
     },
     showExpungeModalComputed () {
         return this.showExpungeModal
+    },
+    showCreateWarrantModalComputed () {
+        return this.showCreateWarrantModal
     },
     showEmptyMessageComputed () {
         return !this.profileIdComputed && !this.showEmptyMessage
@@ -464,6 +482,8 @@ export default {
     ...mapGetters({
       isAllowedToExpungeRecords: 'auth/isAllowedToExpungeRecords',
       isAllowedToEditProfile: 'auth/isAllowedToEditProfile',
+      isAllowedToEditProfile: 'auth/isAllowedToEditProfile',
+      isAllowedToCreateWarrants: 'auth/isAllowedToCreateWarrants'
     })
   },
   watch: {
@@ -481,6 +501,13 @@ export default {
       },
       is_fishing_license_valid(newValue , oldValue) {
           this.postSettings('is_fishing_license_valid',newValue)
+      },
+      search_house(newValue, oldValue){
+          if(newValue.length > 2){
+              this.filterHouses(newValue)
+          }else {
+              this.houseListFiltered = this.houseList
+          }
       }
   },
   async mounted () {
@@ -495,7 +522,9 @@ export default {
       if(!this.profileRecord.full_name){
         this.showEmptyMessage = true
       }
-
+      this.houseList = this.profileRecord.houseList
+      this.houseListFiltered = this.profileRecord.houseList
+      this.chargesDetailList = this.profileRecord.laws_details
       this.is_driver_license_valid = this.profileRecord.is_driver_license_valid
       this.is_weapon_license_valid = this.profileRecord.is_weapon_license_valid
       this.is_pilot_license_valid = this.profileRecord.is_pilot_license_valid
@@ -528,6 +557,29 @@ export default {
       },
       closeExpungeModal() {
         this.showExpungeModal = false
+      },
+      createWarrant() {
+        this.showCreateWarrantModal = true
+      },
+      closeWarrantModal() {
+        this.showCreateWarrantModal = false
+      },
+      filterHouses(searchedName) {
+          var list = this.houseList
+
+          const filtered = list.filter( (
+                house,
+                index,
+                array
+            ) => {
+                let name = house.house_name
+                if (name.includes(searchedName)) {
+                return true
+                } else {
+                return false
+                }
+            })
+            this.houseListFiltered = filtered
       }
   }
 }
