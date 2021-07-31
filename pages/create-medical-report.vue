@@ -65,9 +65,26 @@
               </div>
             </div>
           </div>
+          
+          <notification-bar />
+
           <div class="white-widget">
             <div class="form-section">
               <div class="row mb-3 g-3">
+                <div class="col">
+                  <input
+                    type="text"
+                    v-model="reportTitle"
+                    class="form-control"
+                    placeholder="Title"
+                  />
+                  <div
+                    v-if="$v.reportTitle.$error && !$v.reportTitle.required"
+                    class="error"
+                  >
+                    <span class="text-danger">Title required</span>
+                  </div>
+                </div>
                 <div class="col">
                   <input
                     type="text"
@@ -533,6 +550,7 @@ export default {
     return {
       medicalHistory: [],
       yearsRange: this.$getRangeReverse(70, new Date().getFullYear()),
+      reportTitle: '',
       citizenId: '',
       problemStartedAt: null,
       problemDescription: '',
@@ -579,6 +597,9 @@ export default {
     }
   },
   validations: {
+    reportTitle: {
+      required
+    },
     citizenId: {
       required
     },
@@ -619,6 +640,7 @@ export default {
       if (!this.$v.$invalid) {
         this.$store
           .dispatch('report/createMedicalReport', {
+            reportTitle: this.reportTitle,
             profileId: this.$route.query.profile_id,
             citizenId: this.citizenId,
             problemStartedAt: this.problemStartedAt,
@@ -635,7 +657,7 @@ export default {
             medicationDescription: this.medicationDescription,
             allergy: this.allergy,
             allergyDetails: this.allergyDetails,
-            religiousCulturalView: this.religiousCulturalViews,
+            religiousCulturalViews: this.religiousCulturalViews,
             medicalHistory: this.medicalHistory
           })
           .then(() => {
