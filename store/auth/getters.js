@@ -65,6 +65,25 @@ export default {
   isAllowedToEditReports: (state) => {
     return state.userData.is_allowed_to_edit_reports
   },
+
+  isAllowedToViewVehicles: (state) => {
+    return state.userData.is_allowed_to_view_vehicles
+  },
+  
+  isAllowedToCreateVehicles: (state) => {
+    return state.userData.is_allowed_to_create_vehicles
+  },
+  
+  isAllowedToDeleteVehicles: (state) => {
+    return state.userData.is_allowed_to_delete_vehicles
+  },
+  
+  isAllowedToEditVehicles: (state) => {
+    return state.userData.is_allowed_to_edit_vehicles
+  },
+
+
+
   isAllowedToViewReports: (state) => {
     return state.userData.is_allowed_to_view_reports
   },
