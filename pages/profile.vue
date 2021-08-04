@@ -376,7 +376,7 @@
                                             <div class="tab-content" id="nav-tabContent">
                                                 <div v-if="reports.length > 0 && isAllowedToViewReports" class="tab-pane fade" id="lastestReports" role="tabpanel" aria-labelledby="nav-home-tab">
                                                     <div v-for="(report, index) in reports" :key="index" 
-                                                    :class="{red: report.report_type === 'medical_report'}" class="report-card"
+                                                    :class="{red: report.report_type === 'medical_report'}" class="report-card report-card-frontend"
                                                     @click="openReportModalPopUp(report)"
                                                     >
                                                         <div class="tag-no" v-if="report.report_type !== 'medical_report'">#{{ report.case_number }}</div>
