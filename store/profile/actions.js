@@ -22,14 +22,14 @@ export default {
     return this.$axios
       .post('profile/save-settings', requestData)
       .then((data) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
       })
   },
   expungeProfileRecord ({ commit }, requestData) {
     return this.$axios
       .post('profile/delete', requestData)
       .then((data) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
       })
   },
 
@@ -47,7 +47,7 @@ export default {
     return this.$axios
       .post('profile/add', requestData)
       .then((response) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
         const { data } = response.data
         return data
       })

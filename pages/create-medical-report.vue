@@ -661,7 +661,7 @@ export default {
             medicalHistory: this.medicalHistory
           })
           .then(() => {
-            this.$toast.global.post_success()
+            this.$showToastMessage(['Saved Successfully!'])
             this.$router.push('dashboard')
           })
           .catch(() => {})

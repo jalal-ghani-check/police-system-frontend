@@ -9,6 +9,8 @@ export const state = () => ({
   ranks: [],
   genders: [],
   crimetypes: [],
+  toastMessages: [],
+  toastClass: [],
 })
 
 export const mutations = {
@@ -26,6 +28,12 @@ export const mutations = {
   },
   setKeyValueInState: (state, keyValuePair) => {
     state[keyValuePair.key] = keyValuePair.value
+  },
+  setToastMessage (state, msg) {
+    state.toastMessages = msg
+  },
+  setToastClass (state, toastClass) {
+    state.toastClass = toastClass
   },
 }
 
@@ -57,6 +65,15 @@ export const getters = {
   getCrimeTypes: (state) => {
     return state.crimetypes
   },
+  hasToastMessages: (state) => {
+    return !!state.toastMessages.length
+  },
+  getToastMessage (state) {
+    return state.toastMessages
+  },
+  getToastClass (state) {
+    return state.toastClass
+  },
   
   
 }
@@ -85,7 +102,10 @@ export const actions = {
           }
         )
         commit('auth/setUserData', response.data.data)
-        commit('dashboard/setShowPendingWarrantModalOnDashboard', true)
+        if(response.data.data.isTherePendingWarrants) {
+          commit('dashboard/setShowPendingWarrantModalOnDashboard', true, { root: true })
+        }
+
         if (response.headers['Pb-Token']) {
           await dispatch('auth/saveToken', {
             token: response.headers['Pb-Token']
@@ -116,5 +136,18 @@ export const actions = {
     commit('setError', [])
     commit('setMessage', [])
     commit('setNotificationClass', 'error')
-  }
+  },
+  clearToastMessage ({ commit }) {
+    commit('setToastMessage', [])
+    commit('setToastClass', 'success')
+  },
+
+  showToastMessage ({ commit }, messageObj) {
+    commit('setToastMessage', messageObj.message)
+    commit('setToastClass', 'success')
+    window.scrollTo(0, 0)
+
+  },
+
+  
 }

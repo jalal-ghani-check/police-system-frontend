@@ -12,7 +12,7 @@ export default {
     return this.$axios
       .post(`vehicles/manage`, requestData)
       .then((response) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
         return response.data.data
       })
   },
@@ -21,7 +21,7 @@ export default {
     return this.$axios
       .delete(`vehicles/delete/${requestData.vehicle_id_to_delete}`)
       .then((response) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
       })
   },
 }

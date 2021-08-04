@@ -41,6 +41,8 @@ export default function ({ $axios, store, redirect, req }) {
     store.commit('setError', [])
     store.commit('setMessage', [])
     store.commit('setNotificationClass', 'error')
+    // store.commit('setToastMessage', [])
+    // store.commit('setToastClass', 'success')
     if (
       !config.url.includes('download-document') &&
       !config.url.includes('live-opportunities') &&

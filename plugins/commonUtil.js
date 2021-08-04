@@ -24,6 +24,12 @@ export default ({ app, store }, inject) => {
     })
   })
 
+  inject('showToastMessage', (message) => {
+    store.dispatch('showToastMessage', {
+      message
+    })
+  })
+
   inject('renderWarrantAcceptPopup', (warrantId) => {
     store.dispatch('warrant/generateWarrantAcceptPopup', {
       warrantId

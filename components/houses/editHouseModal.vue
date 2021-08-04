@@ -12,7 +12,7 @@
                       
                       <div class="house-pic">
                         <div class="add-picture">
-                            <label for="housePic"><img src="~/assets/images/plus-icon.svg" height="150" width="150"></label>
+                            <!-- <label for="housePic"><img src="~/assets/images/plus-icon.svg" height="150" width="150"></label> -->
                             <ProfileImageUploader
                               :profile-image="houseImageComputed"
                               @file-uploaded="fileUploaded"
@@ -157,3 +157,22 @@ export default {
   },
 }
 </script>
+<style lang="css">
+.filepond--wrapper {
+  width: 100% !important;
+} 
+.edit-house-modal .form-control {
+  font-size: 14px;
+}
+.filepond--root[data-style-panel-layout~='circle'] .filepond--file [data-align*='right'] {
+  right: 10px !important;
+  top: 10px;
+}
+.filepond--credits {
+  font-size: 0 !important;
+}
+.filepond--root[data-style-panel-layout~=circle],
+.filepond--root[data-style-panel-layout~=circle] .filepond--image-preview-wrapper {
+  border-radius: 0 !important;
+}
+</style>

@@ -12,7 +12,9 @@ export default {
   authenticateUser ({ dispatch , commit }, authData) {
     return this.$axios.$post('auth/login', authData).then(({ data }) => {
       dispatch('saveToken', { token: data.api_token, isLocal: true })
-      commit('dashboard/setShowPendingWarrantModalOnDashboard', true, { root: true })
+      if(data.isTherePendingWarrants) {
+        commit('dashboard/setShowPendingWarrantModalOnDashboard', true, { root: true })
+      }
       commit('setUserData',data)
 
       // return dispatch('fetchUserData', null)
@@ -97,7 +99,8 @@ export default {
     return this.$axios
       .post('users/update', requestData)
       .then((response) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
+        this.$showToastMessage(['Saved Successfully!'])
         const { data } = response.data
         return data
       })
@@ -107,7 +110,7 @@ export default {
     return this.$axios
       .post('users/delete', requestData)
       .then((response) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
         const { data } = response.data
         return data
       })
@@ -117,7 +120,7 @@ export default {
     return this.$axios
       .post('users/add', requestData)
       .then((response) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
         const { data } = response.data
         return data
       })
