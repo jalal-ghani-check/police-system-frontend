@@ -131,7 +131,6 @@ export default {
       this.$store.commit('dashboard/setShowPendingWarrantModalOnDashboard', false)
     },
     fileUploaded(files) {
-      console.log(files)
     },
     openReportModalPopUp (report) {
       if(report.report_type === 'police_report') {

@@ -274,28 +274,6 @@ export default {
     editProfile() {
       this.isEditMode = true
     },
-    updateProfile() {
-
-        this.$v.$touch()
-        if (!this.$v.$invalid) {
-            this.$store
-                .dispatch('auth/updateUserInfo', this.selectedProfile)
-                .then((data) => {
-                    this.fetchAllUsers()
-                    this.selectProfile(0)
-                    this.$v.$reset()
-                })
-                .catch(() => {
-
-                })
-        }
-
-
-    },
-    deleteProfile() {
-      this.isDeleteModalOpen = true
-      this.userIdToDelete = this.selectedProfile.enc_user_id
-    },
     closeDeleteModal() {
       this.userIdToDelete = 0
       this.isDeleteModalOpen = false
