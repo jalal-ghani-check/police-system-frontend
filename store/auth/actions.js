@@ -12,7 +12,9 @@ export default {
   authenticateUser ({ dispatch , commit }, authData) {
     return this.$axios.$post('auth/login', authData).then(({ data }) => {
       dispatch('saveToken', { token: data.api_token, isLocal: true })
-      commit('dashboard/setShowPendingWarrantModalOnDashboard', true, { root: true })
+      if(data.isTherePendingWarrants) {
+        commit('dashboard/setShowPendingWarrantModalOnDashboard', true, { root: true })
+      }
       commit('setUserData',data)
 
       // return dispatch('fetchUserData', null)

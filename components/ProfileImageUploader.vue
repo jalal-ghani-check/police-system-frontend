@@ -90,7 +90,6 @@ export default {
         }
       },
       fetch (url, load) {
-        console.log(url)
         window.$nuxt.$axios.$get(url).then(({ data }) => {
           const base64 = data.content
           const bstr = atob(base64)

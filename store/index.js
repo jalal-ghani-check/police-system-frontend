@@ -102,7 +102,10 @@ export const actions = {
           }
         )
         commit('auth/setUserData', response.data.data)
-        commit('dashboard/setShowPendingWarrantModalOnDashboard', true)
+        if(response.data.data.isTherePendingWarrants) {
+          commit('dashboard/setShowPendingWarrantModalOnDashboard', true, { root: true })
+        }
+
         if (response.headers['Pb-Token']) {
           await dispatch('auth/saveToken', {
             token: response.headers['Pb-Token']
