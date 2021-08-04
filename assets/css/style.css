@@ -235,6 +235,12 @@ header .navbar-light .navbar-nav .nav-link.admin-active svg path  {
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
 }
 
+.error {
+  color: #ee0000;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
 
 .switch {
   position: relative;
@@ -303,6 +309,12 @@ input:checked + .slider:before {
   margin-left: -30px;
   margin-right: -30px;  
   margin-bottom: 6px;
+  position: relative;
+}
+.page-title-banner .banner-btns {
+  position: absolute;
+  bottom: 20px;
+  right: 46px;
 }
 .page-title-banner h2 {
     display: flex;
@@ -383,7 +395,7 @@ input:checked + .slider:before {
 }
 
 .form-control {
-  background: #fcfcfc;
+  background: #f3f3f3;
   border-radius: 10px;
   border: none;
   height: 50px;
@@ -795,7 +807,7 @@ textarea.form-control {
   display: none;
 }
 .form-select {
-  background: #fcfcfc;
+  background-color: #f3f3f3;
   border-radius: 10px;
   border: none;
   height: 50px;
@@ -835,6 +847,13 @@ textarea.form-control {
 }
 
 /* RESPONSIVE FIXES */
+@media (-webkit-device-pixel-ratio:1.25) {
+  body {
+    zoom: 80%;
+  }
+  
+}
+
 @media screen and (max-width:990px) {
   .page-title-banner {
     height: 108px;

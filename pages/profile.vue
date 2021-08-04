@@ -639,7 +639,7 @@ export default {
     }
 }
 </script>
-<style lang="css" scoped>
+<style lang="css" >
     .profile-cover {
         background: url(~/assets/images/profile-cover.png) no-repeat;
         background-size: cover;
@@ -747,12 +747,17 @@ export default {
         position: relative;
     }
     .house-card img {
-        max-width: 100%;
+        height: 120px;
+        width: 100%;
+        border-radius: 10px;
     }
     .house-card-caption {
         position: absolute;
-        bottom: 10px;
-        left: 10px;
+        bottom: 0;
+        left: 0;
+        background: #00000042;
+        right: 0;
+        padding: 10px;
     }
     .house-card-caption h3 {
         color: #fff;
