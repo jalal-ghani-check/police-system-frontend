@@ -238,6 +238,19 @@
                                             </label>
                                         </div>
                                     </div>
+                                    <div class="switch-list">
+                                        <div class="switch-label">
+                                            <div class="switch-heading">Jury Duty</div>
+                                            <div v-if="jury_duty" class="switch-validity text-green">Valid</div>
+                                            <div v-else class="switch-validity text-red">Not Valid</div>
+                                        </div>
+                                        <div class="switch-toggle">
+                                            <label class="switch">
+                                                <input v-model="jury_duty" type="checkbox" :disabled="!isAllowedToEditProfile">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -474,6 +487,7 @@ export default {
       is_pilot_license_valid: 0,
       is_hunting_license_valid: 0,
       is_fishing_license_valid: 0,
+      jury_duty: 0,
       showExpungeModal: false,
       showEmptyMessage: false,
       showCreateWarrantModal: false
@@ -523,6 +537,9 @@ export default {
       is_fishing_license_valid(newValue , oldValue) {
           this.postSettings('is_fishing_license_valid',newValue)
       },
+      jury_duty(newValue , oldValue) {
+          this.postSettings('jury_duty',newValue)
+      },
       search_house(newValue, oldValue){
           if(newValue.length > 2){
               this.filterHouses(newValue)
@@ -560,6 +577,7 @@ export default {
         this.is_pilot_license_valid = this.profileRecord.is_pilot_license_valid
         this.is_hunting_license_valid = this.profileRecord.is_hunting_license_valid
         this.is_fishing_license_valid = this.profileRecord.is_fishing_license_valid
+        this.jury_duty = this.profileRecord.jury_duty
 
         setTimeout(() => this.saveSettingsAllow = true, 1000)
     

@@ -70,6 +70,7 @@ export default {
       if(this.getRefreshWarrantList){
         this.fetchAllWarrants()
       }
+      return 1
     },
     ...mapGetters({
       getRefreshWarrantList: 'warrant/getRefreshWarrantList'

@@ -17,6 +17,9 @@ export default {
   isLoggedInUserAdmin: (state) => {
     return state.userData.role_id == 1
   },
+  isAdmin: (state) => {
+    return state.userData.is_admin
+  },
   isAllowedToApproveWarrants: (state) => {
     return state.userData.is_allowed_to_approve_warrants
   },
