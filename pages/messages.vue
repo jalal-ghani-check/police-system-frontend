@@ -15,12 +15,13 @@
                                     Employees</h4>
                             </div>
                             <input type="hidden" v-model="selectedEmployeeComputed">
-                          <div v-if="!showEmptyEmployeesMessage" class="employees-card-list full-height scroll-wrapper" :value="usersList">
-                              <div class="employees-name-card" v-for="(user, index) in usersList" :key="index" :class="[user.role_key, {active: user.enc_user_id == selectedEmployee.enc_user_id }]">
-                                  <div class="tag">Police</div>
+                          <div v-if="!showEmptyEmployeesMessageComputed" class="employees-card-list full-height scroll-wrapper" :value="usersList">
+                              <div class="employees-name-card" v-for="(user) in usersList" :key="user.enc_user_id" @click="loadChatForThisUser(user.enc_user_id)"
+                              :class="[user.role_key, {active: user.enc_user_id == selectedEmployee.enc_user_id }]">
+                                  <div class="tag">{{user.role_name}}</div>
                                   <div class="info">
-                                      <h3>Federico De La Silva</h3>
-                                      <h4>@fdesil</h4>
+                                      <h3>{{ user.full_name }}</h3>
+                                      <h4>@{{ user.username }}</h4>
                                   </div>
                               </div>
                           </div>
@@ -58,26 +59,25 @@
                                 <div class="white-widget">
                                  <div class="message-box">
                                     <div class="user-info">
-                                        <div class="d-flex"><h3>Hadley Cooper</h3> <span>Police</span></div>
-                                        <h4>@hcooper</h4>
+                                        <div class="d-flex"><h3>{{ selectedEmployee.full_name }}</h3> <span>{{selectedEmployee.role_name}}</span></div>
+                                        <h4>@{{ selectedEmployee.username }}</h4>
                                     </div>
     
                                     <div class="conversation">
-    
-                                        <ul>
-                                            <li><div class="message">Hi!</div></li>
-                                            <li><div class="message">How are you?</div></li>
-                                            <li class="received"><div class="message">I am fine, What about you?</div></li>
-                                            <li><div class="message">Fine too, Thank you!</div></li>
+                                        
+                                        <ul class="overflow-auto">
+                                            <li v-for="(message, index) in chatMessagesComputed" :key='index' :class="{received: message.sender_external_id != getUserEncryptedId}">
+                                              <div class="message">{{message.text}}</div>
+                                            </li>
                                         </ul>
                                     </div>
     
                                     <div class="send-message">
                                         <div class="send-input">
-                                            <textarea type="text" class="form-control" placeholder="Aa"></textarea>
+                                            <textarea class="form-control" placeholder="Aa" v-model="typedMessage"></textarea>
                                         </div>
                                         <div class="send-btn">
-                                            <button class="btn btn-primary">
+                                            <button class="btn btn-primary" @click="sendMessage()">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M2.85056 0.0378758C3.53178 -0.0654388 4.22828 0.043822 4.84514 0.350762L21.6969 8.77664H21.7075C22.2392 9.05582 22.6864 9.47301 23.0018 9.98485C23.3275 10.5133 23.5 11.1218 23.5 11.7425C23.5 12.3632 23.3275 12.9717 23.0018 13.5001C22.6762 14.0284 22.2099 14.456 21.6556 14.735L4.85804 23.1337C4.38751 23.3641 3.87147 23.4864 3.34761 23.4918C2.78988 23.4915 2.24105 23.3518 1.75093 23.0856C1.26041 22.8192 0.844245 22.4344 0.540262 21.9662C0.236279 21.498 0.0541123 20.9613 0.0103177 20.4048C-0.0334687 19.8484 0.0625814 19.2896 0.289494 18.7798L3.16925 12.3365L3.17148 12.3311C3.24967 12.1447 3.28994 11.9446 3.28994 11.7425C3.28994 11.5403 3.24973 11.3402 3.17155 11.1538L0.289525 4.70525C0.0107465 4.07521 -0.0669829 3.37452 0.0669356 2.69869C0.200883 2.02271 0.540052 1.4045 1.0382 0.928325C1.53635 0.452156 2.16923 0.141207 2.85056 0.0378758ZM20.802 13.0329L20.688 12.8104L20.7998 13.034L3.9971 21.4353C3.73055 21.5633 3.43124 21.6067 3.1393 21.5598C2.84737 21.5128 2.57676 21.3778 2.36377 21.1727C2.15078 20.9676 2.00559 20.7022 1.94766 20.4123C1.88974 20.1223 1.92185 19.8216 2.03969 19.5504L2.04058 19.5484L4.90728 13.1074L4.90783 13.1061C4.94086 13.0294 4.96938 12.9509 4.99327 12.8709L5.04657 12.6924H13.5004C13.7523 12.6924 13.9939 12.5923 14.1721 12.4142C14.3502 12.236 14.4503 11.9944 14.4503 11.7425C14.4503 11.4905 14.3502 11.2489 14.1721 11.0708C13.9939 10.8926 13.7523 10.7925 13.5004 10.7925H5.04657L4.99327 10.6141C4.96938 10.5341 4.94086 10.4556 4.90783 10.3789L2.03969 3.93453C1.92185 3.66334 1.88974 3.3626 1.94766 3.07265C2.00559 2.78269 2.15078 2.51737 2.36377 2.31227C2.57676 2.10717 2.84737 1.97209 3.1393 1.92514C3.43124 1.8782 3.73055 1.92163 3.9971 2.04962L4.00069 2.05138L20.802 10.452C21.0395 10.5737 21.2388 10.7586 21.378 10.9862C21.5171 11.2139 21.5908 11.4756 21.5908 11.7425C21.5908 12.0093 21.5171 12.271 21.378 12.4987C21.2388 12.7264 21.0395 12.9112 20.802 13.0329Z" fill="white"/>
                                                     </svg>
@@ -107,58 +107,87 @@
 </template>
 
  <script>
+ import { mapGetters } from 'vuex'
+
 export default {
   name: 'Warrants',
   layout: 'master',
+  
   data() {
     return {
       usersList: [],
       selectedEmployee: [],
-      showEmptyEmployeesMessage: false,
       showEmptyChatMessage: false,
-      selectedUserId: ''
+      selectedUserId: '',
+      openedChatChannel: null,
+      chatMessages: {},
+      typedMessage: '',
+      socketConnected: false,
     }
   },
   mounted() {
     this.fetchAllUsers()
+    this.selectedUserId = this.$route.query.user_id
 
     this.socket = this.$nuxtSocket({
       channel: ''
     })
 
-    this.socket.emit('connection', {
-        hello: 'world' 
-      }, (resp) => {
-        /* Handle response, if any */
-      })
-
+    this.connectToSocket()
 
     /* Listen for events: */
-    this.socket
-    .on('pong', (msg, cb) => {
-      /* Handle event */
-      alert('pong')
-      console.log(msg, cb)
+      this.socket
+      .on('on-connect', (flag, cb) => {
+        this.socketConnected = flag
+      })
+
+    
+    .on('on-message-receive', (msg, cb) => {
+      alert('hello')
+      var d = new Date();
+      const time = d.getTime();
+      if(msg.receiverId === this.getUserEncryptedId) {
+        Object.assign(this.chatMessages ?? {}, {[time]: {text: msg.messageText, sender_external_id: msg.senderId}})
+        this.typedMessage = this.typedMessage + ''
+      }
     })
   },
 
   computed: {
+    showEmptyEmployeesMessageComputed () {
+      return this.usersList.length ? false : true
+    },
+    chatMessagesComputed () {
+      return this.chatMessages
+    },
     selectedEmployeeComputed () {
       return this.selectedEmployee
-    }
+    },
+    ...mapGetters({
+      getUserEncryptedId: 'auth/getUserEncryptedId',
+    })
   },
 
   methods: {
-    emit () {
-      alert('going to ping')
-      this.socket.emit('ping', {
-        hello: 'world' 
-      }, (resp) => {
-        /* Handle response, if any */
-      })
+    connectToSocket () {
+      this.socket.emit('connection', {},
+      (resp) => {})
     },
+
+    loadChatForThisUser (userId) {
+      this.selectedUserId = userId
+      this.usersList.forEach(user => {
+          if(user.enc_user_id == this.selectedUserId) {
+            this.selectedEmployee = user
+            // fetch user channel
+            this.fetchChatChannel()
+            
+          }
+        });
+        this.connectToSocket()
+    },
+
     async fetchAllUsers(){
-      this.selectedUserId = this.$route.query.user_id
       const users = this.usersList = await this.$store.dispatch(
         'auth/fetchAllUsers',
         {}
@@ -166,14 +195,80 @@ export default {
       if(users.length > 0) {
         users.forEach(user => {
           if(user.enc_user_id == this.selectedUserId) {
-            alert('yes')
             this.selectedEmployee = user
+            // fetch user channel
+            this.fetchChatChannel()
+            
           }
         });
       } else {
         this.showEmptyMessage = true
       }
 
+    },
+    fetchChatChannel () {
+      const senderId = this.getUserEncryptedId
+      const receiverId = this.selectedUserId
+      this.$store.dispatch(
+        'chat/fetchChannel',
+        {
+          sender_id: senderId,
+          receiver_id: receiverId
+        }
+      )
+      .then((response) => {
+        this.openedChatChannel = response
+        if(this.openedChatChannel) {
+          this.fetchChatMessages(this.openedChatChannel._id)
+        }
+        console.log('channel', this.openedChatChannel)
+      })
+      .catch(() => {})
+    },
+
+    fetchChatMessages (channel_id) {
+      this.$store.dispatch(
+        'chat/fetchChatMessages', channel_id)
+      .then((response) => {
+        this.chatMessages = response
+        console.log('channel messages', this.chatMessages)
+      })
+      .catch(() => {})
+    },
+
+    sendMessage () {
+      if(this.typedMessage) {
+        var d = new Date();
+        const time = d.getTime();
+        Object.assign(this.chatMessages, {[time]: {text: this.typedMessage, sender_external_id: this.getUserEncryptedId}})
+        console.log(this.chatMessages)
+
+        this.socket.emit('send-message', {
+          messageText: this.typedMessage,
+          senderId: this.getUserEncryptedId,
+          receiverId: this.selectedUserId,
+          channelId: this.openedChatChannel._id
+        }, (resp) => {
+
+        })
+        this.saveMessage(
+          {
+            sender_external_id: this.getUserEncryptedId,
+            text: this.typedMessage,
+            channel_id: this.openedChatChannel._id
+          }
+        )
+        this.typedMessage = ''
+      }
+    },
+
+    saveMessage (data) {
+      this.$store.dispatch(
+        'chat/sendMessage', data)
+      .then((response) => {
+        
+      })
+      .catch(() => {})
     },
   }
 }
