@@ -105,17 +105,17 @@ export default {
 
     register: [
       // Register custom toasts
-      {
-        name: 'post_success',
-        message: 'Saved Successfully',
-        options: {
-          type: 'success',
-          duration: 1000,
-          theme: 'toasted-primary',
-          keepOnHover: true,
-          fullWidth: false
-        }
-      }
+      // {
+      //   name: 'post_success',
+      //   message: 'Saved Successfully',
+      //   options: {
+      //     type: 'success',
+      //     duration: 1000,
+      //     theme: 'toasted-primary',
+      //     keepOnHover: true,
+      //     fullWidth: false
+      //   }
+      // }
     ]
   },
 

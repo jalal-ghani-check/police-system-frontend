@@ -11,7 +11,7 @@ export default {
     return this.$axios
       .post('houses/unlink', requestData)
       .then((response) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
       })
   },
 
@@ -19,7 +19,7 @@ export default {
     return this.$axios
       .post('houses/link', requestData)
       .then((response) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
       })
   },
 
@@ -30,7 +30,7 @@ export default {
         if(requestData.house_id !== ""){
           commit('updateHouseSingle',{...requestData, ...response.data.data}) 
         }
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
       })
   },
 
@@ -38,7 +38,7 @@ export default {
     return this.$axios
       .delete(`houses/delete/${requestData.house_id}`)
       .then((response) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
       })
   },
 }

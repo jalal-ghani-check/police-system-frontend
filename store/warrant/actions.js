@@ -13,7 +13,7 @@ export default {
     return this.$axios
       .post('warrants/update-status', requestData)
       .then((data) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
       })
   },
 
@@ -21,7 +21,7 @@ export default {
     return this.$axios
       .post('warrants/add', requestData)
       .then((response) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
         const { data } = response.data
         return data
       })

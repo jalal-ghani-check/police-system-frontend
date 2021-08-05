@@ -16,13 +16,13 @@
             </div>
             <div v-if="isAllowedToViewReports" class="report-cards">
                 <div v-if="policeReports.length > 0" class="row">
-                  <div class="col-md-4"
+                  <div class="col-md-4 report-card-frontend"
                     v-for="(report, index) in policeReports" :key="index"
                     @click="openReportModalPopUp(report)" data-bs-dismiss='modal'
                   >
                       <div class="report-card" :class="{red: report.report_type === 'medical_report'}">
                           <div class="tag-no" v-if="report.report_type !== 'medical_report'">#{{ report.case_number }}</div>
-                          <div class="tag-no" v-else>Citizen ID: LTF46591</div>
+                          <div class="tag-no" v-else>#{{ report.report_id_dec }}</div>
                           <h3>{{ report.report_title }} //{{ report.created_at }}</h3>
                           <h4>By: {{ report.written_by }}</h4>
                           <div v-if="report.report_type === 'medical_report'" class="tag">Medical Report</div>
@@ -131,7 +131,6 @@ export default {
       this.$store.commit('dashboard/setShowPendingWarrantModalOnDashboard', false)
     },
     fileUploaded(files) {
-      console.log(files)
     },
     openReportModalPopUp (report) {
       if(report.report_type === 'police_report') {

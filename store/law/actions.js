@@ -11,7 +11,7 @@ export default {
     return this.$axios
       .post('laws/add', requestData)
       .then((response) => {
-        this.$toast.global.post_success()
+        this.$showToastMessage(['Saved Successfully!'])
         const { data } = response.data
         return data
       })

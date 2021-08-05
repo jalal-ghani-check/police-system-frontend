@@ -225,8 +225,9 @@ export default {
   margin-right: 10px;
 }
 .houses-item .hosue-img img {
-  max-width: 100px;
-  height: 55px;
+    width: 100px;
+    height: 55px;
+    border-radius: 10px;
 }
 .houses-item .house-name .label,
 .houses-item .house-price .label {
@@ -346,17 +347,7 @@ export default {
   width: 100%;
 }
 .house-pic .add-picture {
-  position: absolute;
-  display: flex;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
 }
-.edit-house-modal .form-control {
-  font-size: 14px;
-}
+
 </style>
