@@ -307,7 +307,7 @@
                   <input type="text" class="form-control" placeholder="Name" v-model="surgeryName" />
                 </div>
                 <div class="col">
-                  <select class="form-control" placeholder="Year" v-model="surgeryYear" >
+                  <select class="form-select" placeholder="Year" v-model="surgeryYear" >
                     <option value="" >Select year</option>
                     <option v-for="(year, index) in yearsRange" :key="index" :value="year" >{{ year }}</option>
                   </select> 

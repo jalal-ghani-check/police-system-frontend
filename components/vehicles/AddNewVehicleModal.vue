@@ -11,7 +11,7 @@
             <div class="white-widget">
               <div class="form-section">
                 <h4>Add / Edit Vehicle</h4>
-                <notification-bar />
+                <!-- <notification-bar /> -->
                 <div class="row mb-3 mt-3 g-3">
                   <div class="col">
                       <input type="text" v-model="name" class="form-control" placeholder="Vehicle Name">
@@ -45,7 +45,7 @@
                   </div>
 
                   <div class="col">
-                    <select v-model="ownerId" class="form-select">
+                    <select v-model="ownerId" class="form-select" >
                           <option value="" >Select Owner</option>
                           <option v-for="(profile) in allProfiles" :key="profile.profile_id" :value="profile.profile_id"  >{{ profile.full_name }}</option>
                       </select>
