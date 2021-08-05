@@ -1,3 +1,5 @@
+import { faDAndD } from "@fortawesome/free-brands-svg-icons"
+
 export default {
   fetchAllWarrants ({ commit }, profileIdObj) {
     return this.$axios
@@ -10,6 +12,7 @@ export default {
   },
 
   updateWarrantStatus ({ commit }, requestData) {
+    console.log(requestData)
     return this.$axios
       .post('warrants/update-status', requestData)
       .then((data) => {
@@ -46,6 +49,7 @@ export default {
   generateWarrantDetailPopup ({ commit }, generateData) {
     commit('setDetailWarrantId', generateData.warrantId)
     commit('setIsWarrantDetailPopupOpen', true)
+    commit('setRefreshWarrantList', false)
     commit('setDetailWarrantDetail', generateData.warrantDetail)
   },
 

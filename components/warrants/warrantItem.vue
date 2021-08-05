@@ -7,6 +7,7 @@
           <h5>By: {{ warrant.user_full_name }}</h5>
       </div>
       <div class="created-by">Created: {{ warrant.created_at }}</div>
+      <div v-if="warrant.status === 'served'" class="tag">Served Warrant</div>
       <div v-if="warrant.status === 'pending'" class="tag">Pending Warrant</div>
       <div v-else-if="warrant.status === 'approved'" class="tag">Active Warrant</div>
       <div v-else-if="warrant.status === 'rejected'" class="tag">Rejected Warrant</div>
