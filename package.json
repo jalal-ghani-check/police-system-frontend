@@ -11,32 +11,31 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
-    "bootstrap": "^4.6.0",
-    "bootstrap-vue": "^2.21.2",
-    "core-js": "^3.15.1",
-    "nuxt": "^2.15.7",
-
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
-
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/toast": "^3.3.1",
     "@types/vuelidate": "^0.7.14",
+    "bootstrap": "^4.6.0",
+    "bootstrap-vue": "^2.21.2",
     "cookie-universal-nuxt": "^2.1.4",
-    "nuxt-i18n": "^6.26.0",
-    "nuxt-moment": "^1.0.5",
-    "vuelidate": "^0.7.6",
-    "vue2-datepicker": "^3.9.1",
+    "core-js": "^3.15.1",
     "filepond": "^4.27.1",
     "filepond-plugin-file-poster": "^2.4.4",
     "filepond-plugin-file-validate-type": "^1.2.6",
     "filepond-plugin-get-file": "^1.0.6",
     "filepond-plugin-image-preview": "^4.6.6",
-    "vue-filepond": "^6.0.0"
+    "nuxt": "^2.15.7",
+    "nuxt-i18n": "^6.26.0",
+    "nuxt-moment": "^1.0.5",
+    "nuxt-socket-io": "^1.1.18",
+    "vue-filepond": "^6.0.0",
+    "vue2-datepicker": "^3.9.1",
+    "vuelidate": "^0.7.6"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",

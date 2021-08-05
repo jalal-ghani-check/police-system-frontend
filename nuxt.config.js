@@ -58,8 +58,17 @@ export default {
     '@nuxtjs/fontawesome',
     '@nuxtjs/style-resources',
     '@nuxtjs/toast',
-    'nuxt-moment'
+    'nuxt-moment',
+    'nuxt-socket-io',
   ],
+
+  io: {
+    // module options
+    sockets: [{
+      name: 'main',
+      url: 'http://localhost:4000'
+    }]
+  },
 
 
 
