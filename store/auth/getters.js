@@ -11,6 +11,9 @@ export default {
   getUserProfilePicture: (state) => {
     return state.userData.profile_picture
   },
+  getUserEncryptedId: (state) => {
+    return state.userData.enc_user_id
+  },
   isLoggedInUserAdmin: (state) => {
     return state.userData.role_id == 1
   },

@@ -74,7 +74,7 @@
     
                                     <div class="send-message">
                                         <div class="send-input">
-                                            <textarea class="form-control" placeholder="Aa" v-model="typedMessage"></textarea>
+                                            <input type="text" class="form-control" placeholder="Aa" v-model="typedMessage" @keyup.enter="sendMessage()" />
                                         </div>
                                         <div class="send-btn">
                                             <button class="btn btn-primary" @click="sendMessage()">
@@ -121,8 +121,8 @@ export default {
       selectedUserId: '',
       openedChatChannel: null,
       chatMessages: {},
-      typedMessage: '',
       socketConnected: false,
+      typedMessage: '',
     }
   },
   mounted() {
@@ -143,12 +143,12 @@ export default {
 
     
     .on('on-message-receive', (msg, cb) => {
-      alert('hello')
       var d = new Date();
       const time = d.getTime();
       if(msg.receiverId === this.getUserEncryptedId) {
         Object.assign(this.chatMessages ?? {}, {[time]: {text: msg.messageText, sender_external_id: msg.senderId}})
-        this.typedMessage = this.typedMessage + ''
+        this.typedMessage = this.typedMessage + ' '
+        this.typedMessage = this.typedMessage.trim()
       }
     })
   },
@@ -221,7 +221,6 @@ export default {
         if(this.openedChatChannel) {
           this.fetchChatMessages(this.openedChatChannel._id)
         }
-        console.log('channel', this.openedChatChannel)
       })
       .catch(() => {})
     },
@@ -241,7 +240,6 @@ export default {
         var d = new Date();
         const time = d.getTime();
         Object.assign(this.chatMessages, {[time]: {text: this.typedMessage, sender_external_id: this.getUserEncryptedId}})
-        console.log(this.chatMessages)
 
         this.socket.emit('send-message', {
           messageText: this.typedMessage,

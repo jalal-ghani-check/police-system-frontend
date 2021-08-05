@@ -632,7 +632,6 @@ export default {
         this.medicalHistory.splice(index, 1)
       } else {
         this.medicalHistory.push(valueToPush)
-        console.log(this.medicalHistory)
       }
     },
     createMedicalReport () {

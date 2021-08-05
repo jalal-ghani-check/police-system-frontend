@@ -19,7 +19,7 @@ export default {
     return this.$axios
       .post(`chat/messages/add-new`, requestData)
       .then((response) => {
-        console.log(response)
+
       })
   },
 }

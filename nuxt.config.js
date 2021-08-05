@@ -36,7 +36,8 @@ export default {
   plugins: [
     '~/plugins/axios',
     '~/plugins/Vuelidate',
-    '~/plugins/commonUtil'
+    '~/plugins/commonUtil',
+    '~/plugins/vSelect',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -66,7 +67,7 @@ export default {
     // module options
     sockets: [{
       name: 'main',
-      url: 'http://localhost:4000'
+      url: process.env.SOCKET_CHAT_ENDPOINT
     }]
   },
 

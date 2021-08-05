@@ -35,16 +35,6 @@
 
                 <div class="row mb-3 g-3">
                   <div class="col">
-                      <input type="text" v-model="vehicleModel"  class="form-control" placeholder="Vehicle Model">
-                      <div
-                          v-if="$v.vehicleModel.$error && !$v.vehicleModel.required"
-                          class="error"
-                      >
-                        Model is required
-                      </div>
-                  </div>
-
-                  <div class="col">
                     <select v-model="ownerId" class="form-select" >
                           <option value="" >Select Owner</option>
                           <option v-for="(profile) in allProfiles" :key="profile.profile_id" :value="profile.profile_id"  >{{ profile.full_name }}</option>
@@ -89,8 +79,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { required, numeric } from 'vuelidate/lib/validators'
+import { required } from 'vuelidate/lib/validators'
 
 
 export default {
@@ -112,9 +101,6 @@ export default {
       required,
     },
     licensePlate: {
-      required
-    },
-    vehicleModel: {
       required
     },
     description: {
@@ -142,6 +128,18 @@ export default {
     }
   },
   methods: {
+    getProfileOptions () {
+      let options = [
+        { value: '', text: 'Select Owner' }
+      ]
+      this.allProfiles.forEach(profile => {
+        options.push(
+          { value: profile.profile_id, text: profile.full_name }
+        )
+      });
+      return options
+    },
+    
     submitForm() {
       this.$v.$touch()
       if (!this.$v.$invalid) {
