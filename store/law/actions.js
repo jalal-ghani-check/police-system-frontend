@@ -16,4 +16,11 @@ export default {
         return data
       })
   },
+  deleteLaw ({ commit }, data) {
+    return this.$axios
+      .delete(`laws/delete/${data.law_id}`)
+      .then((response) => {
+        this.$showToastMessage(['Saved Successfully!'])
+      })
+  },
 }

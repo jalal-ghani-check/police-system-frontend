@@ -86,6 +86,8 @@
                 </div>
             </div>
             <add-new-law-modal :show-modal="showAddModalComputed" @close="closeAddModal" />
+            <law-detail-modal />
+            <delete-law-modal />
 
         </div>
       </div>
@@ -96,8 +98,10 @@
 import { mapGetters } from 'vuex'
 import AddNewLawModal from '~/components/fine-laws/AddNewLawModal.vue'
 import lawItem from '~/components/fine-laws/fineCardItem.vue'
+import LawDetailModal from '~/components/fine-laws/lawDetailModal.vue'
+import DeleteLawModal from '~/components/fine-laws/deleteLawModal.vue'
 export default {
-  components: { lawItem, AddNewLawModal },
+  components: { lawItem, AddNewLawModal, LawDetailModal, LawDetailModal, DeleteLawModal },
   name: 'FineLaws',
   layout: 'master',
   middleware: ['lawsMW'],
