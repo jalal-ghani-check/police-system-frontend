@@ -1,5 +1,5 @@
 <template>
-    <div class="col-lg-3 col-md-4 mb-3">
+    <div class="col-lg-3 col-md-4 mb-3 report-card-frontend">
       <div :class="getCardClasses(law.color_class)" @click="showDetails">
           <div class="number">{{ law.law_code }}</div>
           <h4>{{ law.law_title }}</h4>

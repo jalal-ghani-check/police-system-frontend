@@ -1,5 +1,5 @@
 <template>
-  <div class="warrants-item" :class="{active: warrant.status === 'approved'}">
+  <div class="warrants-item report-card-frontend" @click="detailWarrant(warrant)" :class="{active: warrant.status === 'approved'}">
       <div class="tag-no">#{{ warrant.warrant_id }}</div>
       <div class="wanted-name">
           <h3>Wanted</h3>
