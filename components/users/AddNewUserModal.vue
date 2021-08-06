@@ -40,6 +40,12 @@
                       >
                           Password is required
                       </div>
+                      <div
+                          v-if="$v.password.$error && !$v.password.minLength"
+                          class="error"
+                      >
+                          Password must be atleast 8 characters long
+                      </div>
                   </div>
  
                 </div>
@@ -132,7 +138,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { required, requiredIf } from 'vuelidate/lib/validators'
+import { required, requiredIf,minLength } from 'vuelidate/lib/validators'
 
 export default {
   props: ['showModal','userId'],
@@ -159,7 +165,8 @@ export default {
       required
     },
     password: {
-      required
+      required,
+      minLength: minLength(8)
     },
     citizen_id: {
       required

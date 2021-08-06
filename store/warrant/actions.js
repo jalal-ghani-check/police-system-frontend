@@ -20,6 +20,14 @@ export default {
       })
   },
 
+  deleteWarrant ({ commit }, requestData) {
+    console.log(requestData)
+    return this.$axios
+      .post('warrants/delete', requestData)
+      .then((data) => {
+        this.$showToastMessage(['Warrant Deleted!'])
+      })
+  },
   addWarrant ({ commit }, requestData) {
     return this.$axios
       .post('warrants/add', requestData)

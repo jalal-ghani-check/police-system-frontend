@@ -15,6 +15,7 @@
       <div class="warrants-item-footer d-grid gap-2">
           <button v-if="(warrant.status === 'pending') && isAllowedToApproveWarrants" @click="acceptWarrant(warrant.enc_warrant_id)" class="btn btn-outline-success">Accept</button>
           <button v-if="(warrant.status === 'pending') && isAllowedToDeleteWarrants"   @click="rejectWarrant(warrant.enc_warrant_id)" class="btn btn-outline-danger">Reject</button>
+          <button v-if="(warrant.status !== 'approved') && isAllowedToDeleteWarrants"   @click="deleteWarrant(warrant.enc_warrant_id)" class="btn btn-outline-warning">Delete</button>
           <button v-if="warrant.status === 'approved'" @click="detailWarrant(warrant)"   class="btn btn-outline-secondary">View Details</button>
       </div>
 
@@ -51,14 +52,14 @@ export default {
       this.$renderWarrantDetailPopup(warrant.enc_warrant_id,warrant)
     },
     
-    expungeRecord() {
+    deleteWarrant(warrant_id) {
 
       this.$store
-        .dispatch('profile/expungeProfileRecord', {
-            profile_id: this.profileId
+        .dispatch('warrant/deleteWarrant', {
+            warrant_id: warrant_id
         })
         .then(() => {
-          this.closeModal()
+          this.$store.commit('warrant/setRefreshWarrantList', true)
         })
         .catch(() => {
 

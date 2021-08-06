@@ -364,6 +364,7 @@ export default {
 
         if(this.profilesListFiltered.length > 0) {
           this.selectedProfile = this.profilesListFiltered[0]
+          this.$store.commit('profile/pushNewSearchprofile',this.selectedProfile)
         }else {
           this.showEmptyMessageSearch = true
         }

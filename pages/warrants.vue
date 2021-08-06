@@ -78,6 +78,7 @@ export default {
   },
   methods: {
     async fetchAllWarrants(){
+      this.$store.commit('warrant/setRefreshWarrantList', false)
       this.warrantsList = await this.$store.dispatch(
         'warrant/fetchAllWarrants',
         {}

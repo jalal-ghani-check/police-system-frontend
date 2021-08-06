@@ -161,6 +161,12 @@
                                         </div>
                                         <div class="col">
                                             <input type="password" v-model="selectedEmployee.password"  class="form-control" placeholder="Password">
+                                            <div
+                                                v-if="$v.selectedEmployee.password.$error && !$v.selectedEmployee.password.minLength"
+                                                class="error"
+                                            >
+                                                Password must be atleast 8 characters long
+                                            </div>
                                         </div>
                                         <div class="col">
                                             <input type="text" v-model="selectedEmployee.citizen_id"  class="form-control" placeholder="Citizen ID">
@@ -465,6 +471,9 @@ export default {
       },
      username: {
         required
+      },
+     password: {
+        minLength: minLength(8)
       },
      citizen_id: {
         required

@@ -1,3 +1,4 @@
 export default () => ({
-  allProfiles: []
+  allProfiles: [],
+  profileSearches: [],
 })

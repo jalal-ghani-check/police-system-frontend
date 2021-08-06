@@ -68,32 +68,26 @@
           </div>
           <div class="col-md-3">
               <div class="section-heading small green">
-                  <h4>Latest Searchs</h4>
+                  <h4>Latest Searches</h4>
               </div>
-              <div class="dashboard-sidebar">
-                  <div class="sidebar-card">
-                      <h3>Orion Powers</h3>
-                      <h4>Citizen ID: LTF46591</h4>
-                      <div class="lisence-no">
-                          Weapon Lisence: <span>No</span>
-                      </div>
-                  </div>
-                  <div class="sidebar-card">
-                      <h3>Orion Powers</h3>
-                      <h4>Citizen ID: LTF46591</h4>
-                      <div class="lisence-no">
-                        Weapon Lisence: <span>No</span>
-                      </div>
-                  </div>
-                  <div class="sidebar-card">
-                      <h3>Orion Powers</h3>
-                      <h4>Citizen ID: LTF46591</h4>
-                      <div class="lisence-no">
-                        Weapon Lisence: <span>No</span>
-                      </div>
+              <div v-if="latestSearchListComputed.length > 0 && isAllowedToViewProfile" class="dashboard-sidebar">
+                  <div v-for="(profile,index) in latestSearchListComputed" :key="index" >
+                    <div  class="sidebar-card">
+                        <h3>{{ profile.full_name }}</h3>
+                        <h4>Citizen ID: {{ profile.citizen_id }}</h4>
+                        <div class="lisence-no">
+                            Weapon Lisence: <span v-if="profile.is_weapon_license_valid" >Yes</span><span v-else >Yes</span>
+                        </div>
+                    </div>
                   </div>
 
               </div>
+              <div v-else class="no-data">
+              <div>
+                  <h4>{{ emptyLatestSearchMessage }}</h4>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -111,20 +105,44 @@ export default {
   layout: 'master',
   data () {
     return {
-      policeReports: []
+      policeReports: [],
+      dummySearchList: [],
+      latestSearchList: [],
     }
   },
   computed: {
+    emptyLatestSearchMessage() {
+      if(!this.isAllowedToViewProfile){
+        return 'No Rights'
+      }else {
+        return 'No Latest Searches'
+      }
+
+    },
+    latestSearchListComputed() {
+      return this.latestSearchList
+    },
+
     ...mapGetters({
       getShowPendingWarrantModalOnDashboard: 'dashboard/getShowPendingWarrantModalOnDashboard',
       isAllowedToViewReports: 'auth/isAllowedToViewReports',
+      getLatestProfileSearches: 'profile/getLatestProfileSearches',
+      isAllowedToViewProfile: 'auth/isAllowedToViewProfile',
     })
   },
   mounted () {
     this.$store.commit('setActiveTab', 'dashboard')
+    this.dummySearchList = []
     if(this.isAllowedToViewReports) {
       this.fetchAllReports()
     }
+    this.getLatestProfileSearches.forEach( (item) => {
+      if(!this.dummySearchList.includes(item.citizen_id)){
+        this.dummySearchList.push(item.citizen_id)
+        this.latestSearchList.push(item)
+      }
+    })
+
   },
   methods: {
     closePendingWarrantModal() {
