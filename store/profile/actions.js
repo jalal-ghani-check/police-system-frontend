@@ -43,7 +43,7 @@ export default {
       })
   },
 
-  addProfle ({ commit }, requestData) {
+  manageProfle ({ commit }, requestData) {
     return this.$axios
       .post('profile/add', requestData)
       .then((response) => {

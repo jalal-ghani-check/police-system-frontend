@@ -22,6 +22,12 @@
                       >
                           <span class="text-danger">Name is required</span>
                       </div>
+                      <div
+                          v-if="$v.name.$error && !$v.name.maxLength"
+                          class="error"
+                      >
+                          <span class="text-danger">Name can be 32 characters long</span>
+                      </div>
                   </div>
                   <div class="col-md-8">
                       <input type="text" v-model="description"  class="form-control" placeholder="Description">
@@ -30,6 +36,12 @@
                           class="error"
                       >
                           <span class="text-danger">Description is required</span>
+                      </div>
+                      <div
+                          v-if="$v.description.$error && !$v.description.maxLength"
+                          class="error"
+                      >
+                          <span class="text-danger">Description can be 512 characters long</span>
                       </div>
                   </div>
  
@@ -126,7 +138,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { required, numeric } from 'vuelidate/lib/validators'
+import { required, numeric, maxLength } from 'vuelidate/lib/validators'
 
 
 export default {
@@ -147,12 +159,14 @@ export default {
   validations: {
     name: {
       required,
+      maxLength: maxLength(32)
     },
     law_code: {
       required
     },
     description: {
-      required
+      required,
+      maxLength: maxLength(512)
     },
     crime_type: {
       required

@@ -103,6 +103,13 @@
 
                         </div>
 
+                        <div class="col-md-5 header-buttons">
+              
+                            <button v-if="isAllowedToEditProfile" @click="editProfileBasicDetail()"  class="btn btn-success">
+                              Edit Details
+                            </button>
+
+                        </div>
 
                         <div v-if="!showEmptyMessageSearchComputed" class="white-widget">
                             <div class="employee-info">
@@ -190,7 +197,7 @@
                 </div>
             </div>
             <!-- <delete-user-modal :show-modal="showDeleteModalComputed" :user-id="userIdToDeleteComputed" @close="closeDeleteModal" /> -->
-            <add-new-profile-modal :show-modal="showAddModalComputed" @close="closeAddModal" />
+            <add-new-profile-modal :show-modal="showAddModalComputed" :profile-id='selectedProfileIdComputed' :selected-profile="selectedProfileComputed" @close="closeAddModal" />
         </div>
     </div>
 </template>
@@ -218,6 +225,7 @@ export default {
       showEmptyMessage: false,
       showEmptyMessageSearch: false,
       profile_search: '',
+      profileId: null,
     }
   },
   validations: {
@@ -265,6 +273,12 @@ export default {
 
   },
   computed: {
+    selectedProfileIdComputed () {
+      return this.profileId
+    },
+    selectedProfileComputed () {
+      return this.selectedProfile
+    },
     profilesListComputed() {
       return this.profilesList
     },
@@ -287,13 +301,13 @@ export default {
       return this.userIdToDelete
     },
     showEmptyMessageSearchComputed() {
-      console.log('huhu',this.showEmptyMessageSearch)
       return this.showEmptyMessageSearch
     },
     ...mapGetters([ 'getRanks', 'getDepartments']),
     ...mapGetters({
       isAllowedToCreateProfile: 'auth/isAllowedToCreateProfile',
       isAllowedToViewProfile: 'auth/isAllowedToViewProfile',
+      isAllowedToEditProfile: 'auth/isAllowedToEditProfile',
     })
   },
   mounted () {
@@ -322,6 +336,10 @@ export default {
     editProfile() {
       this.isEditMode = true
     },
+    editProfileBasicDetail () {
+      this.profileId = true
+      this.isAddModalOpen = true
+    },
     closeDeleteModal() {
       this.userIdToDelete = 0
       this.isDeleteModalOpen = false
@@ -334,6 +352,7 @@ export default {
       this.isAddModalOpen = true
     },
     closeAddModal() {
+      this.profileId = false
       this.isAddModalOpen = false
       this.fetchAllProfiles()
       this.selectProfile(0)

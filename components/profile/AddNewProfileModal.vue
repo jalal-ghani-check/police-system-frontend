@@ -11,7 +11,7 @@
           <div class="modal-body">
             <div class="white-widget">
               <div class="form-section">
-                <h4>Add New Profile</h4>
+                <h4>Add / Edit Profile</h4>
                 <notification-bar />
                 <div class="row mb-5 mt-3 g-3">
                   <div class="col" >
@@ -106,7 +106,7 @@
           <div class="alert-footer">
               <button @click="closeModal" class="btn" data-bs-dismiss="modal">Close</button>
               <button @click="submitForm" class="btn btn-success">
-                Add
+                Save
               </button>
           </div>
           
@@ -127,7 +127,7 @@ import 'vue2-datepicker/index.css'
 
 
 export default {
-  props: ['showModal'],
+  props: ['showModal', 'selectedProfile','profileId'],
   components: { DatePicker },
   name: 'AddNewProfileModal',
   data () {
@@ -173,12 +173,25 @@ export default {
   },
   computed: {
     showModalComputed() {
+      if(this.profileId) {
+        this.full_name = this.selectedProfile.full_name
+        this.designation = this.selectedProfile.designation
+        this.gender = this.selectedProfile.gender
+        // this.dob = this.selectedProfile.dob
+        this.address = this.selectedProfile.address
+        this.citizen_id = this.selectedProfile.citizen_id
+        this.finger_print = this.selectedProfile.finger_print
+        this.dna_code = this.selectedProfile.dna_code
+      }
       return this.showModal
     },
     ...mapGetters([ 'getGenders']),
     ...mapGetters({
       isLoggedInUserAdmin: 'auth/isLoggedInUserAdmin'
     }),
+    selectedProfileComputed () {
+      return this.selectedProfile
+    }
 
   },
   methods: {
@@ -186,7 +199,8 @@ export default {
       this.$v.$touch()
       if (!this.$v.$invalid) {
         this.$store
-        .dispatch('profile/addProfle', {
+        .dispatch('profile/manageProfle', {
+          profile_id: this.selectedProfile.profile_id,
           full_name: this.full_name,
           designation: this.designation,
           gender: this.gender,

@@ -132,6 +132,7 @@ import houseListItem from '~/components/houses/houseListItem.vue'
 export default {
   name: 'Houses',
   components: { houseListItem, editHouseModal, deleteHouseModal, linkHouseToProfileModal, UnlinkHouseModal },
+  middleware: ['housesMW'],
   layout: 'master',
 
   data () {

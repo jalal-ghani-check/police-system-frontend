@@ -110,6 +110,11 @@ export default {
     return state.userData.is_allowed_to_view_charges
   },
 
+  isAllowedToViewHousesPage: (state) => {
+    const deptId = state.userData.department_id
+    return deptId == 4 || state.userData.is_admin
+  }
+
 }
 
 

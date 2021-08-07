@@ -10,19 +10,25 @@
             <div class="col-6 text-end">Months: {{ law.duration }}</div>
           </div>
       </div>
-      <button class="btn text-danger" @click="showDeleteLawModal(law.law_id)">Reject</button>
+      <button v-if='isAllowedToCreateLaws' class="btn text-danger" @click="showDeleteLawModal(law.law_id)">Reject</button>
     </div>
     
   
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props: ['law'],
   name: 'fineCardItem',
   methods: {
     getCardClasses (colorClass) {
       return 'fine-card ' + colorClass
+    },
+    computed: {
+      ...mapGetters({
+        isAllowedToCreateLaws: 'auth/isAllowedToDeleteLaws',
+      }),
     },
     showDetails () {
       this.$store.commit('law/setDetailLawDetail', this.law)
