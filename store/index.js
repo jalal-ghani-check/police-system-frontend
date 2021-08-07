@@ -11,6 +11,7 @@ export const state = () => ({
   crimetypes: [],
   toastMessages: [],
   toastClass: [],
+  showInfoModal: false,
 })
 
 export const mutations = {
@@ -35,6 +36,9 @@ export const mutations = {
   setToastClass (state, toastClass) {
     state.toastClass = toastClass
   },
+  setshowInfoModal(state,showInfoModal) {
+    state.showInfoModal = showInfoModal
+  }
 }
 
 export const getters = {
@@ -74,6 +78,9 @@ export const getters = {
   getToastClass (state) {
     return state.toastClass
   },
+  showMyInfoModal(state) {
+    return state.showInfoModal
+  }
   
   
 }

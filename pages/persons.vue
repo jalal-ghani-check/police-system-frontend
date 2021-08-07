@@ -212,6 +212,7 @@ export default {
   components: { DeleteUserModal, AddNewUserModal, AddNewProfileModal },
   name: 'Persons',
   layout: 'master',
+  middleware: ['profileMW'],
   data () {
     return {
       profilesList: [],

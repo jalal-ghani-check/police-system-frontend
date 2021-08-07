@@ -79,7 +79,7 @@
                   </div>
                 </div>
                 <div class="row mb-3 g-3">
-                  <div class="col">
+                  <div v-if="isLoggedInUserAdmin" class="col">
                       <select v-model="enc_department_id" class="form-select">
                           <option value="" >Select Department</option>
                           <option v-for="dept in getDepartments" :key="dept.key" :value="dept.key"  >{{ dept.value }}</option>
@@ -175,7 +175,9 @@ export default {
       required
     },
     enc_department_id: {
-      required
+      required: requiredIf(function () {
+        return this.isLoggedInUserAdmin
+      })
     },
     enc_role_id: {
       required: requiredIf(function () {
