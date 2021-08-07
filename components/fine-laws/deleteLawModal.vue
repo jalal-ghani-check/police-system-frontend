@@ -62,7 +62,7 @@ export default {
         }
       ).then((response) => {
         this.closeDeleteLawModalPopUp()
-        this.$store.dispatch('law/fetchAllLaws', {})
+        this.$emit('fetchLaws', this.$event)
       })
       .catch(() => {})
     }

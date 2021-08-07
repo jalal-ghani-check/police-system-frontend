@@ -36,7 +36,7 @@
 
                 <div class="fine-list">
                     <div class="row" v-if="lawListInfractionFilteredComputed && lawListInfractionFilteredComputed.length > 0">
-                        <law-item v-for="(law, index) in lawListInfractionFilteredComputed" :key="index" :law="law" />
+                        <law-item v-for="(law, index) in lawListInfractionFilteredComputed" :key="index" :law="law" @edit="addNewLaw()" />
                     </div>
                     <div v-else class="no-data">
                         <div>
@@ -55,7 +55,7 @@
                 <div class="fine-list">
 
                     <div class="row" v-if="lawListMisdemeanorFilteredComputed && lawListMisdemeanorFilteredComputed.length > 0">
-                        <law-item v-for="(law, index) in lawListMisdemeanorFilteredComputed" :key="index" :law="law" />
+                        <law-item v-for="(law, index) in lawListMisdemeanorFilteredComputed" :key="index" :law="law" @edit="addNewLaw()" />
                     </div>
                     <div v-else class="no-data">
                         <div>
@@ -73,7 +73,7 @@
 
                 <div class="fine-list">
                     <div class="row" v-if="lawListFelonyFilteredComputed && lawListFelonyFilteredComputed.length > 0">
-                        <law-item v-for="(law, index) in lawListFelonyFilteredComputed" :key="index" :law="law" />
+                        <law-item v-for="(law, index) in lawListFelonyFilteredComputed" :key="index" :law="law" @edit="addNewLaw()" />
                     </div>
                     <div v-else class="no-data">
                         <div>
@@ -87,7 +87,7 @@
             </div>
             <add-new-law-modal :show-modal="showAddModalComputed" @close="closeAddModal" />
             <law-detail-modal />
-            <delete-law-modal />
+            <delete-law-modal @fetchLaws="fetchAllLaws" />
 
         </div>
       </div>
@@ -169,6 +169,7 @@ export default {
     },
     closeAddModal() {
       this.isAddModalOpen = false
+      this.$store.commit('law/setSelectedLaw', null)
       this.fetchAllLaws()
 
     },

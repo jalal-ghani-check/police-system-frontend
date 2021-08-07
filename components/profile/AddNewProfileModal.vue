@@ -177,7 +177,7 @@ export default {
         this.full_name = this.selectedProfile.full_name
         this.designation = this.selectedProfile.designation
         this.gender = this.selectedProfile.gender
-        // this.dob = this.selectedProfile.dob
+        this.dob = this.selectedProfile.dob_ymd
         this.address = this.selectedProfile.address
         this.citizen_id = this.selectedProfile.citizen_id
         this.finger_print = this.selectedProfile.finger_print

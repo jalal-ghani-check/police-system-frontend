@@ -10,7 +10,8 @@
             <div class="col-6 text-end">Months: {{ law.duration }}</div>
           </div>
       </div>
-      <button v-if='isAllowedToCreateLaws' class="btn text-danger" @click="showDeleteLawModal(law.law_id)">Reject</button>
+      <button v-if='isAllowedToEditLaws' class="btn text-danger" @click="editLaw(law)">Edit</button>|
+      <button v-if='isAllowedToDeleteLaws' class="btn text-danger" @click="showDeleteLawModal(law.law_id)">Delete</button>
     </div>
     
   
@@ -21,19 +22,24 @@ import { mapGetters } from 'vuex'
 export default {
   props: ['law'],
   name: 'fineCardItem',
+  computed: {
+    ...mapGetters({
+      isAllowedToDeleteLaws: 'auth/isAllowedToDeleteLaws',
+      isAllowedToEditLaws: 'auth/isAllowedToEditLaws',
+    }),
+  },
   methods: {
     getCardClasses (colorClass) {
       return 'fine-card ' + colorClass
-    },
-    computed: {
-      ...mapGetters({
-        isAllowedToCreateLaws: 'auth/isAllowedToDeleteLaws',
-      }),
     },
     showDetails () {
       this.$store.commit('law/setDetailLawDetail', this.law)
       this.$store.commit('law/setDetailLawId', this.law.law_id)
       this.$store.commit('law/setIsLawDetailPopupOpen', true)
+    },
+    editLaw(law) {
+      this.$store.commit('law/setSelectedLaw', law)
+      this.$emit('edit', this.$event)
     },
     closeModal () {
       this.$store.commit('law/setDetailLawDetail', [])

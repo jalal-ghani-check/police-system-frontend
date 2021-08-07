@@ -10,6 +10,9 @@ export default {
   },
   setIsLawDeletePopupOpen: (state, flag) => {
     state.isLawDeletePopupOpen = flag
-  }
+  },
+  setSelectedLaw: (state, data) => {
+    state.selectedLaw = data
+  } 
 
 }

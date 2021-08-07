@@ -11,7 +11,7 @@
           <div class="modal-body">
             <div class="white-widget">
               <div class="form-section">
-                <h4>Add New Law</h4>
+                <h4>Add / Edit Law</h4>
                 <notification-bar />
                 <div class="row mb-3 mt-3 g-3">
                   <div class="col-md-4" >
@@ -123,7 +123,7 @@
           <div class="alert-footer">
               <button @click="closeModal" class="btn" data-bs-dismiss="modal">Close</button>
               <button @click="submitForm" class="btn btn-success">
-                Add
+                Save
               </button>
           </div>
           
@@ -151,8 +151,10 @@ export default {
       description: "",
       crime_type: "",
       points: "",
-      fine_amount: "",
+      fine_amount: null,
       jail_time: "",
+      selectedLaw: "",
+      selectedLawId: ""
 
     }
   },
@@ -188,6 +190,17 @@ export default {
   },
   computed: {
     showModalComputed() {
+      const selectedLaw = this.selectedLaw = this.$store.state.law.selectedLaw
+      if(selectedLaw) {
+        this.selectedLawId = selectedLaw.law_id
+        this.name = selectedLaw.law_title
+        this.law_code = selectedLaw.law_code
+        this.description = selectedLaw.description
+        this.crime_type = selectedLaw.crime_type
+        this.points = selectedLaw.points
+        this.fine_amount = parseInt(selectedLaw.fine_amount)
+        this.jail_time = selectedLaw.duration
+      }
       return this.showModal
     },
     ...mapGetters([ 'getCrimeTypes']),
@@ -199,6 +212,7 @@ export default {
       if (!this.$v.$invalid) {
         this.$store
         .dispatch('law/addLaw', {
+          law_id: this.selectedLawId,
           name: this.name,
           law_code: this.law_code,
           description: this.description,

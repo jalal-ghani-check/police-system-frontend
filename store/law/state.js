@@ -3,5 +3,6 @@ export default () => ({
   lawDetail: [],
   isLawDetailPopupOpen: false,
   isLawDeletePopupOpen: false,
+  selectedLaw: null
   
 })

@@ -10,6 +10,9 @@ export default {
   },
   getIsLawDeletePopupOpen: (state) => {
     return state.isLawDeletePopupOpen
+  },
+  getSelectedLaw: (state) => {
+    return state.selectedLaw
   }
 
 }
