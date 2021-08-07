@@ -12,7 +12,6 @@ export default {
   },
 
   updateWarrantStatus ({ commit }, requestData) {
-    console.log(requestData)
     return this.$axios
       .post('warrants/update-status', requestData)
       .then((data) => {
@@ -21,7 +20,6 @@ export default {
   },
 
   deleteWarrant ({ commit }, requestData) {
-    console.log(requestData)
     return this.$axios
       .post('warrants/delete', requestData)
       .then((data) => {

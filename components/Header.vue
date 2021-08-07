@@ -215,7 +215,7 @@
                             {{ getUserFullName }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">
+                      <li><nuxt-link class="dropdown-item" to="messages">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -223,7 +223,7 @@
                                 fill="#1B1B1B" fill-opacity="0.5" />
                         </svg>
                         Messages
-                      </a></li>
+                      </nuxt-link></li>
                       <li v-if="!isAdmin"><hr class="dropdown-divider"></li>
                       <li v-if="!isAdmin" @click="myinfo()"><a class="dropdown-item" href="#">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

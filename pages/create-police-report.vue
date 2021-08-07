@@ -478,7 +478,6 @@ export default {
         this.lawsArray.splice(index, 1)
       } else {
         this.lawsArray.push(valueToPush)
-        console.log(this.lawsArray)
       }
     },
     discardPoliceReport () {

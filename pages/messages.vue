@@ -14,10 +14,33 @@
                                     </svg>
                                     Employees</h4>
                             </div>
-                            <input type="hidden" v-model="selectedEmployeeComputed">
-                          <div v-if="!showEmptyEmployeesMessageComputed" class="employees-card-list full-height scroll-wrapper" :value="usersList">
-                              <div class="employees-name-card" v-for="(user) in usersList" :key="user.enc_user_id" @click="loadChatForThisUser(user.enc_user_id)"
-                              :class="[user.role_key, {active: user.enc_user_id == selectedEmployee.enc_user_id }]">
+
+                          <div class="section-search mt-3">
+                          <div class="form-group">
+                            <div class="search-icon">
+                              <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 18 18"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  clip-rule="evenodd"
+                                  d="M15.4196 18C14.7599 18 14.1273 17.7382 13.6605 17.2721L11.6842 15.2958L11.683 15.2946C11.3191 14.9225 11.0809 14.4455 11.0021 13.931C10.9232 13.4159 11.0079 12.889 11.2444 12.4246L11.3466 12.2237L10.1665 11.0435L9.95123 11.2047C8.6915 12.1474 7.12139 12.578 5.55697 12.4097C3.99255 12.2413 2.54998 11.4866 1.51966 10.2974C0.489337 9.10822 -0.0522314 7.57286 0.00397507 6.00041C0.0601816 4.42796 0.709989 2.93519 1.82259 1.82259C2.93519 0.709989 4.42796 0.0601816 6.00041 0.00397506C7.57286 -0.0522314 9.10822 0.489337 10.2974 1.51966C11.4866 2.54998 12.2413 3.99255 12.4097 5.55697C12.578 7.12139 12.1474 8.6915 11.2047 9.95123L11.0435 10.1665L12.2259 11.3489L12.4219 11.2595C12.8872 11.0473 13.4054 10.9791 13.9098 11.0637C14.4123 11.1479 14.8783 11.38 15.2484 11.7302L17.1761 13.7045L17.3982 13.4877L17.1812 13.7096C17.4183 13.9414 17.6067 14.2183 17.7354 14.524C17.864 14.8297 17.9303 15.158 17.9303 15.4896C17.9303 15.8212 17.864 16.1495 17.7354 16.4552C17.6067 16.7609 17.4183 17.0377 17.1812 17.2696L17.1789 17.2719C16.7121 17.7381 16.0793 18 15.4196 18ZM14.324 12.6065L16.3008 14.5833C16.4171 14.6988 16.51 14.8367 16.573 14.988C16.6361 15.1395 16.6687 15.3021 16.6687 15.4663C16.6687 15.6304 16.6361 15.793 16.573 15.9445C16.51 16.0957 16.4178 16.2329 16.3017 16.3484C16.1863 16.4645 16.049 16.5567 15.8979 16.6197C15.7463 16.6828 15.5838 16.7153 15.4196 16.7153C15.2554 16.7153 15.0929 16.6828 14.9413 16.6197C14.79 16.5566 14.6527 16.4643 14.5372 16.348L12.5598 14.3707C12.4436 14.2552 12.3507 14.1173 12.2876 13.966C12.2245 13.8144 12.192 13.6519 12.192 13.4877C12.192 13.3235 12.2245 13.161 12.2876 13.0094C12.3506 12.8583 12.4428 12.721 12.5589 12.6056C12.6744 12.4895 12.8116 12.3973 12.9628 12.3343C13.1143 12.2712 13.2769 12.2386 13.441 12.2386C13.6052 12.2386 13.7678 12.2712 13.9193 12.3343C14.0707 12.3974 14.2085 12.4901 14.324 12.6065ZM7.15467 11.1088C8.11973 10.9178 9.00653 10.445 9.70305 9.75027C10.1665 9.28796 10.5342 8.73877 10.7851 8.13414C11.036 7.5295 11.1652 6.88131 11.1652 6.22669C11.1652 5.57207 11.036 4.92388 10.7851 4.31925C10.5342 3.71461 10.1665 3.16542 9.70305 2.70312C9.00653 2.00836 8.11973 1.53561 7.15467 1.3446C6.18961 1.15359 5.18958 1.25288 4.28092 1.62993C3.37227 2.00699 2.59574 2.64488 2.04944 3.46304C1.50314 4.2812 1.21157 5.24291 1.21157 6.22669C1.21157 7.21047 1.50314 8.17219 2.04944 8.99035C2.59574 9.8085 3.37227 10.4464 4.28092 10.8235C5.18958 11.2005 6.18961 11.2998 7.15467 11.1088Z"
+                                  fill="#C0C0C0"
+                                ></path>
+                              </svg>
+                            </div>
+                            <input type="text" class="form-control" v-model="user_search"  placeholder="Search" />
+                          </div>
+                        </div>
+
+
+                          <div v-if="!showEmptyEmployeesMessageComputed" class="employees-card-list full-height scroll-wrapper">
+                              <div class="employees-name-card" v-for="(user) in usersListFilteredComputed" :key="user.enc_user_id" @click="loadChatForThisUser(user.enc_user_id)"
+                              :class="[user.role_key, {active: (selectedEmployeeComputed) && user.enc_user_id == selectedEmployeeComputed.enc_user_id }]">
                                   <div class="tag">{{user.role_name}}</div>
                                   <div class="info">
                                       <h3>{{ user.full_name }}</h3>
@@ -34,14 +57,14 @@
                                         fill="#1B1B1B" fill-opacity="0.5" stroke="white"
                                         stroke-width="0.4" />
                                 </svg>  
-                                <h4>No Profiles</h4>
+                                <h4>No Users</h4>
                             </div>
                           </div>
 
 
 
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-9" v-if="selectedEmployeeComputed">
                             <div class="messages-wrapper">
                                 <div class="title-header">
                                     <div class="section-heading small red">
@@ -93,6 +116,18 @@
                             </div>
                            
                         </div>
+                        <div v-else class="no-data col-md-9">
+                            <div>
+                                <svg width="32" height="25"
+                                    viewBox="0 0 32 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M15.822 12.6594L15.5858 12.8639L15.8704 12.9928C17.8117 13.8718 19.4587 15.2914 20.6146 17.0817C21.7704 18.8721 22.3862 20.9574 22.3882 23.0884C22.3882 23.4097 22.2605 23.7179 22.0333 23.9451C21.8061 24.1723 21.4978 24.3 21.1765 24.3C20.8551 24.3 20.5469 24.1723 20.3196 23.9451C20.0924 23.7178 19.9647 23.4096 19.9647 23.0882C19.9647 20.7887 19.0512 18.5833 17.4251 16.9572C15.7991 15.3312 13.5937 14.4176 11.2941 14.4176C8.99453 14.4176 6.78914 15.3312 5.16309 16.9572C3.53704 18.5833 2.62353 20.7887 2.62353 23.0882C2.62353 23.4096 2.49586 23.7178 2.26861 23.9451C2.04136 24.1723 1.73315 24.3 1.41176 24.3C1.09038 24.3 0.782167 24.1723 0.554918 23.9451C0.32769 23.7179 0.200025 23.4097 0.2 23.0883C0.202059 20.9573 0.817814 18.872 1.97364 17.0817C3.12949 15.2914 4.77652 13.8718 6.71779 12.9928L7.00245 12.8639L6.76619 12.6594C6.03459 12.0261 5.44779 11.2429 5.04561 10.3628C4.64343 9.48272 4.43528 8.52643 4.43529 7.55883C4.43529 5.73975 5.15792 3.99518 6.4442 2.7089C7.73048 1.42262 9.47504 0.7 11.2941 0.7C13.1132 0.7 14.8578 1.42262 16.144 2.7089C17.4303 3.99518 18.1529 5.73975 18.1529 7.55882C18.153 8.52643 17.9448 9.48272 17.5426 10.3628C17.1404 11.2429 16.5536 12.0261 15.822 12.6594ZM24.8952 12.1131L24.738 12.2901L24.9387 12.4155C26.747 13.5456 28.2362 15.1194 29.265 16.9872C30.2938 18.855 30.8278 20.9548 30.8165 23.0872V23.0882C30.8165 23.4096 30.6888 23.7178 30.4615 23.9451C30.2343 24.1723 29.9261 24.3 29.6047 24.3C29.2833 24.3 28.9751 24.1723 28.7479 23.9451C28.5207 23.718 28.3931 23.41 28.3929 23.0888C28.4079 21.1677 27.8737 19.2822 26.8532 17.6544C25.8334 16.0278 24.3704 14.7263 22.6362 13.9027L22.4655 13.8107L21.9227 13.4489L21.9217 13.4482C21.7498 13.3351 21.6095 13.1801 21.5141 12.9978C21.4188 12.8155 21.3714 12.612 21.3764 12.4064C21.3818 12.1991 21.4404 11.9966 21.5465 11.8184C21.6526 11.6402 21.8026 11.4922 21.9823 11.3885L21.9823 11.3885C22.6549 11.0002 23.2136 10.4422 23.6028 9.77024C23.992 9.09827 24.1979 8.33589 24.2 7.55936V7.55882C24.2 6.38251 23.7327 5.25438 22.9009 4.4226C22.0692 3.59082 20.941 3.12353 19.7647 3.12353C19.4433 3.12353 19.1351 2.99586 18.9079 2.76861L18.7664 2.91003L18.9079 2.76861C18.6806 2.54136 18.5529 2.23314 18.5529 1.91177C18.5529 1.59039 18.6806 1.28217 18.9079 1.05492L18.7664 0.913496L18.9079 1.05492C19.1351 0.827668 19.4433 0.7 19.7647 0.7L19.7648 0.7C21.0869 0.699647 22.3809 1.08142 23.4911 1.79936C24.6013 2.51731 25.4804 3.54082 26.0224 4.74671C26.5645 5.95259 26.7465 7.28944 26.5465 8.59634C26.3465 9.90324 25.773 11.1245 24.8952 12.1131ZM8.83 11.2466C9.55938 11.734 10.4169 11.9941 11.2941 11.9941C12.4704 11.9941 13.5986 11.5268 14.4303 10.6951C15.2621 9.86327 15.7294 8.73514 15.7294 7.55882C15.7294 6.68161 15.4693 5.82409 14.9819 5.09471C14.4946 4.36533 13.8019 3.79684 12.9914 3.46115C12.181 3.12545 11.2892 3.03762 10.4288 3.20875C9.56847 3.37989 8.77818 3.80231 8.15789 4.4226C7.5376 5.04288 7.11518 5.83318 6.94405 6.69354C6.77291 7.5539 6.86074 8.44569 7.19644 9.25614C7.53214 10.0666 8.10062 10.7593 8.83 11.2466Z"
+                                        fill="#1B1B1B" fill-opacity="0.5" stroke="white"
+                                        stroke-width="0.4" />
+                                </svg>  
+                                <h4>Select a user to chat</h4>
+                            </div>
+                          </div>
                     </div>
 
                 </div>
@@ -116,18 +151,42 @@ export default {
   data() {
     return {
       usersList: [],
-      selectedEmployee: [],
+      selectedEmployee: null,
       showEmptyChatMessage: false,
       selectedUserId: '',
       openedChatChannel: null,
       chatMessages: {},
       socketConnected: false,
       typedMessage: '',
+
+      user_search: '',
+      usersListFiltered: [],
     }
   },
+
+  watch: {
+    user_search(newValue, oldValue){
+      if(newValue.length > 2){
+          this.searchUsers(newValue)
+      }else {
+
+        this.usersListFiltered = this.usersList
+
+        if(this.usersListFiltered.length > 0) {
+          
+          this.showEmptyEmployeesMessage = false
+        }else {
+          this.showEmptyEmployeesMessage = true
+        }
+
+      }
+    }
+
+  },
+
   mounted() {
-    this.fetchAllUsers()
     this.selectedUserId = this.$route.query.user_id
+    this.fetchAllUsers()
 
     this.socket = this.$nuxtSocket({
       channel: ''
@@ -145,17 +204,27 @@ export default {
     .on('on-message-receive', (msg, cb) => {
       var d = new Date();
       const time = d.getTime();
-      if(msg.receiverId === this.getUserEncryptedId) {
+
+      if(msg.senderId === this.selectedEmployee.enc_user_id && msg.receiverId === this.getUserEncryptedId) {
         Object.assign(this.chatMessages ?? {}, {[time]: {text: msg.messageText, sender_external_id: msg.senderId}})
         this.typedMessage = this.typedMessage + ' '
         this.typedMessage = this.typedMessage.trim()
       }
+      this.usersListFiltered.forEach((user, index) => {
+        if(user.enc_user_id == msg.senderId) {
+          this.usersListFiltered.splice(index, 1)
+          this.usersListFiltered.splice(0, 0, user)
+        }
+      }) 
     })
   },
 
   computed: {
+    usersListFilteredComputed () {
+      return this.usersListFiltered
+    },
     showEmptyEmployeesMessageComputed () {
-      return this.usersList.length ? false : true
+      return this.usersListFiltered.length ? false : true
     },
     chatMessagesComputed () {
       return this.chatMessages
@@ -169,6 +238,31 @@ export default {
   },
 
   methods: {
+    searchUsers(searchedName) {
+      this.showEmptyEmployeesMessage = false
+      searchedName = searchedName.toLowerCase()
+      var list = this.usersList
+
+      const filtered = list.filter( (
+            user,
+            index,
+            array
+        ) => {
+            let name = user.full_name.toLowerCase()
+            if (name.includes(searchedName)) {
+            return true
+            } else {
+            return false
+            }
+        })
+        this.usersListFiltered = filtered
+        if(this.usersListFiltered.length > 0) {
+          this.showEmptyEmployeesMessage = false
+        }else {
+          this.showEmptyEmployeesMessage = true
+        }
+    },
+
     connectToSocket () {
       this.socket.emit('connection', {},
       (resp) => {})
@@ -176,12 +270,11 @@ export default {
 
     loadChatForThisUser (userId) {
       this.selectedUserId = userId
-      this.usersList.forEach(user => {
+      this.usersListFiltered.forEach((user, index) => {
           if(user.enc_user_id == this.selectedUserId) {
             this.selectedEmployee = user
             // fetch user channel
             this.fetchChatChannel()
-            
           }
         });
         this.connectToSocket()
@@ -192,13 +285,15 @@ export default {
         'auth/fetchAllUsers',
         {}
       )
-      if(users.length > 0) {
-        users.forEach(user => {
+      this.usersListFiltered = this.usersList
+      if(this.usersListFiltered.length > 0) {
+        users.forEach((user, index) => {
           if(user.enc_user_id == this.selectedUserId) {
             this.selectedEmployee = user
             // fetch user channel
             this.fetchChatChannel()
-            
+            this.usersListFiltered.splice(index, 1)
+            this.usersListFiltered.splice(0, 0, this.selectedEmployee)
           }
         });
       } else {
@@ -230,7 +325,6 @@ export default {
         'chat/fetchChatMessages', channel_id)
       .then((response) => {
         this.chatMessages = response
-        console.log('channel messages', this.chatMessages)
       })
       .catch(() => {})
     },
@@ -264,7 +358,12 @@ export default {
       this.$store.dispatch(
         'chat/sendMessage', data)
       .then((response) => {
-        
+        this.usersListFiltered.forEach((user, index) => {
+          if(user.enc_user_id == this.selectedUserId) {
+            this.usersListFiltered.splice(index, 1)
+            this.usersListFiltered.splice(0, 0, this.selectedEmployee)
+          }
+        })
       })
       .catch(() => {})
     },
