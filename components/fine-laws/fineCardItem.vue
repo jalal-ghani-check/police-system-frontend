@@ -10,7 +10,7 @@
             <div class="col-6 text-end">Months: {{ law.duration }}</div>
           </div>
       </div>
-      <button v-if='isAllowedToEditLaws' class="btn text-danger" @click="editLaw(law)">Edit</button>|
+      <button v-if='isAllowedToEditLaws' class="btn text-danger" @click="editLaw(law)">Edit</button><span v-if='isAllowedToEditLaws && isAllowedToDeleteLaws'>|</span>
       <button v-if='isAllowedToDeleteLaws' class="btn text-danger" @click="showDeleteLawModal(law.law_id)">Delete</button>
     </div>
     

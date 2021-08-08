@@ -925,6 +925,13 @@ textarea.form-control {
 }
 
 /* RESPONSIVE FIXES */
+@media (-webkit-device-pixel-ratio:1.5) {
+  body {
+    zoom: 75%;
+  }
+  
+}
+
 @media (-webkit-device-pixel-ratio:1.25) {
   body {
     zoom: 80%;
