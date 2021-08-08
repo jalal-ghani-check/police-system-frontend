@@ -103,15 +103,11 @@
 
                         </div>
 
-                        <div class="col-md-5 header-buttons">
-              
-                            <button v-if="isAllowedToEditProfile" @click="editProfileBasicDetail()"  class="btn btn-success">
+                            <button v-if="isAllowedToEditProfile" @click="editProfileBasicDetail()"  class="btn btn-success edit-profile-details">
                               Edit Details
                             </button>
 
-                        </div>
-
-                        <div v-if="!showEmptyMessageSearchComputed" class="white-widget">
+                        <div v-if="!showEmptyMessageSearchComputed" class="white-widget mt-5">
                             <div class="employee-info">
                                 <div v-if="!isEditModeComputed" class="row">
                                     <div class="col-md-3">
@@ -428,5 +424,8 @@ export default {
 .page-title-banner .cover-btns  .btn {
     min-width:150px;
     margin-left: 5px;
+}
+.edit-profile-details {
+  float:right
 }
 </style>
