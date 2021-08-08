@@ -59,11 +59,11 @@ export default function ({ $axios, store, redirect, req }) {
 
   $axios.onResponse((response) => {
     store._vm.$nuxt.$loading.finish()
-    if (response.headers['pb-token']) {
-      store.dispatch('auth/saveToken', {
-        token: response.headers['pb-token'],
-        isLocal: true
-      })
-    }
+    // if (response.headers['pb-token']) {
+    //   store.dispatch('auth/saveToken', {
+    //     token: response.headers['pb-token'],
+    //     isLocal: true
+    //   })
+    // }
   })
 }
