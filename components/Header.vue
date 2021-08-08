@@ -198,7 +198,7 @@
                                 fill="#1B1B1B" fill-opacity="0.5" stroke="white"
                                 stroke-width="0.4" />
                         </svg>
-                        Users
+                        Employees
                       </NuxtLink>
                     </li>
                   </ul>

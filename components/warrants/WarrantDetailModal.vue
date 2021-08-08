@@ -22,6 +22,11 @@
                                 <div> {{ getDetailWarrantDetail.profile_full_name }}</div>
                             </div>
                             <div class="col-md-12 mt-3">
+                                <label>Created By</label>
+                                <div> {{ getDetailWarrantDetail.user_full_name }}</div>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
                                 <label>Description</label>
                                 <div>{{ getDetailWarrantDetail.description }}</div>
                             </div>

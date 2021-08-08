@@ -11,7 +11,7 @@
           <div class="modal-body">
             <div class="white-widget">
               <div class="form-section">
-                <h4>Add New User</h4>
+                <h4>Add New Employee</h4>
                 <notification-bar />
                 <div class="row mb-5 mt-3 g-3">
                   <div class="col" >
