@@ -22,4 +22,13 @@ export default {
 
       })
   },
+
+  
+  fetchAllChatUsers ({ commit }) {
+    return this.$axios
+      .get(`chat/users/fetch-all`)
+      .then((response) => {
+        return response.data.data
+      })
+  },
 }

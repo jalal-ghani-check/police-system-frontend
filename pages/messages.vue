@@ -274,28 +274,31 @@ export default {
           if(user.enc_user_id == this.selectedUserId) {
             this.selectedEmployee = user
             // fetch user channel
-            this.fetchChatChannel()
+            this.fetchChatMessages(user.user_channel_id)
           }
         });
         this.connectToSocket()
     },
 
     async fetchAllUsers(){
-      const users = this.usersList = await this.$store.dispatch(
-        'auth/fetchAllUsers',
+      const selectedUserId = this.selectedUserId
+      let users = this.usersListFiltered = this.usersList = 
+      await this.$store.dispatch(
+        'chat/fetchAllChatUsers',
         {}
       )
-      this.usersListFiltered = this.usersList
-      if(this.usersListFiltered.length > 0) {
-        users.forEach((user, index) => {
-          if(user.enc_user_id == this.selectedUserId) {
-            this.selectedEmployee = user
-            // fetch user channel
-            this.fetchChatChannel()
-            this.usersListFiltered.splice(index, 1)
-            this.usersListFiltered.splice(0, 0, this.selectedEmployee)
-          }
-        });
+      if(Object.keys(users).length > 0) {
+        if(selectedUserId && (selectedUserId in users)) {
+          const selectedEmployee = this.selectedEmployee = users[selectedUserId]
+          const moveUser = {[selectedUserId]: users[selectedUserId]}
+          delete users[selectedUserId]
+          users = {...moveUser, ...users}
+          this.usersListFiltered = Object.values(users)
+          this.fetchChatMessages(selectedEmployee.user_channel_id)
+        } else {
+          this.usersListFiltered = Object.values(users)
+        }
+        
       } else {
         this.showEmptyMessage = true
       }
@@ -339,7 +342,7 @@ export default {
           messageText: this.typedMessage,
           senderId: this.getUserEncryptedId,
           receiverId: this.selectedUserId,
-          channelId: this.openedChatChannel._id
+          channelId: this.selectedEmployee.user_channel_id
         }, (resp) => {
 
         })
@@ -347,7 +350,7 @@ export default {
           {
             sender_external_id: this.getUserEncryptedId,
             text: this.typedMessage,
-            channel_id: this.openedChatChannel._id
+            channel_id: this.selectedEmployee.user_channel_id
           }
         )
         this.typedMessage = ''

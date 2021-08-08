@@ -67,7 +67,7 @@
                       </div>
                     </div>
                     <div class="text-center">
-                        <a @click="onSubmit" class="btn btn-success btn-lg mx-3">
+                        <a @click="onSubmit" class="btn btn-success btn-lg mx-3 login-btn">
                           Login
                         </a>
                     </div>
@@ -134,5 +134,12 @@ export default {
     margin-left: 20%;
     margin-right: 20%;
 
+  }
+
+  .login-btn {
+    width: 35%;
+    font-size: 21px;
+    line-height: 28px;
+    height: 50px;
   }
 </style>
