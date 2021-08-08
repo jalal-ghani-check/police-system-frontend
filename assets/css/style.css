@@ -912,9 +912,6 @@ textarea.form-control {
   width: 18px;
   margin-left: auto;
 }
-.report-card-frontend:hover {
-  cursor: pointer;
-}
 /*=========vuejs form field validation message============*/
 
 .form-group--error ~ .error {
@@ -927,7 +924,7 @@ textarea.form-control {
 /* RESPONSIVE FIXES */
 @media (-webkit-device-pixel-ratio:1.5) {
   body {
-    zoom: 75%;
+    zoom: 80%;
   }
   
 }
