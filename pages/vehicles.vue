@@ -35,7 +35,6 @@
                         <div class="tag-no">#{{ vehicle.license_plate }}</div>
                         <div class="wanted-name">
                             <h3>{{ vehicle.vehicle_name }}</h3>
-                            <h4>Model: {{ vehicle.vehicle_model }}</h4>
                             <h5>Owned By: {{ vehicle.full_name }}</h5>
                         </div>
 

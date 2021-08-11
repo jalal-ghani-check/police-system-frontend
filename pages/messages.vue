@@ -472,7 +472,7 @@ export default {
     height: calc(100vh - 394px);
 }
 .employees-card-list.full-height {
-    height: calc(100vh - 230px);
+    height: calc(100vh - 291px);
     overflow: hidden;
     overflow-y: scroll;
 }

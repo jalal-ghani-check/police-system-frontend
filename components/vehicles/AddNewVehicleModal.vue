@@ -92,8 +92,7 @@ export default {
       licensePlate: "",
       description: "",
       ownerId: "",
-      allProfiles: "",
-      vehicleModel: ""
+      allProfiles: ""
     }
   },
   validations: {
@@ -120,7 +119,6 @@ export default {
       this.licensePlate = this.selectedVehicle.license_plate
       this.description = this.selectedVehicle.description
       this.ownerId = this.selectedVehicle.owner_id
-      this.vehicleModel = this.selectedVehicle.vehicle_model
       return this.showModal
     },
     selectedVehicleComputed () {
@@ -149,8 +147,7 @@ export default {
           name: this.name,
           owner_id: this.ownerId,
           description: this.description,
-          license_plate: this.licensePlate,
-          vehicle_model: this.vehicleModel
+          license_plate: this.licensePlate
         })
         .then(() => {
           this.$emit('onSave', this.$event)

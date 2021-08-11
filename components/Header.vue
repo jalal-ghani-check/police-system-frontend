@@ -119,7 +119,7 @@
                         Vehicles
                       </NuxtLink>
                     </li>
-                        <li>
+                        <li v-if="isAllowedToViewHousesPage">
                       <NuxtLink
                         id="houses"
                         to="/houses"
@@ -273,6 +273,7 @@ export default {
       isAllowedToViewLaws: 'auth/isAllowedToViewLaws',
       isAllowedToViewProfile: 'auth/isAllowedToViewProfile',
       isAdmin: 'auth/isAdmin',
+      isAllowedToViewHousesPage: 'auth/isAllowedToViewHousesPage'
 
 
     })

@@ -52,6 +52,21 @@ export default {
         return data
       })
   },
+
+  saveNewSearchprofile ({ commit }, profileIdObj) {
+    const url = `/latest-searches/manage/${profileIdObj.profile_id}`
+    return this.$axios
+      .get(url)
+      .then((response) => {
+        
+      })
+  },
+
+  fetchLatestSearchedProfiles ({ commit }, profileIdObj) {
+    const url = `/latest-searches/fetch`
+    return this.$axios
+    .get(url)
+  },
   
 
 }

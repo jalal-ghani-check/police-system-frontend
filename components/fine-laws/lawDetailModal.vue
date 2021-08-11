@@ -33,6 +33,10 @@
                                 <div>$ {{ getDetailLawDetail.fine_amount }}</div>
                             </div>
                             <div class="col-md-12 mt-3">
+                                <label>Points</label>
+                                <div>{{ getDetailLawDetail.points }}</div>
+                            </div>
+                            <div class="col-md-12 mt-3">
                                 <label>Details</label>
                                 <div>{{ getDetailLawDetail.description }}</div>
                             </div>

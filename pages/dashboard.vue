@@ -72,7 +72,7 @@
               </div>
               <div v-if="latestSearchListComputed.length > 0 && isAllowedToViewProfile" class="dashboard-sidebar">
                   <div v-for="(profile,index) in latestSearchListComputed" :key="index" >
-                    <div  class="sidebar-card">
+                    <div  class="sidebar-card" @click="profileDetail(profile.profile_id)">
                         <h3>{{ profile.full_name }}</h3>
                         <h4>Citizen ID: {{ profile.citizen_id }}</h4>
                         <div class="lisence-no">
@@ -107,7 +107,7 @@ export default {
     return {
       policeReports: [],
       dummySearchList: [],
-      latestSearchList: [],
+      latestSearchList: []
     }
   },
   computed: {
@@ -127,22 +127,16 @@ export default {
       getShowPendingWarrantModalOnDashboard: 'dashboard/getShowPendingWarrantModalOnDashboard',
       isAllowedToViewPoliceReports: 'auth/isAllowedToViewPoliceReports',
       isAllowedToViewMedicalReports: 'auth/isAllowedToViewMedicalReports',
-      getLatestProfileSearches: 'profile/getLatestProfileSearches',
       isAllowedToViewProfile: 'auth/isAllowedToViewProfile',
     })
   },
   mounted () {
     this.$store.commit('setActiveTab', 'dashboard')
+    this.fetchLatestSearchedProfiles()
     this.dummySearchList = []
     if(this.isAllowedToViewPoliceReports || this.isAllowedToViewMedicalReports) {
       this.fetchAllReports()
     }
-    this.getLatestProfileSearches.forEach( (item) => {
-      if(!this.dummySearchList.includes(item.citizen_id)){
-        this.dummySearchList.push(item.citizen_id)
-        this.latestSearchList.push(item)
-      }
-    })
 
   },
   methods: {
@@ -181,7 +175,19 @@ export default {
         'report/fetchAllReports',
         {}
       )
-    }
+    },
+    fetchLatestSearchedProfiles () {
+        this.$store.dispatch(
+        'profile/fetchLatestSearchedProfiles',
+        {}
+      ).then((res) => {
+        this.latestSearchList = res.data.data
+      })
+      .catch(() => {})
+    },
+    profileDetail(profileId) {
+        this.$router.push({ path: 'profile', query: { profile_id: profileId } })
+    },
   }
 }
 </script>
@@ -264,6 +270,9 @@ export default {
   }
 
   .report-card:hover {
+    cursor: pointer;
+  }
+  .sidebar-card:hover {
     cursor: pointer;
   }
 </style>
