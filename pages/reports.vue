@@ -85,7 +85,7 @@ export default {
 
   name: 'Reports',
   layout: 'master',
-  middleware: [],
+  middleware: ['reportsMW'],
   data() {
     return {
       policeReports: [],
