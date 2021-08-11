@@ -89,6 +89,7 @@
                   <input
                     type="text"
                     v-model="citizenId"
+                    :readonly="{true: cid != ''}"
                     class="form-control"
                     placeholder="Citizen ID"
                   />
@@ -551,7 +552,7 @@ export default {
       medicalHistory: [],
       yearsRange: this.$getRangeReverse(70, new Date().getFullYear()),
       reportTitle: '',
-      citizenId: '',
+      citizenId: this.$route.query.cid ?? '',
       problemStartedAt: null,
       problemDescription: '',
 

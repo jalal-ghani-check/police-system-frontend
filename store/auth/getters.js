@@ -62,14 +62,28 @@ export default {
     return state.userData.is_allowed_to_view_profile
   },
 
-  isAllowedToCreateReports: (state) => {
-    return state.userData.is_allowed_to_create_reports
+  isAllowedToCreatePoliceReports: (state) => {
+    return state.userData.is_allowed_to_create_police_reports
   },
-  isAllowedToDeleteReports: (state) => {
-    return state.userData.is_allowed_to_delete_reports
+
+  isAllowedToCreateMedicalReports: (state) => {
+    return state.userData.is_allowed_to_create_medical_reports
   },
-  isAllowedToEditReports: (state) => {
-    return state.userData.is_allowed_to_edit_reports
+
+  isAllowedToDeletePoliceReports: (state) => {
+    return state.userData.is_allowed_to_delete_police_reports
+  },
+
+  isAllowedToDeleteMedicalReports: (state) => {
+    return state.userData.is_allowed_to_delete_medical_reports
+  },
+
+  isAllowedToEditPoliceReports: (state) => {
+    return state.userData.is_allowed_to_edit_police_reports
+  },
+
+  isAllowedToEditMedicalReports: (state) => {
+    return state.userData.is_allowed_to_edit_medical_reports
   },
 
   isAllowedToViewVehicles: (state) => {
@@ -90,8 +104,12 @@ export default {
 
 
 
-  isAllowedToViewReports: (state) => {
-    return state.userData.is_allowed_to_view_reports
+  isAllowedToViewPoliceReports: (state) => {
+    return state.userData.is_allowed_to_view_police_reports
+  },
+
+  isAllowedToViewMedicalReports: (state) => {
+    return state.userData.is_allowed_to_view_medical_reports
   },
 
   isAllowedToExpungeRecords: (state) => {

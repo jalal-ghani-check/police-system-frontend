@@ -14,7 +14,7 @@
             <div class="section-heading red">
               <h4>Latest Reports</h4>
             </div>
-            <div v-if="isAllowedToViewReports" class="report-cards">
+            <div v-if="this.isAllowedToViewPoliceReports || this.isAllowedToViewMedicalReports" class="report-cards">
                 <div v-if="policeReports.length > 0" class="row">
                   <div class="col-md-4 report-card-frontend"
                     v-for="(report, index) in policeReports" :key="index"
@@ -125,7 +125,8 @@ export default {
 
     ...mapGetters({
       getShowPendingWarrantModalOnDashboard: 'dashboard/getShowPendingWarrantModalOnDashboard',
-      isAllowedToViewReports: 'auth/isAllowedToViewReports',
+      isAllowedToViewPoliceReports: 'auth/isAllowedToViewPoliceReports',
+      isAllowedToViewMedicalReports: 'auth/isAllowedToViewMedicalReports',
       getLatestProfileSearches: 'profile/getLatestProfileSearches',
       isAllowedToViewProfile: 'auth/isAllowedToViewProfile',
     })
@@ -133,7 +134,7 @@ export default {
   mounted () {
     this.$store.commit('setActiveTab', 'dashboard')
     this.dummySearchList = []
-    if(this.isAllowedToViewReports) {
+    if(this.isAllowedToViewPoliceReports || this.isAllowedToViewMedicalReports) {
       this.fetchAllReports()
     }
     this.getLatestProfileSearches.forEach( (item) => {
@@ -260,5 +261,9 @@ export default {
   }
   .lisence-no span {
       color: #EE0000;
+  }
+
+  .report-card:hover {
+    cursor: pointer;
   }
 </style>

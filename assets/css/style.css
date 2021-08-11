@@ -505,6 +505,9 @@ textarea.form-control {
 .report-modal .modal-body {
   padding: 0;
 }
+.report-card-frontend:hover {
+  cursor: pointer;
+}
 .report-modal .report-header {
   background: rgba(191, 191, 191, 0.25);
   display: flex;

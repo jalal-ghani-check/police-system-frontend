@@ -319,30 +319,30 @@
                         </div>
                         <div class="white-widget">
                             <div class="role-widget">
-                                <h4>Reports</h4>
+                                <h4>Police Reports</h4>
 
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label class="black-checkbox">View Reports
-                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_view_reports" :disabled="!isEditModeComputed">
+                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_view_police_reports" :disabled="!isEditModeComputed">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                     <div class="col-md-3">
                                         <label class="black-checkbox">Create Reports
-                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_create_reports" :disabled="!isEditModeComputed">
+                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_create_police_reports" :disabled="!isEditModeComputed">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                     <div class="col-md-3">
                                         <label class="black-checkbox">Edit Reports
-                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_edit_reports" :disabled="!isEditModeComputed">
+                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_edit_police_reports" :disabled="!isEditModeComputed">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                     <div class="col-md-3">
                                         <label class="black-checkbox">Delete Reports
-                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_delete_reports" :disabled="!isEditModeComputed">
+                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_delete_police_reports" :disabled="!isEditModeComputed">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -353,6 +353,46 @@
                             </div>
 
                         </div>
+
+
+                        <div class="white-widget">
+                            <div class="role-widget">
+                                <h4>Medical Reports</h4>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="black-checkbox">View Reports
+                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_view_medical_reports" :disabled="!isEditModeComputed">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="black-checkbox">Create Reports
+                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_create_medical_reports" :disabled="!isEditModeComputed">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="black-checkbox">Edit Reports
+                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_edit_medical_reports" :disabled="!isEditModeComputed">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="black-checkbox">Delete Reports
+                                            <input type="checkbox" v-model="selectedEmployee.is_allowed_to_delete_medical_reports" :disabled="!isEditModeComputed">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
                         <div class="white-widget">
                             <div class="role-widget">
                                 <h4>Laws</h4>
@@ -621,5 +661,8 @@ export default {
 .page-title-banner .cover-btns  .btn {
     min-width:150px;
     margin-left: 5px;
+}
+.employees-name-card:hover {
+    cursor: pointer;
 }
 </style>

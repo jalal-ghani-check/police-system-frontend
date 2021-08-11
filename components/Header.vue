@@ -68,7 +68,7 @@
                       </NuxtLink>
                     </li>
                         <li>
-                      <NuxtLink v-if="isAllowedToViewReports"
+                      <NuxtLink v-if="isAllowedToViewPoliceReports || isAllowedToViewMedicalReports"
                         id="reports"
                         to="/reports"
                         class="dropdown-item"
@@ -268,7 +268,8 @@ export default {
       getUserFullName: 'auth/getUserFullName',
       getUserProfilePicture: 'auth/getUserProfilePicture',
       isAllowedToViewWarrants: 'auth/isAllowedToViewWarrants',
-      isAllowedToViewReports: 'auth/isAllowedToViewReports',
+      isAllowedToViewPoliceReports: 'auth/isAllowedToViewPoliceReports',
+      isAllowedToViewMedicalReports: 'auth/isAllowedToViewMedicalReports',
       isAllowedToViewLaws: 'auth/isAllowedToViewLaws',
       isAllowedToViewProfile: 'auth/isAllowedToViewProfile',
       isAdmin: 'auth/isAdmin',

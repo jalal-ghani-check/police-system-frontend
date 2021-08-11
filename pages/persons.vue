@@ -428,4 +428,8 @@ export default {
 .edit-profile-details {
   float:right
 }
+
+.employees-name-card:hover {
+  cursor: pointer;
+}
 </style>
