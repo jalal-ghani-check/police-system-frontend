@@ -19,7 +19,27 @@ import MyInfoModal from '~/components/MyInfoModal.vue'
 export default {
   name: 'Master',
   components: { PoliceReport, MedicalReport, ToastMessage, MyInfoModal },
-  middleware: ['initAuth', 'auth']
+  middleware: ['initAuth', 'auth'],
+  mounted() {
+    const pr =  this.getDevicePixilRatio()
+    if(pr >= 1.25){
+      document.body.style.zoom = "80%";
+    }
+  },
+  methods: {
+    getDevicePixilRatio() {
+      var ratio = 1;
+      // To account for zoom, change to use deviceXDPI instead of systemXDPI
+      if (window.screen.systemXDPI !== undefined && window.screen.logicalXDPI       !== undefined && window.screen.systemXDPI > window.screen.logicalXDPI) {
+          // Only allow for values > 1
+          ratio = window.screen.systemXDPI / window.screen.logicalXDPI;
+      }
+      else if (window.devicePixelRatio !== undefined) {
+          ratio = window.devicePixelRatio;
+      }
+      return ratio;
+    }
+  },
 
 }
 </script>
