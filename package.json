@@ -33,6 +33,7 @@
     "nuxt-i18n": "^6.26.0",
     "nuxt-moment": "^1.0.5",
     "nuxt-socket-io": "^1.1.18",
+    "vue-chat-scroll": "^1.4.0",
     "vue-filepond": "^6.0.0",
     "vue-select": "^3.12.2",
     "vue2-datepicker": "^3.9.1",

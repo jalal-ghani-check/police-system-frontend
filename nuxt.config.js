@@ -38,6 +38,7 @@ export default {
     '~/plugins/Vuelidate',
     '~/plugins/commonUtil',
     '~/plugins/vSelect',
+    '~/plugins/vueChatScroll',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

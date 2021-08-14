@@ -86,7 +86,7 @@
                                         <h4>@{{ selectedEmployee.username }}</h4>
                                     </div>
 
-                                    <div class="conversation" id="chat-container">
+                                    <div class="conversation" id="chat-container" v-chat-scroll='{always: false}'>
 
                                         <ul class="overflow-auto">
                                             <li v-for="(message, index) in chatMessagesComputed" :key='index' :class="{received: message.sender_external_id != getUserEncryptedId}">

@@ -9,6 +9,13 @@
 <script>
 export default {
   name: 'Default',
-  middleware: ['initAuth', 'guest']
+  middleware: ['initAuth', 'guest'],
+
+  mounted() {
+    const pr =  this.$getDevicePixilRatio()
+    if(pr >= 1.25){
+      document.body.style.zoom = "80%";
+    }
+  }
 }
 </script>

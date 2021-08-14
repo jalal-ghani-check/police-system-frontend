@@ -57,12 +57,7 @@
                           v-if="$v.password.$error && !$v.password.minLength"
                           class="error"
                         >
-                          {{
-                            $t("field_length", {
-                              field: $t("password"),
-                              length: $v.password.$params.minLength.min,
-                            })
-                          }}
+                          Password should be at least 8 characters
                         </div>
                       </div>
                     </div>
