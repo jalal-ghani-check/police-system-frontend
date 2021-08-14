@@ -36,7 +36,7 @@
                           <div class="row">
                             <div class="col-md-12 mt-3">
                                 <label>Role </label>
-                                <div>$ {{ getUserData.role_name }}</div>
+                                <div>{{ getUserData.role_name }}</div>
                             </div>
                             <div class="col-md-12 mt-3">
                                 <label>Rank</label>

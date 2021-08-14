@@ -1,6 +1,5 @@
-export default ({ store, redirect , router }) => {
+export default ({ store, redirect }) => {
   if (!store.getters['auth/isAllowedToViewHousesPage']) {
-    redirect('dashboard')
-    // router.push('dashboard')
+    redirect('/dashboard')
   }
 }
