@@ -170,7 +170,7 @@ export default {
           this.searchUsers(newValue)
       }else {
 
-        this.usersListFiltered = this.usersList
+        this.usersListFiltered = Object.values(this.usersList)
 
         if(this.usersListFiltered.length > 0) {
 
@@ -241,8 +241,7 @@ export default {
     searchUsers(searchedName) {
       this.showEmptyEmployeesMessage = false
       searchedName = searchedName.toLowerCase()
-      var list = this.usersList
-
+      var list = Object.values(this.usersList)
       const filtered = list.filter( (
             user,
             index,
