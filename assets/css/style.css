@@ -915,6 +915,10 @@ textarea.form-control {
   width: 18px;
   margin-left: auto;
 }
+.modal-backdrop {
+  height: 100%;
+  width: 100%;
+}
 /*=========vuejs form field validation message============*/
 
 .form-group--error ~ .error {
