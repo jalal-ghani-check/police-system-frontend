@@ -200,7 +200,7 @@ export default {
       if (!this.$v.$invalid) {
         this.$store
         .dispatch('profile/manageProfle', {
-          profile_id: this.selectedProfile.profile_id,
+          profile_id: this.profileId ? this.selectedProfile.profile_id : null,
           full_name: this.full_name,
           designation: this.designation,
           gender: this.gender,
