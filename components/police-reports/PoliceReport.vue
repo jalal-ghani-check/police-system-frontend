@@ -14,7 +14,7 @@
                     </div>
                     <div class="report-title">
                         <h3>Police Report</h3>
-                        <h4>Bank Robbery 7/6/2021</h4>
+                        <h4>{{ selectedPoliceReportObject.report_title }}</h4>
                     </div>
                 </div>
                 <div class="report-body">
