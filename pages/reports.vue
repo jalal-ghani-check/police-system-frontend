@@ -136,7 +136,13 @@ export default {
 
     },
     editReport (reportId,ReportType) {
-      this.$router.push({ path: 'create-police-report', query: { report_id: reportId } })
+      console.log(ReportType === "police_report",ReportType)
+      if(ReportType === "police_report") {
+        this.$router.push({ path: 'create-police-report', query: { report_id: reportId } })
+      }else{
+        this.$router.push({ path: 'create-medical-report', query: { report_id: reportId } })
+
+      }
 
     },
     openReportModalPopUp (report) {

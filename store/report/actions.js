@@ -29,6 +29,7 @@ export default {
       .get(`medical-report/fetch/${requestData.report_id}`)
       .then((response) => {
         commit('setSelectedMedicalReport', response.data.data)
+        return response.data.data
       })
   },
 

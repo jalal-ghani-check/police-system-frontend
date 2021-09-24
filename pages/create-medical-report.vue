@@ -594,6 +594,8 @@ export default {
       optionStroke: false,
       optionTumorCancer: false,
       optionWoundSkinProblem: false,
+      reportId: null,
+      profileId: null
       
     }
   },
@@ -620,6 +622,26 @@ export default {
       required
     }
   },
+
+  async mounted() {
+
+    this.profileId = this.$route.query.profile_id
+
+    if(this.$route.query.report_id){
+      this.reportId = this.$route.query.report_id
+
+      let report =  await this.$store.dispatch(
+        'report/fetchMedicalReportByReportId',
+        {
+          report_id : this.reportId
+        }
+      )
+      this.citizenId = report.citizen_id
+      console.log(report)
+      // this.reportTitle = report.report_title_raw
+    }
+  },
+
   methods: {
     updateMedHistoryArray (el) {
       const valueToPush = el.currentTarget.value
@@ -641,7 +663,7 @@ export default {
         this.$store
           .dispatch('report/createMedicalReport', {
             reportTitle: this.reportTitle,
-            profileId: this.$route.query.profile_id,
+            profileId: this.profileId,
             citizenId: this.citizenId,
             problemStartedAt: this.problemStartedAt,
             problemDescription: this.problemDescription,
@@ -669,7 +691,7 @@ export default {
     },
     discardMedicalReport () {
       this.$router.push({
-        path: '/profile?profile_id=' + this.$route.query.profile_id
+        path: '/profile?profile_id=' + this.profileId
       })
     }
   },
