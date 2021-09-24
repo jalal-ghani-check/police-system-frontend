@@ -411,6 +411,8 @@ export default {
       lawListInfraction: [],
       lawListFelony: [],
       lawListMisdemeanor: [],
+      reportId: null,
+      profileId: null
     }
   },
   validations: {
@@ -430,7 +432,36 @@ export default {
       required
     },
   },
-  mounted() {
+  async mounted() {
+
+    this.profileId = this.$route.query.profile_id
+
+    if(this.$route.query.report_id){
+      this.reportId = this.$route.query.report_id
+
+      let report =  await this.$store.dispatch(
+        'report/fetchPoliceReportByReportId',
+        {
+          report_id : this.reportId
+        }
+      )
+      this.reportTitle = report.report_title_raw
+      this.profileId = report.enc_profile_id_attached
+      this.cid = report.cid
+      this.reportDesc = report.description
+      this.itemsSeized = report.items_seized
+      this.lawsArray = report.added_laws
+      this.officersInvolved = report.officers_involved
+      this.shotsFired = report.shorts_fired
+      this.gsrTestResults = report.gsr_test_result
+      this.casingsRecovered = report.casing_recovered
+      this.suspectsInvolved = report.suspects_involved
+
+      this.useOfViolence = report.use_of_violence
+      this.medicalTreatment = report.med_treatment
+      this.legalAid = report.legal_aid
+    }
+
     this.fetchAllLaws()
   },
   methods: {
@@ -440,7 +471,8 @@ export default {
         this.$store
           .dispatch('report/createPoliceReport', {
             reportTitle: this.reportTitle,
-            profileId: this.$route.query.profile_id,
+            profileId: this.profileId,
+            reportId: this.reportId,
             cid: this.cid,
             reportDesc: this.reportDesc,
             itemsSeized: this.itemsSeized,
@@ -488,7 +520,7 @@ export default {
     },
     discardPoliceReport () {
       this.$router.push({
-        path: '/profile?profile_id=' + this.$route.query.profile_id
+        path: '/profile?profile_id=' + this.profileId
       })
     }
   },

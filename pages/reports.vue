@@ -46,9 +46,9 @@
                 <div v-if="policeReportsFilteredComputed.length > 0" class="row">
                   <div class="col-md-4"
                     v-for="(report, index) in policeReportsFilteredComputed" :key="index"
-                    @click="openReportModalPopUp(report)" data-bs-dismiss='modal'
+                     data-bs-dismiss='modal'
                   >
-                      <div class="report-card" :class="{red: report.report_type === 'medical_report'}">
+                      <div @click="openReportModalPopUp(report)"  class="report-card m-0" :class="{red: report.report_type === 'medical_report'}">
                           <div class="tag-no" v-if="report.report_type !== 'medical_report'">#{{ report.case_number }}</div>
                           <div class="tag-no" v-else>#{{ report.report_id_dec }}</div>
                           <h3>{{ report.report_title }} //{{ report.created_at }}</h3>
@@ -56,6 +56,8 @@
                           <div v-if="report.report_type === 'medical_report'" class="tag">Medical Report</div>
                           <div v-else class="tag">Police Report</div>
                       </div>
+                      <button @click="editReport(report.report_id,report.report_type)"  class="btn text-danger" >Edit</button> <span >|</span>
+                      <button @click="showDeleteReportModal(report.report_id,report.report_type)"  class="btn text-danger">Delete</button>
                   </div>
                 </div>
                 <div v-else class="no-data">
@@ -76,16 +78,28 @@
                   </div>
                 </div>
          </div>
+         <delete-report-modal @fetchReports="fetchAllReports" />
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import deleteReportModal from '~/components/police-reports/deleteReportModal.vue'
 
 export default {
+  components: { deleteReportModal },
 
   name: 'Reports',
   layout: 'master',
   middleware: ['reportsMW'],
+  computed: {
+    ...mapGetters({
+      isAllowedToDeletePoliceReports: 'auth/isAllowedToDeletePoliceReports',
+      isAllowedToDeleteMedicalReports: 'auth/isAllowedToDeleteMedicalReports',
+      isAllowedToEditPoliceReports: 'auth/isAllowedToEditPoliceReports',
+      isAllowedToEditMedicalReports: 'auth/isAllowedToEditMedicalReports',
+    }),
+  },
   data() {
     return {
       policeReports: [],
@@ -93,7 +107,6 @@ export default {
       report_search: '',
     }
   },
-
   watch: {
       report_search(newValue, oldValue){
           if(newValue.length > 2){
@@ -116,6 +129,16 @@ export default {
   },
 
   methods: {
+    showDeleteReportModal (reportId,ReportType) {
+      this.$store.commit('report/setIsDeleteReportPopupOpen', true)
+      this.$store.commit('report/setDeleteReportId', reportId)
+      this.$store.commit('report/setDeleteReportType', ReportType)
+
+    },
+    editReport (reportId,ReportType) {
+      this.$router.push({ path: 'create-police-report', query: { report_id: reportId } })
+
+    },
     openReportModalPopUp (report) {
       if(report.report_type === 'police_report') {
         this.fetchPoliceReportByReportId(report.report_id)

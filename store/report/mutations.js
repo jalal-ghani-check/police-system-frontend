@@ -18,6 +18,17 @@ export default {
 
   setSelectedMedicalReport (state, data) {
     state.selectedMedicalReport = data
-  }
+  },
+
+  setIsDeleteReportPopupOpen: (state, data) => {
+    state.isDeleteReportPopupOpen  = data
+  },
+
+  setDeleteReportId: (state, data) => {
+    state.deleteReportId  = data
+  },
+  setDeleteReportType: (state, data) => {
+    state.deleteReportType = data
+  },
 
 }

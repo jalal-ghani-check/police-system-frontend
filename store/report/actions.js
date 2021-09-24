@@ -14,6 +14,7 @@ export default {
       .get(`police-report/fetch/${requestData.report_id}`)
       .then((response) => {
         commit('setSelectedPoliceReport', response.data.data)
+        return response.data.data
       })
   },
 
@@ -33,5 +34,18 @@ export default {
 
   createMedicalReport ({ dispatch , commit }, data) {
     return this.$axios.$post('medical-report/save-settings', data)
-  }
+  },
+
+  deleteReport ({ commit }, data) {
+    console.log(data)
+    let url = 'police-report/delete';
+    if(data.report_type === 'medical_report'){
+      url = 'medical-report/delete';
+    }
+    return this.$axios
+      .$post(url,data)
+      .then((response) => {
+        this.$showToastMessage(['Deleted!'])
+      })
+  },
 }

@@ -20,6 +20,19 @@ export default {
 
   getSelectedPoliceReportObject: (state) => {
     return state.selectedPoliceReport
-  }
+  },
+
+  getIsDeleteReportPopupOpen: (state) => {
+    return state.isDeleteReportPopupOpen
+  },
+
+  getDeleteReportId: (state) => {
+    return state.deleteReportId
+  },
+  getDeleteReportType: (state) => {
+    return state.deleteReportType
+  },
+
+
 
 }

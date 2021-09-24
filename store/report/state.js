@@ -10,4 +10,9 @@ export default () => ({
   isMedicalReportPopupOpen: false,
   selectedMedicalReport: null,
 
+
+  isDeleteReportPopupOpen: false,
+  deleteReportId: null,
+  deleteReportType: null,
+
 })
