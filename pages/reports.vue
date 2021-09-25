@@ -56,8 +56,8 @@
                           <div v-if="report.report_type === 'medical_report'" class="tag">Medical Report</div>
                           <div v-else class="tag">Police Report</div>
                       </div>
-                      <button @click="editReport(report.report_id,report.report_type)"  class="btn text-danger" >Edit</button> <span >|</span>
-                      <button @click="showDeleteReportModal(report.report_id,report.report_type)"  class="btn text-danger">Delete</button>
+                      <button v-if="isAllowedToEditPoliceReports" @click="editReport(report.report_id,report.report_type)"  class="btn text-danger" >Edit</button> <span >|</span>
+                      <button v-if="isAllowedToDeletePoliceReports" @click="showDeleteReportModal(report.report_id,report.report_type)"  class="btn text-danger">Delete</button>
                   </div>
                 </div>
                 <div v-else class="no-data">
@@ -92,14 +92,6 @@ export default {
   name: 'Reports',
   layout: 'master',
   middleware: ['reportsMW'],
-  computed: {
-    ...mapGetters({
-      isAllowedToDeletePoliceReports: 'auth/isAllowedToDeletePoliceReports',
-      isAllowedToDeleteMedicalReports: 'auth/isAllowedToDeleteMedicalReports',
-      isAllowedToEditPoliceReports: 'auth/isAllowedToEditPoliceReports',
-      isAllowedToEditMedicalReports: 'auth/isAllowedToEditMedicalReports',
-    }),
-  },
   data() {
     return {
       policeReports: [],
@@ -117,15 +109,20 @@ export default {
           }
       }
   },
-  mounted() {
-    this.fetchAllReports()
-    this.$store.commit('setActiveTab', 'search')
-  },
-
   computed: {
     policeReportsFilteredComputed() {
       return this.policeReportsFiltered
-    }
+    },
+    ...mapGetters({
+      isAllowedToDeletePoliceReports: 'auth/isAllowedToDeletePoliceReports',
+      isAllowedToDeleteMedicalReports: 'auth/isAllowedToDeleteMedicalReports',
+      isAllowedToEditPoliceReports: 'auth/isAllowedToEditPoliceReports',
+      isAllowedToEditMedicalReports: 'auth/isAllowedToEditMedicalReports',
+    }),
+  },
+  mounted() {
+    this.fetchAllReports()
+    this.$store.commit('setActiveTab', 'search')
   },
 
   methods: {
@@ -136,7 +133,6 @@ export default {
 
     },
     editReport (reportId,ReportType) {
-      console.log(ReportType === "police_report",ReportType)
       if(ReportType === "police_report") {
         this.$router.push({ path: 'create-police-report', query: { report_id: reportId } })
       }else{

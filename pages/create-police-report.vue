@@ -200,7 +200,7 @@
               <ul class="items-4">
                 <li v-for="(law, index) in lawListInfraction" :key="index">
                   <label class="toggle-checkbox">
-                     <input type="checkbox" :value="law.law_id" v-on:click ='updateLawsArray($event)' />
+                     <input type="checkbox" :ref="law.law_id" :value="setLawValue(law.law_id)" v-on:click ='updateLawsArray($event)' />
                     <div class="value">{{ law.law_title }}</div>
                   </label>
                 </li>
@@ -408,6 +408,7 @@ export default {
       itemsSeized: '',
 
       lawsArray: [],
+      savedLawsArray: [],
       lawListInfraction: [],
       lawListFelony: [],
       lawListMisdemeanor: [],
@@ -450,7 +451,8 @@ export default {
       this.cid = report.cid
       this.reportDesc = report.description
       this.itemsSeized = report.items_seized
-      this.lawsArray = report.added_laws
+      this.lawsArray = []
+      this.savedLawsArray = report.added_laws
       this.officersInvolved = report.officers_involved
       this.shotsFired = report.shorts_fired
       this.gsrTestResults = report.gsr_test_result
@@ -490,7 +492,9 @@ export default {
             this.$showToastMessage(['Saved Successfully!'])
             this.$router.push('dashboard')
           })
-          .catch(() => {})
+          .catch((e) => {
+            console.log(e)
+          })
       }
     },
 
@@ -517,6 +521,15 @@ export default {
       } else {
         this.lawsArray.push(valueToPush)
       }
+    },
+    setLawValue (law_id) {
+      this.$nextTick(() => {
+        if(this.savedLawsArray.includes(law_id)) {
+          var refs = this.$refs
+          refs[law_id][0].click()
+        }
+      })
+      return law_id
     },
     discardPoliceReport () {
       this.$router.push({

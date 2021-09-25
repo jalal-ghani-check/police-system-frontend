@@ -89,7 +89,7 @@
                   <input
                     type="text"
                     v-model="citizenId"
-                    :readonly="{true: cid != ''}"
+                    :readonly="{true: citizenId != ''}"
                     class="form-control"
                     placeholder="Citizen ID"
                   />
@@ -179,121 +179,121 @@
               <ul class="items-5">
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Anxiety Attacks" v-on:click ='updateMedHistoryArray($event)' v-model="optionAnxietyAttacks" />
+                    <input type="checkbox" ref="anxiety_attacks" :value="presetMedicalHistoryValue('Anxiety Attacks', 'anxiety_attacks')" v-on:click ='updateMedHistoryArray($event)' v-model="optionAnxietyAttacks" />
                     <div class="value">Anxiety Attacks</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Bone/Joint Problems" v-on:click ='updateMedHistoryArray($event)' v-model="optionBoneJointProblem" />
+                    <input type="checkbox" ref="bone_joint" :value="presetMedicalHistoryValue('Bone/Joint Problems', 'bone_joint')" v-on:click ='updateMedHistoryArray($event)' v-model="optionBoneJointProblem" />
                     <div class="value">Bone/Joint Problems</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Bowel/Bladder" v-on:click ='updateMedHistoryArray($event)' v-model="optionBowelBladder" />
+                    <input type="checkbox" ref="bowel_bladder" :value="presetMedicalHistoryValue('Bowel/Bladder', 'bowel_bladder')" v-on:click ='updateMedHistoryArray($event)' v-model="optionBowelBladder" />
                     <div class="value">Bowel/Bladder</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Breathing Problems" v-on:click ='updateMedHistoryArray($event)' v-model="optionBeathingProblem" />
+                    <input type="checkbox" ref="breathing_problems" :value="presetMedicalHistoryValue('Breathing Problems', 'breathing_problems')" v-on:click ='updateMedHistoryArray($event)' v-model="optionBeathingProblem" />
                     <div class="value">Breathing Problems</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Depression" v-on:click ='updateMedHistoryArray($event)' v-model="optionDrepression" />
+                    <input type="checkbox" ref="depression" :value="presetMedicalHistoryValue('Depression', 'depression')" v-on:click ='updateMedHistoryArray($event)' v-model="optionDrepression" />
                     <div class="value">Depression</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Diabetes" v-on:click ='updateMedHistoryArray($event)' v-model="optionDiabetes" />
+                    <input type="checkbox" ref="diabetes" :value="presetMedicalHistoryValue('Diabetes', 'diabetes')" v-on:click ='updateMedHistoryArray($event)' v-model="optionDiabetes" />
                     <div class="value">Diabetes</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Drug Use" v-on:click ='updateMedHistoryArray($event)' v-model="optionDrugUse" />
+                    <input type="checkbox" ref='drug_use' :value="presetMedicalHistoryValue('Drug Use', 'drug_use')" v-on:click ='updateMedHistoryArray($event)' v-model="optionDrugUse" />
                     <div class="value">Drug Use</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Electrical Implants" v-on:click ='updateMedHistoryArray($event)' v-model="optionElectricalImplants" />
+                    <input type="checkbox" ref="electrical_implants" :value="presetMedicalHistoryValue('Electrical Implants', 'electrical_implants')" v-on:click ='updateMedHistoryArray($event)' v-model="optionElectricalImplants" />
                     <div class="value">Electrical Implants</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Gallbladder/Liver" v-on:click ='updateMedHistoryArray($event)' v-model="optionGalBladderLiver" />
+                    <input type="checkbox" ref="gallblader_liver" :value="presetMedicalHistoryValue('Gallbladder/Liver', 'gallblader_liver')" v-on:click ='updateMedHistoryArray($event)' v-model="optionGalBladderLiver" />
                     <div class="value">Gallbladder/Liver</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Headaches" v-on:click ='updateMedHistoryArray($event)' v-model="optionHeadaches" />
+                    <input type="checkbox" ref="headaches" :value="presetMedicalHistoryValue('Headaches', 'headaches')" v-on:click ='updateMedHistoryArray($event)' v-model="optionHeadaches" />
                     <div class="value">Headaches</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Heart Problems" v-on:click ='updateMedHistoryArray($event)' v-model="optionHeartProblems" />
+                    <input type="checkbox" ref="heart_problem" :value="presetMedicalHistoryValue('Heart Problems', 'heart_problem')" v-on:click ='updateMedHistoryArray($event)' v-model="optionHeartProblems" />
                     <div class="value">Heart Problems</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="History of Alcohol Use" v-on:click ='updateMedHistoryArray($event)' v-model="optionAlcoholic" />
+                    <input type="checkbox" ref="alcohol_use" :value="presetMedicalHistoryValue('History of Alcohol Use', 'alcohol_use')" v-on:click ='updateMedHistoryArray($event)' v-model="optionAlcoholic" />
                     <div class="value">History of Alcohol Use</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Kideny Problems" v-on:click ='updateMedHistoryArray($event)' v-model="optionKidneyProblems" />
+                    <input type="checkbox" ref="kidney_problems" :value="presetMedicalHistoryValue('Kideny Problems', 'kidney_problems')" v-on:click ='updateMedHistoryArray($event)' v-model="optionKidneyProblems" />
                     <div class="value">Kideny Problems</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Pacemaker" v-on:click ='updateMedHistoryArray($event)' v-model="optionPacemaker" />
+                    <input type="checkbox" ref="pacemaker" :value="presetMedicalHistoryValue('Pacemaker', 'pacemaker')" v-on:click ='updateMedHistoryArray($event)' v-model="optionPacemaker" />
                     <div class="value">Pacemaker</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Pregnant" v-on:click ='updateMedHistoryArray($event)' v-model="optionPregnant" />
+                    <input type="checkbox" ref="pregnant" :value="presetMedicalHistoryValue('Pregnant', 'pregnant')" v-on:click ='updateMedHistoryArray($event)' v-model="optionPregnant" />
                     <div class="value">Pregnant</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Sleep Apnea" v-on:click ='updateMedHistoryArray($event)' v-model="optionSleepApnea" />
+                    <input type="checkbox" ref="sleep_apnea" :value="presetMedicalHistoryValue('Sleep Apnea', 'sleep_apnea')" v-on:click ='updateMedHistoryArray($event)' v-model="optionSleepApnea" />
                     <div class="value">Sleep Apnea</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Smoking" ref="optionSmoking" v-on:click ='updateMedHistoryArray($event)' v-model="optionSmoking" />
+                    <input type="checkbox"  :value="presetMedicalHistoryValue('Smoking', 'smoking')" ref="smoking" v-on:click ='updateMedHistoryArray($event)' v-model="optionSmoking" />
                     <div class="value">Smoking</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Stroke" v-on:click ='updateMedHistoryArray($event)' v-model="optionStroke" />
+                    <input type="checkbox" ref="stroke" :value="presetMedicalHistoryValue('Stroke', 'stroke')" v-on:click ='updateMedHistoryArray($event)' v-model="optionStroke" />
                     <div class="value">Stroke</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Tumor/Cancer" v-on:click ='updateMedHistoryArray($event)' v-model="optionTumorCancer" />
+                    <input type="checkbox" ref='tumor_cancer' :value="presetMedicalHistoryValue('Tumor/Cancer', 'tumor_cancer')" v-on:click ='updateMedHistoryArray($event)' v-model="optionTumorCancer" />
                     <div class="value">Tumor/Cancer</div>
                   </label>
                 </li>
                 <li>
                   <label class="toggle-checkbox">
-                    <input type="checkbox" value="Wound/Skin Problems" v-on:click ='updateMedHistoryArray($event)' v-model="optionWoundSkinProblem" />
+                    <input type="checkbox" ref="wound_skin_problem" :value="presetMedicalHistoryValue('Wound/Skin Problems', 'wound_skin_problem')" v-on:click ='updateMedHistoryArray($event)' v-model="optionWoundSkinProblem" />
                     <div class="value">Wound/Skin Problems</div>
                   </label>
                 </li>
@@ -550,6 +550,7 @@ export default {
   data() {
     return {
       medicalHistory: [],
+      savedMedicalHistory: [],
       yearsRange: this.$getRangeReverse(70, new Date().getFullYear()),
       reportTitle: '',
       citizenId: this.$route.query.cid ?? '',
@@ -636,8 +637,25 @@ export default {
           report_id : this.reportId
         }
       )
-      this.citizenId = report.citizen_id
-      console.log(report)
+      this.citizenId = report.citizen_id,
+      this.savedMedicalHistory = report.medical_history_array,
+      this.reportTitle = report.report_title,
+      this.profileId = report.enc_profile_id,
+      this.problemStartedAt = report.problem_started_at,
+      this.problemDescription = report.problem_description,
+      this.problemCause = report.problem_cause,
+      this.problemDetails = report.problem_cause_detail,
+      this.surgeryName = report.surgery_name,
+      this.surgeryYear = report.surgery_year,
+      this.surgeryComplications = report.surgery_complication,
+      this.surgeryDescription = report.surgery_description,
+      this.medicationName = report.medication_name,
+      this.medicationDone = report.medication_done,
+      this.medicationReason = report.medication_reason,
+      this.medicationDescription = report.medication_description,
+      this.allergy = report.allergy_type_selected,
+      this.allergyDetails = report.allergies_details,
+      this.religiousCulturalViews = report.personal_views
       // this.reportTitle = report.report_title_raw
     }
   },
@@ -657,6 +675,18 @@ export default {
         this.medicalHistory.push(valueToPush)
       }
     },
+
+  presetMedicalHistoryValue (value, ref) {
+    this.$nextTick(() => {
+        if(this.savedMedicalHistory.includes(value)) {
+          var refs = this.$refs
+          // console.log(refs)
+          // refs[ref].click()
+        }
+      })
+      return value
+  },
+
     createMedicalReport () {
       this.$v.$touch()
       if (!this.$v.$invalid) {
