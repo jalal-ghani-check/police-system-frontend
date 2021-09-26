@@ -463,7 +463,7 @@ export default {
       this.medicalTreatment = report.med_treatment
       this.legalAid = report.legal_aid
     }
-    this. preSelectLawsOnEdit()
+
 
     this.fetchAllLaws()
   },
@@ -505,6 +505,7 @@ export default {
       this.lawListInfraction = this.lawsList.infraction
       this.lawListFelony = this.lawsList.felony
       this.lawListMisdemeanor = this.lawsList.misdemeanor
+      this. preSelectLawsOnEdit()
     },
 
     updateLawsArray (el) {
@@ -529,7 +530,7 @@ export default {
             refs[law_id][0].click()
           }
         })
-        }, 2000);
+        }, 500);
     },
     discardPoliceReport () {
       this.$router.push({
