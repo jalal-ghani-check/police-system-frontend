@@ -529,7 +529,7 @@ export default {
             refs[law_id][0].click()
           }
         })
-        }, 500);
+        }, 2000);
     },
     discardPoliceReport () {
       this.$router.push({

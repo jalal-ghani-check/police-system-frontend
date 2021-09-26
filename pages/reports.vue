@@ -56,8 +56,18 @@
                           <div v-if="report.report_type === 'medical_report'" class="tag">Medical Report</div>
                           <div v-else class="tag">Police Report</div>
                       </div>
-                      <button v-if="isAllowedToEditPoliceReports" @click="editReport(report.report_id,report.report_type)"  class="btn text-danger" >Edit</button> <span >|</span>
-                      <button v-if="isAllowedToDeletePoliceReports" @click="showDeleteReportModal(report.report_id,report.report_type)"  class="btn text-danger">Delete</button>
+                      <div v-if="report.report_type !== 'medical_report'">
+                        <button v-if="isAllowedToEditPoliceReports" @click="editReport(report.report_id,report.report_type)"  class="btn text-danger" >Edit</button> 
+                        <span v-if="isAllowedToEditPoliceReports && isAllowedToDeletePoliceReports">|</span>
+                        <button v-if="isAllowedToDeletePoliceReports" @click="showDeleteReportModal(report.report_id,report.report_type)"  class="btn text-danger">Delete</button>  
+                      </div>
+                      <div v-else>
+                        <button v-if="isAllowedToEditMedicalReports" @click="editReport(report.report_id,report.report_type)"  class="btn text-danger" >Edit</button>
+                        <span v-if="isAllowedToEditMedicalReports && isAllowedToDeleteMedicalReports">|</span>
+                        <button v-if="isAllowedToDeleteMedicalReports" @click="showDeleteReportModal(report.report_id,report.report_type)"  class="btn text-danger">Delete</button>
+                      </div>
+
+                      
                   </div>
                 </div>
                 <div v-else class="no-data">

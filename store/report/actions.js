@@ -38,7 +38,6 @@ export default {
   },
 
   deleteReport ({ commit }, data) {
-    console.log(data)
     let url = 'police-report/delete';
     if(data.report_type === 'medical_report'){
       url = 'medical-report/delete';

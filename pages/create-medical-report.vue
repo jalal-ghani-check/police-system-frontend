@@ -679,7 +679,6 @@ export default {
 
     preSelectMedicalHistoryOnEdit () {
         setTimeout(() => {
-          console.log(this.savedMedicalHistory)
         this.savedMedicalHistory.forEach(id => {
           id = id.trim()
           var refs = this.$refs
